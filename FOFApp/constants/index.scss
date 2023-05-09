@@ -1,0 +1,45 @@
+.flex{
+	display: flex;
+}
+.flex1{
+	flex: 1;
+}
+
+.flex-center{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.flex-end{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.flex-column{
+	flex-direction: column;
+}
+.flex-between{
+	display: flex;
+	justify-content: space-between;
+}
+// 初始化button颜色
+button[type=primary]{
+	background-color: $uni-color-primary;
+}
+button[disabled][type=primary]{
+	background: $uni-button-disable;
+}
+
+.mh-100{
+	min-height: 100vh;
+}
+
+.pd20_10{
+	padding:20px 10px;
+}
+.radius4{
+	border-radius: 4px;
+}
+.bg-write{
+	background-color: $uni-color-write;
+}

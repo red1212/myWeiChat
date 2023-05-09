@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.my-wrap.data-v-4dcceeb0 {
+  /* padding:20px 10px; */
+}
+.user-info.data-v-4dcceeb0 {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 30px 20px;
+}
+.logo-box.data-v-4dcceeb0 {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.phone.data-v-4dcceeb0 {
+  color: #333;
+}
+.card-item.data-v-4dcceeb0 {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  justify-content: space-between;
+}
+.card-name.data-v-4dcceeb0 {
+  font-size: 14px;
+  color: #333;
+}
+.card-icon.data-v-4dcceeb0 {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.left-item.data-v-4dcceeb0 {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  line-height: 20px;
+  width: 100%;
+}
+.left-item button.data-v-4dcceeb0 {
+  background-color: #fff;
+  padding: 0px;
+  flex: 1;
+  text-align: left;
+}
+.left-item button.data-v-4dcceeb0::after {
+  border: none;
+}
+

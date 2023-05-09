@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
+    "my-radio": "/components/my-radio/my-radio",
+    "subscribe": "/components/subscribe/subscribe",
+    "my-popup": "/components/my-popup/my-popup"
+  }
+}

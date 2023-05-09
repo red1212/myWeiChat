@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.popup-text.data-v-5eaede64 {
+  padding: 10px 10px 20px 10px;
+  overflow: auto;
+}
+.popup-box.data-v-5eaede64 {
+  font-size: 14px;
+  color: #4d4d4d;
+  width: 600rpx;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.btn-know.data-v-5eaede64 {
+  font-size: 12px;
+  background-color: #0e67a9;
+  border-radius: 0px;
+  padding: 8px;
+  color: #fff;
+  min-width: 60px;
+  border-radius: 6px;
+}
+.close.data-v-5eaede64 {
+  text-align: right;
+}
+.title.data-v-5eaede64 {
+  font-weight: bold;
+  text-align: center;
+}
+.title-box.data-v-5eaede64 {
+  margin-bottom: 10px;
+}
+

@@ -1,0 +1,15 @@
+
+.user-agree.data-v-3a5d0e73{
+	background-color: #fff;
+	font-size: 14px;
+	padding:20px 10px;
+}
+.user-agree view.data-v-3a5d0e73{
+	line-height: 24px;
+}
+.title.data-v-3a5d0e73{
+	color: #333;
+	font-weight: bold;
+	margin:10px 0px;
+}
+

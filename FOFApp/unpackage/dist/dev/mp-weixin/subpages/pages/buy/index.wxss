@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.buy-wrap.data-v-d18ea5fe {
+  background-color: #fff;
+  min-height: 100vh;
+}
+.buy-box.data-v-d18ea5fe {
+  padding: 0px 10px;
+}
+.radio-item.data-v-d18ea5fe {
+  display: flex;
+  align-items: center;
+}
+.weituo.data-v-d18ea5fe {
+  color: #0e67a9;
+}
+.row-item.data-v-d18ea5fe {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.label.data-v-d18ea5fe {
+  width: 80px;
+}
+.color.data-v-d18ea5fe {
+  color: #0e67a9;
+}
+.service-box.data-v-d18ea5fe {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.service-base.data-v-d18ea5fe {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #ebeef5;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  margin-right: 6px;
+}
+.service-act.data-v-d18ea5fe {
+  border: 1px solid #0e67a9;
+  color: #0e67a9;
+}
+

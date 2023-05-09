@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.wallet-wrap.data-v-83059618 {
+  background-color: #fff;
+  min-height: 100vh;
+  padding: 10px;
+}
+.list.data-v-83059618 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ebeef5;
+}
+.box.data-v-83059618 {
+  margin-top: 20px;
+}
+.row.data-v-83059618 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.label.data-v-83059618 {
+  width: 100px;
+}
+.price.data-v-83059618 {
+  color: #d42f2f;
+  margin-left: 10px;
+}
+.Recharge.data-v-83059618 {
+  background-color: #0e67a9;
+  color: #fff;
+  margin: 0px;
+  font-size: 12px;
+}
+.content.data-v-83059618 {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: #999;
+  padding-bottom: 10px;
+}
+.tip-title.data-v-83059618 {
+  font-size: 12px;
+  line-height: 30px;
+  color: #666;
+}
+.input-box.data-v-83059618 {
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+}
+.uni-input.data-v-83059618 {
+  border: 1px solid #ebeef5;
+  padding: 6px 4px;
+}
+

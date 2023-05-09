@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.wrap.data-v-6ea96624 {
+  min-height: 100vh;
+  background-color: #fff;
+  padding-top: 100rpx;
+}
+.logo.data-v-6ea96624 {
+  text-align: center;
+}
+

@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.wrap.data-v-1f723e58 {
+  padding: 0px 10px;
+}
+.team-item.data-v-1f723e58 {
+  width: 100%;
+  border-bottom: 1px dashed #ebeef5;
+  padding-top: 10px;
+}
+.row.data-v-1f723e58 {
+  margin-bottom: 10px;
+  display: flex;
+  font-size: 12px;
+}
+.label.data-v-1f723e58 {
+  width: 118px;
+  color: #666;
+}
+.default.data-v-1f723e58 {
+  background-color: #0e67a9;
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+.addBtn.data-v-1f723e58 {
+  margin: 20px 0px;
+}
+.btnItem.data-v-1f723e58 {
+  margin-bottom: 10px;
+}
+.btnItem button.data-v-1f723e58 {
+  margin: 0px 0px 0px 6px;
+}
+

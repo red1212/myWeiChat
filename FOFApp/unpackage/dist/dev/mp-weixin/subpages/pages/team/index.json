@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "委托团体",
+  "usingComponents": {
+    "add-teamer": "/components/addTeamer/addTeamer"
+  }
+}

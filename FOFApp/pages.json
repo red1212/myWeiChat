@@ -1,0 +1,108 @@
+{
+	"pages": [{
+			"path": "pages/home/index"
+		},
+		{
+			"path": "pages/type/index",
+			"style": {
+				"navigationBarTitleText": "材料检测"
+			}
+		},
+		{
+			"path": "pages/my/index"
+		}
+	],
+	"subPackages": [{
+		"root": "subpages",
+		"pages": [{
+				"path": "pages/contactUs/index"
+			},
+			{
+				"path": "pages/aboutUs/index",
+				"style": {
+					"navigationBarTitleText": "关于我们"
+				}
+			},
+			{
+				"path": "pages/wallet/index",
+				"style": {
+					"navigationBarTitleText": "个人资产"
+				}
+			},
+			{
+				"path": "pages/collect/index"
+			},
+			{
+				"path": "pages/order/index",
+				"style": {
+					"navigationBarTitleText": "我的订单"
+				}
+			},
+			{
+				"path": "pages/orderDetail/index",
+				"style": {
+					"navigationBarTitleText": "订单详情"
+				}
+			},
+			{
+				"path": "pages/productDetail/index",
+				"style": {
+					"navigationBarTitleText": "产品详情"
+				}
+			},
+			{
+				"path": "pages/buy/index"
+			},
+			{
+				"path": "pages/login/index",
+				"style": {
+					"navigationBarTitleText": "登录/注册"
+				}
+			},
+			{
+				"path": "pages/login/userAgree",
+				"style": {
+					"navigationBarTitleText": "注册条款"
+				}
+			}, {
+				"path": "pages/team/index",
+				"style": {
+					"navigationBarTitleText": "委托团体"
+				}
+
+			}
+		]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "FOF实验室",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#000000",
+		"selectedColor": "#0e67a9",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"text": "首页",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home-active.png"
+			},
+			{
+				"pagePath": "pages/type/index",
+				"text": "材料检测",
+				"iconPath": "static/type.png",
+				"selectedIconPath": "static/type-active.png"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"text": "我的",
+				"iconPath": "static/my.png",
+				"selectedIconPath": "static/my-active.png"
+			}
+		]
+	}
+}

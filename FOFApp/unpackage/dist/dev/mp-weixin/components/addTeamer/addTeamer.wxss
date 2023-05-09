@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.container.data-v-25eeec1c {
+  padding: 10px;
+}
+.uni-input-wrapper.data-v-25eeec1c {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  margin-bottom: 10px;
+  height: 45px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
