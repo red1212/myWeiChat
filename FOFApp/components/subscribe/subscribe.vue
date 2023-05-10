@@ -25,7 +25,7 @@
 			<view class="title">
 			  预约须知
 			</view>
-			<view class="content" v-html="productDetail.Content2">内容哈哈</view>
+			<view class="content" v-html="productDetail.Content3"></view>
 		</view>
 		<view>
 			<view class="title">
@@ -49,7 +49,7 @@
 
 <script>
 	import {mapState,mapMutations} from 'vuex'
-	import {checkMap} from '../../util/index.js'
+	import {checkMap,isSuccess,errorTip} from '../../util/index.js'
 	export default {
 		name:"subscribe",
 		data() {
@@ -69,7 +69,8 @@
 					time:'请输入预约时长',
 					startTime:'请选择开始时间',
 					endTime:'请选择结束时间'
-				}
+				},
+				clickTime:0
 			};
 		},
 		computed:{
@@ -89,15 +90,39 @@
 				this.disable = false
 				this.showConfirm = false
 			},
-			submit(){
+			async submit(){
 				let result = this.checkMap(this.baseFrom,this.tip)
 				if(!result) return
+				this.clickTime = this.clickTime + 1 //点击次数
 				this.showConfirm = !this.showConfirm   //修改信息按钮
 				this.disable = true   //确认信息
 				if(!this.showConfirm && this.disable){
 					this.payState = true
 				}else{
 					this.payState = false
+				}
+				if(this.clickTime === 2){
+				let {Code} = this.productDetail
+				let {chenfeng,time,startTime,endTime} = this.baseFrom
+				let param={
+					Item:{
+						ProductCode:Code,
+						SampleComponent:chenfeng,
+						SampleNumber:Number(time),  //预约时长
+						StartTime:startTime,
+						EndTime:endTime
+					},
+					TotalPrice:100,  //这里后期需要计算
+					
+				}
+				console.log(param)
+				const { data: res }= await uni.$http.post('user/order/book',param);
+				// if(isSuccess(res.code)){
+				// 	this.productDetail = res.data
+				// 	this.handCollect(res.data.NumCollect)
+				// }else{
+				// 	return uni.$showMsg(res.message,1500) 
+				// }
 				}
 			},
 			//完成支付

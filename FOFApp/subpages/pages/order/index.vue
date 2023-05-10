@@ -3,13 +3,13 @@
 		<view class="top">
 		<view class="tabBar typeBar">
 			<view class="tab-item" v-for="(item,i) in typeList" :key="i">
-				<text :class="['text',i === typeActive ? 'active' : '']" @click="typeChange(item,i)">{{item}}</text>
+				<text :class="['text',item.key === typeActive ? 'active' : '']" @click="typeChange(item,i)">{{item.name}}</text>
 			</view>
 		</view>
 		</view>
 		<view class="tabBar" style="background-color: #fff;">
 			<view class="tab-item" v-for="(item,i) in tabList" :key="i">
-				<text :class="['text',i === active ? 'active' : '']" @click="tabChange(item,i)">{{item}}</text>
+				<text :class="['text',i === active ? 'active' : '']" @click="tabChange(item,i)">{{item.name}}</text>
 			</view>
 		</view>
 		<view class="my-order">
@@ -35,6 +35,9 @@
 				</view>
 			</view>
 		</view>
+		<view v-if="List.length === 0">
+			<no-data/>
+		</view>
 		<view>
 			<!-- 普通弹窗 -->
 			<my-popup title="检测结果说明" ref="resultRef" @closePopUp="clickResult('close')"></my-popup>
@@ -44,45 +47,86 @@
 </template>
 
 <script>
+	import {isSuccess,errorTip} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
-				typeActive:0,
+				typeActive:4,
 				active: 0,
-				typeList:['材料检测','预约检测'],
-				tabList: ['全部订单', '未支付', '已支付', '检测中', '检测完成', '已完成'],
-				List: [{
-						orderId: 'FOF20230317114',
-						img: 'http://47.97.216.6/upload/9a/5652dcd3369d818566670266fd2e5c.png',
-						price: '100',
-						state: '待处理',
-						payState: '未支付',
-						name: '磁滞回线测试仪（VSM）磁滞回线测试仪（VSM）磁滞回线测试仪（VSM）磁滞回线测试仪（VSM）'
-					},
-					{
-						orderId: 'FOF20230317114',
-						img: 'http://47.97.216.6/upload/8a/5d9478f9a8456a78bb21942f778dd7.png',
-						price: '100',
-						state: '待处理',
-						payState: '未支付',
-						name: '磁滞回线测试仪（VSM）'
-					}
-				]
-			
+				isPay:[1,2,3],
+				typeList:[
+					{name:'材料检测',key:3},
+					{name:'预约检测',key:4}
+				],
+				tabList: [
+					{name:'全部订单',key:'statu',val:0},
+					{name:'未支付',key:'pay',val:0},
+					{name:'已支付',key:'pay',val:1},
+					{name:'检测中',key:'statu',val:1},
+					{name:'检测完成',key:'statu',val:2},
+					{name:'已完成',key:'statu',val:3},
+				],
+				List: [],
+				paging:{
+					page:1,
+					total:0,
+					pagesize:10
+				}
+				
 			}
 		},
 		onLoad(){
+			this.getOrderDeetail()
 			// this.$refs.payRef.$refs.popup.open()
 		},
 		methods: {
+			async getOrderDeetail(params={}){
+				uni.showLoading({
+				  title: '数据加载中...',
+				})
+				let {page,pagesize} = this.paging
+				let param={
+					page:page,
+					"extra": {
+						"type": this.typeActive  ,//类型 
+						...params
+					} ,
+				}
+				const { data: res }= await uni.$http.post('user/order/list',param);
+				uni.hideLoading()
+				console.log(res)
+				if(isSuccess(res.code)){
+					this.List = res?.data.extra || []
+					this.paging.total = res?.data?.total || 0
+				}else{
+					return uni.$showMsg(res.message,1500) 
+				}
+			},
 			//tab切换
 			tabChange(item, i) {
+				console.log(item)
 				if (this.active === i) return
 				this.active = i
+				this.paging.page = 1
+				//判断订单状态和支付状态
+				if(item.key === "pay"){
+					//isPay: 0,  是否支付
+					this.getOrderDeetail({isPay:item.val})
+				}else{
+					//status: 0,   //订单状态
+					let param ={
+						status:item.val
+					}
+					if(this.isPay.includes(item.val)){
+						param.isPay = 1   //如果是检测中，检测完成，已完成。则代表已支付
+					}
+					this.getOrderDeetail(param)
+				}
 			},
-			typeChange(item,i){
-				if(this.typeActive === i) return
-				this.typeActive = i
+			typeChange(item){
+				if(this.typeActive === item.key) return
+				this.typeActive = item.key
+				this.getOrderDeetail({})
 			},
 			goDetail(item) {
 				uni.navigateTo({

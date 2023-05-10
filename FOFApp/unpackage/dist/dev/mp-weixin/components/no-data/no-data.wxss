@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.no-data.data-v-1a4b7c72 {
+  font-size: 14px;
+  margin-top: 40px;
+  color: #999;
+  text-align: center;
+}
+
