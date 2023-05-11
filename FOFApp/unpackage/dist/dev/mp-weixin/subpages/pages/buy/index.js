@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["subpages/pages/buy/index"],{
 
 /***/ 124:
-/*!*********************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/main.js?{"page":"subpages%2Fpages%2Fbuy%2Findex"} ***!
-  \*********************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/main.js?{"page":"subpages%2Fpages%2Fbuy%2Findex"} ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,9 +22,9 @@ createPage(_index.default);
 /***/ }),
 
 /***/ 125:
-/*!************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue ***!
-  \************************************************************************************/
+/*!********************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63,9 +63,9 @@ component.options.__file = "subpages/pages/buy/index.vue"
 /***/ }),
 
 /***/ 126:
-/*!*******************************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=template&id=d18ea5fe&scoped=true& ***!
-  \*******************************************************************************************************************************/
+/*!***************************************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=template&id=d18ea5fe&scoped=true& ***!
+  \***************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85,9 +85,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 127:
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=template&id=d18ea5fe&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=template&id=d18ea5fe&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -101,13 +101,13 @@ var components
 try {
   components = {
     uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 228))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 235))
     },
     myRadio: function () {
-      return __webpack_require__.e(/*! import() | components/my-radio/my-radio */ "components/my-radio/my-radio").then(__webpack_require__.bind(null, /*! @/components/my-radio/my-radio.vue */ 235))
+      return __webpack_require__.e(/*! import() | components/my-radio/my-radio */ "components/my-radio/my-radio").then(__webpack_require__.bind(null, /*! @/components/my-radio/my-radio.vue */ 242))
     },
     subscribe: function () {
-      return Promise.all(/*! import() | components/subscribe/subscribe */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/subscribe/subscribe")]).then(__webpack_require__.bind(null, /*! @/components/subscribe/subscribe.vue */ 240))
+      return __webpack_require__.e(/*! import() | components/subscribe/subscribe */ "components/subscribe/subscribe").then(__webpack_require__.bind(null, /*! @/components/subscribe/subscribe.vue */ 247))
     },
     myPopup: function () {
       return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 190))
@@ -144,9 +144,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 128:
-/*!*************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -160,52 +160,75 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 129:
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 46));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 48));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _vuex = __webpack_require__(/*! vuex */ 34);
+var _index = __webpack_require__(/*! ../../../util/index.js */ 39);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
   data: function data() {
     return {
-      clientList: [{
-        value: 0,
-        text: "篮球"
-      }, {
-        value: 1,
-        text: "足球"
-      }, {
-        value: 2,
-        text: "游泳"
-      }],
-      serviceList: ['李逗逗', '王丽', '王岩', '于佳琪', '丁泉之'],
-      //客服列表
-      clientVal: 0,
       content: '',
+      productDetail: {},
       weituoText: "<div>\n\t\t\t<div style=\"text-align:center;font-size:14px;margin-bottom:8px\">\u59D4\u6258\u58F0\u660E</div>\n\t\t\t<div>1\uFF09\u59D4\u6258\u65B9\u5BF9\u9001\u68C0\u6837\u54C1\u6765\u6E90\u7684\u5408\u6CD5\u6027\u548C\u76F8\u5173\u4FE1\u606F\u7684\u771F\u5B9E\u6027\u627F\u62C5\u5168\u90E8\u8D23\u4EFB\u3002</div>\n\t\t\t<div>2\uFF09\u59D4\u6258\u65B9\u5BF9\u9001\u68C0\u6837\u54C1\u5DF2\u77E5\u7684\u6216\u6F5C\u5728\u7684\u5371\u5BB3\u6709\u5982\u5B9E\u544A\u77E5\u7684\u4E49\u52A1\uFF0C\u5426\u5219\u627F\u62C5\u5168\u90E8\u8D23\u4EFB\u3002</div>\n\t\t\t<div>3\uFF09\u627F\u68C0\u65B9\u4EC5\u5BF9\u672C\u6B21\u6837\u54C1\u8D1F\u8D23\uFF0C\u68C0\u6D4B\u7ED3\u679C\u4EC5\u53CD\u6620\u5BF9\u8BE5\u6837\u54C1\u7684\u8BC4\u4EF7\uFF0C\u68C0\u6D4B\u7ED3\u679C\u4F7F\u7528\u6240\u4EA7\u751F\u7684\u76F4\u63A5\u6216\u95F4\u63A5\u7684\u635F\u5931\uFF0C\u627F\u68C0\u65B9\u4E0D\u627F\u62C5\u4EFB\u4F55\u8D23\u4EFB\u3002</div>\n\t\t\t<div>4\uFF09\u5982\u56E0\u707E\u5BB3\u3001\u4E8B\u6545\u7B49\u4E0D\u53EF\u6297\u529B\u9020\u6210\u6837\u54C1\u4E22\u5931\u6216\u8005\u4EEA\u5668\u51FA\u73B0\u6545\u969C\uFF0C\u4ECE\u800C\u9020\u6210\u68C0\u6D4B\u670D\u52A1\u5EF6\u8FDF\u6216\u4E0D\u80FD\u8FDB\u884C\u65F6\uFF0C\u627F\u68C0\u65B9\u4F1A\u53CA\u65F6\u901A\u77E5\u59D4\u6258\u65B9\u53D6\u6D88\u6216\u6682\u505C\u670D\u52A1\u800C\u65E0\u9700\u627F\u62C5\u8D23\u4EFB\u3002</div>\n\t\t\t<div>5\uFF09\u627F\u68C0\u65B9\u627F\u8BFA\u5728\u5411\u7532\u65B9\u4EA4\u4ED8\u6210\u679C\u4E4B\u524D\uFF0C\u4E0D\u4F1A\u5C06\u6210\u679C\u8F6C\u8BA9\u7ED9\u7B2C\u4E09\u4EBA\uFF0C\u6570\u636E\u53CA\u5206\u6790\u7684\u6240\u6709\u7ED3\u679C\u5F52\u59D4\u6258\u65B9\u72EC\u6709\u3002</div>\n\t\t\t<div>6\uFF09\u59D4\u6258\u65B9\u4E0E\u53CA\u627F\u68C0\u65B9\u53C2\u4E0E\u6B64\u9879\u76EE\u4EBA\u5458\u5747\u9700\u8981\u4FDD\u5BC6\u539F\u59CB\u8D44\u6599\u3001\u6280\u672F\u8DEF\u7EBF\u3001\u8BD5\u9A8C\u62A5\u544A\u53CA\u4E0E\u8BD5\u9A8C\u6709\u5173\u7684\u8D44\u6599\u7ED3\u679C\u53CA\u4EF7\u683C\uFF0C\u4FDD\u5BC6\u671F\u9650\u4E24\u5E74\uFF0C\u4E0D\u5F97\u5411\u7B2C\u4E09\u65B9\u6CC4\u9732\u76F8\u5173\u4FE1\u606F\uFF0C\u5426\u5219\u7531\u8FC7\u9519\u65B9\u627F\u62C5\u6240\u6709\u8D23\u4EFB\u3002</div>\n\t\t\t</div>"
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0, _vuex.mapState)('m_client', ['teamList'])), (0, _vuex.mapState)('m_purchase', ['purchaseInfo', 'disable', 'productDetail'])),
-  onLoad: function onLoad() {
-    var _this$productDetail = this.productDetail,
-      OrderType = _this$productDetail.OrderType,
-      Content2 = _this$productDetail.Content2,
-      Content3 = _this$productDetail.Content3;
-    this.content = OrderType == 3 ? Content2 : Content3;
-    this.$refs.parentRef.$refs.popup.open();
+  computed: _objectSpread(_objectSpread({}, (0, _vuex.mapState)('m_client', ['teamList'])), (0, _vuex.mapState)('m_purchase', ['purchaseInfo', 'disable'])),
+  onLoad: function onLoad(option) {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var param, _yield$uni$$http$post, res, _res$data$product, OrderType, Content2, Content3;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              uni.showLoading({
+                title: '数据加载中...'
+              });
+              param = {
+                ID: parseInt(option.ID)
+              };
+              _context.next = 4;
+              return uni.$http.post('user/order/view', param);
+            case 4:
+              _yield$uni$$http$post = _context.sent;
+              res = _yield$uni$$http$post.data;
+              uni.hideLoading();
+              if (!(0, _index.isSuccess)(res.code)) {
+                _context.next = 14;
+                break;
+              }
+              _this.productDetail = res.data;
+              _res$data$product = res.data.product, OrderType = _res$data$product.OrderType, Content2 = _res$data$product.Content2, Content3 = _res$data$product.Content3;
+              _this.content = OrderType == 3 ? Content2 : Content3;
+              _this.$refs.parentRef.$refs.popup.open();
+              _context.next = 15;
+              break;
+            case 14:
+              return _context.abrupt("return", uni.$showMsg(res.message, 1500));
+            case 15:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   methods: _objectSpread(_objectSpread({}, (0, _vuex.mapMutations)('m_purchase', ['updatePurchaseInfo', 'updateDisable'])), {}, {
     closePopUp: function closePopUp() {
@@ -224,13 +247,14 @@ var _default = {
   })
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 
 /***/ 130:
-/*!**********************************************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=style&index=0&id=d18ea5fe&lang=scss&scoped=true& ***!
-  \**********************************************************************************************************************************************/
+/*!******************************************************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=style&index=0&id=d18ea5fe&lang=scss&scoped=true& ***!
+  \******************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -244,9 +268,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 131:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=style&index=0&id=d18ea5fe&lang=scss&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=style&index=0&id=d18ea5fe&lang=scss&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

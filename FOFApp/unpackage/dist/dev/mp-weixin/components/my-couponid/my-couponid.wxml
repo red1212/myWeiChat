@@ -1,0 +1,1 @@
+<view><block wx:for="{{couponList}}" wx:for-item="item" wx:for-index="i" wx:key="i"><view>{{''+item.name+''}}</view></block></view>

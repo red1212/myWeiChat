@@ -21,17 +21,12 @@
 
 <script>
 	import {mapState,mapMutations} from 'vuex'
+	import {isSuccess,errorTip} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
-				clientList: [
-				  { value: 0, text: "篮球" },
-				  { value: 1, text: "足球" },
-				  { value: 2, text: "游泳" },
-				],
-				serviceList:['李逗逗','王丽','王岩','于佳琪','丁泉之'], //客服列表
-				clientVal:0,
 				content:'',
+				productDetail:{},
 				weituoText:`<div>
 				<div style="text-align:center;font-size:14px;margin-bottom:8px">委托声明</div>
 				<div>1）委托方对送检样品来源的合法性和相关信息的真实性承担全部责任。</div>
@@ -45,13 +40,27 @@
 		},
 		computed:{
 		...mapState('m_client',['teamList']),
-		...mapState('m_purchase',['purchaseInfo','disable','productDetail'])	
+		...mapState('m_purchase',['purchaseInfo','disable'])	
 		},
-		onLoad() {
-			const {OrderType,Content2,Content3} = this.productDetail
-			this.content = OrderType == 3 ? Content2 : Content3
-			this.$refs.parentRef.$refs.popup.open()
-			
+
+		async onLoad(option){
+				uni.showLoading({
+				  title: '数据加载中...',
+				})
+				let param={
+					ID:parseInt(option.ID)
+				}
+				const { data: res }= await uni.$http.post('user/order/view',param);
+				uni.hideLoading()
+				if(isSuccess(res.code)){
+					this.productDetail = res.data
+					const {OrderType,Content2,Content3} = res.data.product
+					this.content = OrderType == 3 ? Content2 : Content3
+					this.$refs.parentRef.$refs.popup.open()
+				}else{
+					return uni.$showMsg(res.message,1500) 
+				}
+				
 		},
 		methods: {
 			...mapMutations('m_purchase',['updatePurchaseInfo','updateDisable']),

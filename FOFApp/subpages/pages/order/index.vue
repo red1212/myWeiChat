@@ -7,12 +7,13 @@
 						@click="typeChange(item,i)">{{item.name}}</text>
 				</view>
 			</view>
-		</view>
-		<view class="tabBar" style="background-color: #fff;">
-			<view class="tab-item" v-for="(item,i) in tabList" :key="i">
-				<text :class="['text',i === active ? 'active' : '']" @click="tabChange(item,i)">{{item.name}}</text>
+			<view class="tabBar" style="background-color: #fff;">
+				<view class="tab-item" v-for="(item,i) in tabList" :key="i">
+					<text :class="['text',i === active ? 'active' : '']" @click="tabChange(item,i)">{{item.name}}</text>
+				</view>
 			</view>
 		</view>
+
 		<view class="my-order">
 			<view class="order-item" v-for="(item,i) in List" :key="i">
 				<view class="row-1">
@@ -58,8 +59,8 @@
 				typeActive: 4,
 				active: 0,
 				isPaying: [1, 2, 3],
-				isPay: 0, //是否支付
-				status: 0, //订单状态
+				isPay: '', //是否支付
+				status: '', //订单状态
 				type: 'statu', //默认订单类型
 				Orderno:'',   //订单ID
 				typeList: [
@@ -126,7 +127,7 @@
 		},
 		//上拉刷新
 		onPullDownRefresh() {
-			this.paging.page = 1
+			this.resetPage()
 			this.List = []
 			this.getOrderDeetail(this.paramFn(), () => uni.stopPullDownRefresh())
 		},
@@ -138,8 +139,10 @@
 				if (type === 'pay') {
 					params.isPay = isPay
 				} else {
-					params.status = status
-					if (isPaying.includes(isPay)) {
+					if(status !=''){
+						params.status = status
+					}
+					if (isPaying.includes(status)) {
 						params.isPay = 1 //如果是检测中，检测完成，已完成。则代表已支付
 					}
 				}
@@ -173,14 +176,23 @@
 			tabChange(item, i) {
 				if (this.active === i) return
 				this.active = i
-				this.paging.page = 1
+				this.resetPage()
 				this.List = []
 				this.type = item.key
+			
 				//判断订单状态和支付状态
 				if (item.key === "pay") {
 					this.isPay = item.val
 				} else {
-					this.status = item.val
+						console.log(item,item.val)
+					//如果是全部则清空支付状态
+					if(item.val == 0){
+						this.isPay = ''
+						this.status = ''
+					}else{
+						this.status = item.val
+					}
+
 				}
 				this.getOrderDeetail(this.paramFn())
 			},
@@ -188,7 +200,9 @@
 				if (this.typeActive === item.key) return
 				this.typeActive = item.key
 				this.List = []
-				this.getOrderDeetail(this.paramFn())
+				this.active = 0
+				this.resetPage()
+				this.getOrderDeetail()
 			},
 
 			goDetail(item) {
@@ -207,7 +221,7 @@
 			//支付
 			clickPay(item, type) {
 				this.Orderno = item.Orderno
-				console.log(item,'---item--')
+
 				if (type === 'open') {
 					this.$refs.payRef.$refs.popup.open()
 				} else {
@@ -217,7 +231,12 @@
 			},
 			//支付
 			comfirmPay() {
-				console.log('支付成功')
+				this.$refs.payRef.$refs.popup.close()
+				this.getOrderDeetail(this.paramFn())
+			},
+			//重置分页
+			resetPage(){
+				this.paging.page = 1
 			}
 		}
 	}

@@ -22,15 +22,19 @@
 		</view>
 		</view>
 		<view>
-			<view class="title">
-			  预约须知
-			</view>
+			<view class="title">预约须知</view>
 			<view class="content" v-html="productDetail.Content3"></view>
 		</view>
+		
 		<view>
-			<view class="title">
-			  明细菜单
+			<view class="title">使用优惠券</view>
+			<view class="content">
+				<my-couponid :couponList="couponList"/>
 			</view>
+		</view>
+		
+		<view>
+			<view class="title">明细菜单</view>
 			<view class="content">
 				<text>预约费用：</text><text class="price">￥500</text>
 			</view>
@@ -38,7 +42,10 @@
 				<text>费用总计：</text><text class="countPrice">500元</text>
 			</view>
 		</view>
-		<view class="btn-group">
+		<view class="btn-group" v-if="!clickCountPrice">
+			<button @click="countPrice" class="submit">计算价格</button>
+		</view>
+		<view class="btn-group" v-else>
 			<button @click="changeInfo" class="submit default" v-show="showConfirm">修改信息</button>
 			<button @click="submit" class="submit" v-show="!payState">确认下单</button>
 			<button @click="clickPay('','open')" class="submit" v-show="payState">完成支付</button>
@@ -70,7 +77,13 @@
 					startTime:'请选择开始时间',
 					endTime:'请选择结束时间'
 				},
-				clickTime:0
+				clickTime:0,
+				couponList:[
+					{name:'无可用优惠券',id:0},
+					{name:'优惠券',id:2},
+					{name:'优惠券',id:3},
+				],
+				clickCountPrice:false
 			};
 		},
 		computed:{
@@ -83,24 +96,28 @@
 				}else{
 					this.baseFrom[type] = e.detail.value
 				}
-				
-				console.log(this.baseFrom)
 			},
 			changeInfo(){
+				//重置按钮状态
+				this.clickCountPrice=false
 				this.disable = false
 				this.showConfirm = false
+				this.clickTime = 0
 			},
-			async submit(){
+			
+			//计算价格
+			countPrice(){
+				console.log('--计算价格-')
 				let result = this.checkMap(this.baseFrom,this.tip)
 				if(!result) return
+				//先走计算价格的接口
+				this.clickCountPrice=true
+			},
+			
+			async submit(){
 				this.clickTime = this.clickTime + 1 //点击次数
-				this.showConfirm = !this.showConfirm   //修改信息按钮
+				this.showConfirm = true  //修改信息按钮
 				this.disable = true   //确认信息
-				if(!this.showConfirm && this.disable){
-					this.payState = true
-				}else{
-					this.payState = false
-				}
 				if(this.clickTime === 2){
 				let {Code} = this.productDetail
 				let {chenfeng,time,startTime,endTime} = this.baseFrom
@@ -113,16 +130,22 @@
 						EndTime:endTime
 					},
 					TotalPrice:100,  //这里后期需要计算
+					CouponID: 0, //优惠券id  如果没有优惠券传 0
 					
 				}
 				console.log(param)
 				const { data: res }= await uni.$http.post('user/order/book',param);
-				// if(isSuccess(res.code)){
-				// 	this.productDetail = res.data
-				// 	this.handCollect(res.data.NumCollect)
-				// }else{
-				// 	return uni.$showMsg(res.message,1500) 
-				// }
+				if(isSuccess(res.code)){
+					this.showConfirm = false
+					if(!this.showConfirm && this.disable){
+						this.payState = true
+					}else{
+						this.payState = false
+					}
+				}else{
+					this.clickTime = 0
+					return uni.$showMsg(res.message,1500) 
+				}
 				}
 			},
 			//完成支付

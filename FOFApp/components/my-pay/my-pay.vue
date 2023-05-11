@@ -80,8 +80,14 @@
 				this.disable = val ? false : true
 			}
 		},
+		props: {
+			Orderno: {
+				type: String,
+				default: ''
+			},
+		},
 		computed: {
-			...mapState('m_users', ['userinfo'])
+			...mapState('m_users', ['userinfo']),
 		},
 		methods: {
 			sendCode() {
@@ -105,6 +111,7 @@
 			},
 			choosePay(item) {
 				this.sendCodeType = item.sendCodeType
+				this.payType = item.payType
 				if(item.payType !='weixin'){
 					this.$refs.vertiyRef.$refs.popup.open()
 				}else{
@@ -124,9 +131,10 @@
 				console.log(this.code)
 				if(this.loading) return
 				let {payType,code} = this
+				console.log('--payType-',payType)
 				let param={
 					"payType": payType, //接口说明-枚举-支付类型
-					"orderNo": this.props.Orderno,
+					"orderNo": this.Orderno,
 					"code":  payType !== 'weixin' && code //可选
 				}
 				this.loading = true
@@ -134,6 +142,7 @@
 				this.loading = false
 				uni.hideLoading()
 				if (isSuccess(res.code)) {
+					uni.$showMsg(res.message, 1500)
 					this.clickVertiy()
 					this.$emit('comfirmPay')
 				} else {

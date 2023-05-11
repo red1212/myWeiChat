@@ -127,9 +127,8 @@
 			...mapMutations('m_purchase',['updateProductDetail']),
 			openBuy(){
 				if(!isLogin()) return toLogin()
-				this.updateProductDetail(this.productDetail)
 					uni.navigateTo({
-						url:'/subpages/pages/buy/index'
+						url:`/subpages/pages/buy/index?ID=${this.productDetail.ID}`
 					})	
 			},
 			handCollect(key){
