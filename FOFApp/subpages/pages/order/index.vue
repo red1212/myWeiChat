@@ -44,16 +44,13 @@
 		<view>
 			<!-- 普通弹窗 -->
 			<my-popup title="检测结果说明" ref="resultRef" @closePopUp="clickResult('close')"></my-popup>
-			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay" />
+			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay" :Orderno="Orderno"/>
 		</view>
 	</view>
 </template>
 
 <script>
-	import {
-		isSuccess,
-		errorTip
-	} from '../../../util/index.js'
+	import {isSuccess,errorTip} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
@@ -64,6 +61,7 @@
 				isPay: 0, //是否支付
 				status: 0, //订单状态
 				type: 'statu', //默认订单类型
+				Orderno:'',   //订单ID
 				typeList: [
 					{
 						name: '材料检测',
@@ -208,6 +206,8 @@
 			},
 			//支付
 			clickPay(item, type) {
+				this.Orderno = item.Orderno
+				console.log(item,'---item--')
 				if (type === 'open') {
 					this.$refs.payRef.$refs.popup.open()
 				} else {

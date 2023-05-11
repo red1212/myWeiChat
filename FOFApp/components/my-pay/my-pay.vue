@@ -38,6 +38,7 @@
 </template>
 
 <script>
+	import {isSuccess,errorTip} from '../../util/index.js'
 	import {sendCodeFn} from '../../util/user.js'
 	import {mapState} from 'vuex'
 	export default {
@@ -49,6 +50,7 @@
 				time: 60,
 				sendCodeState: false,
 				timer: null,
+				loading:false,
 				payType:'',  //支付方式
 				sendCodeType:'',  //发送验证码类型
 				payStyle: [{
@@ -118,10 +120,25 @@
 				this.sendCodeState= false
 			},
 			//确认支付
-			comfirmPay() {
+			async comfirmPay() {
 				console.log(this.code)
-				this.$emit('comfirmPay')
-				this.clickVertiy()
+				if(this.loading) return
+				let {payType,code} = this
+				let param={
+					"payType": payType, //接口说明-枚举-支付类型
+					"orderNo": this.props.Orderno,
+					"code":  payType !== 'weixin' && code //可选
+				}
+				this.loading = true
+				const {data: res} = await uni.$http.post('user/pay', param);
+				this.loading = false
+				uni.hideLoading()
+				if (isSuccess(res.code)) {
+					this.clickVertiy()
+					this.$emit('comfirmPay')
+				} else {
+					return uni.$showMsg(res.message, 1500)
+				}
 			}
 		},
 	}

@@ -200,6 +200,8 @@ var _default = {
       //订单状态
       type: 'statu',
       //默认订单类型
+      Orderno: '',
+      //订单ID
       typeList: [{
         name: '材料检测',
         key: 3
@@ -366,6 +368,8 @@ var _default = {
     },
     //支付
     clickPay: function clickPay(item, type) {
+      this.Orderno = item.Orderno;
+      console.log(item, '---item--');
       if (type === 'open') {
         this.$refs.payRef.$refs.popup.open();
       } else {

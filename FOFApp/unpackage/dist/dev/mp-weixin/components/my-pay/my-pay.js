@@ -149,14 +149,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 46));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 48));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _index = __webpack_require__(/*! ../../util/index.js */ 39);
 var _user = __webpack_require__(/*! ../../util/user.js */ 65);
 var _vuex = __webpack_require__(/*! vuex */ 34);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -170,6 +173,7 @@ var _default = {
       time: 60,
       sendCodeState: false,
       timer: null,
+      loading: false,
       payType: '',
       //支付方式
       sendCodeType: '',
@@ -236,13 +240,58 @@ var _default = {
     },
     //确认支付
     comfirmPay: function comfirmPay() {
-      console.log(this.code);
-      this.$emit('comfirmPay');
-      this.clickVertiy();
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var payType, code, param, _yield$uni$$http$post, res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log(_this2.code);
+                if (!_this2.loading) {
+                  _context.next = 3;
+                  break;
+                }
+                return _context.abrupt("return");
+              case 3:
+                payType = _this2.payType, code = _this2.code;
+                param = {
+                  "payType": payType,
+                  //接口说明-枚举-支付类型
+                  "orderNo": _this2.props.Orderno,
+                  "code": payType !== 'weixin' && code //可选
+                };
+
+                _this2.loading = true;
+                _context.next = 8;
+                return uni.$http.post('user/pay', param);
+              case 8:
+                _yield$uni$$http$post = _context.sent;
+                res = _yield$uni$$http$post.data;
+                _this2.loading = false;
+                uni.hideLoading();
+                if (!(0, _index.isSuccess)(res.code)) {
+                  _context.next = 17;
+                  break;
+                }
+                _this2.clickVertiy();
+                _this2.$emit('comfirmPay');
+                _context.next = 18;
+                break;
+              case 17:
+                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 18:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 
