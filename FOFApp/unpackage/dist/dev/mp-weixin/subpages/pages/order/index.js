@@ -107,7 +107,7 @@ try {
       return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 190))
     },
     myPay: function () {
-      return __webpack_require__.e(/*! import() | components/my-pay/my-pay */ "components/my-pay/my-pay").then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 214))
+      return Promise.all(/*! import() | components/my-pay/my-pay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-pay/my-pay")]).then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 214))
     },
   }
 } catch (e) {
@@ -181,6 +181,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 46));
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 48));
 var _index = __webpack_require__(/*! ../../../util/index.js */ 39);
@@ -189,9 +190,16 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 var _default = {
   data: function data() {
     return {
+      loading: false,
       typeActive: 4,
       active: 0,
-      isPay: [1, 2, 3],
+      isPaying: [1, 2, 3],
+      isPay: 0,
+      //是否支付
+      status: 0,
+      //订单状态
+      type: 'statu',
+      //默认订单类型
       typeList: [{
         name: '材料检测',
         key: 3
@@ -227,55 +235,94 @@ var _default = {
       List: [],
       paging: {
         page: 1,
-        total: 0,
-        pagesize: 10
-      }
+        size: 10
+      },
+      total: 0
     };
   },
   onLoad: function onLoad() {
     this.getOrderDeetail();
     // this.$refs.payRef.$refs.popup.open()
   },
-
+  onReachBottom: function onReachBottom() {
+    var _this$paging = this.paging,
+      page = _this$paging.page,
+      size = _this$paging.size;
+    if (size * page >= this.total) return uni.$showMsg('数据加载完毕！', 1000);
+    if (this.loading) return;
+    this.paging.page += 1;
+    this.getOrderDeetail(this.paramFn());
+  },
+  //上拉刷新
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.paging.page = 1;
+    this.List = [];
+    this.getOrderDeetail(this.paramFn(), function () {
+      return uni.stopPullDownRefresh();
+    });
+  },
   methods: {
+    paramFn: function paramFn() {
+      //根据订单类型判断：订单状态和支付支付
+      var status = this.status,
+        isPay = this.isPay,
+        type = this.type,
+        isPaying = this.isPaying;
+      var params = {};
+      if (type === 'pay') {
+        params.isPay = isPay;
+      } else {
+        params.status = status;
+        if (isPaying.includes(isPay)) {
+          params.isPay = 1; //如果是检测中，检测完成，已完成。则代表已支付
+        }
+      }
+
+      return params;
+    },
     getOrderDeetail: function getOrderDeetail() {
       var _arguments = arguments,
         _this = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var params, _this$paging, page, pagesize, param, _yield$uni$$http$post, res, _res$data;
+        var params, cb, _this$paging2, page, size, param, _yield$uni$$http$post, res, _res$data;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 params = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : {};
+                cb = _arguments.length > 1 ? _arguments[1] : undefined;
                 uni.showLoading({
                   title: '数据加载中...'
                 });
-                _this$paging = _this.paging, page = _this$paging.page, pagesize = _this$paging.pagesize;
+                _this$paging2 = _this.paging, page = _this$paging2.page, size = _this$paging2.size;
                 param = {
                   page: page,
+                  size: size,
                   "extra": _objectSpread({
                     "type": _this.typeActive
                   }, params)
                 };
-                _context.next = 6;
+                console.log(param);
+                _this.loading = true;
+                _context.next = 9;
                 return uni.$http.post('user/order/list', param);
-              case 6:
+              case 9:
                 _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
+                _this.loading = false;
                 uni.hideLoading();
-                console.log(res);
+                cb && cb();
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 15;
+                  _context.next = 19;
                   break;
                 }
-                _this.List = (res === null || res === void 0 ? void 0 : res.data.extra) || [];
-                _this.paging.total = (res === null || res === void 0 ? void 0 : (_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.total) || 0;
-                _context.next = 16;
+                _this.List = [].concat((0, _toConsumableArray2.default)(_this.List), (0, _toConsumableArray2.default)((res === null || res === void 0 ? void 0 : res.data.extra) || []));
+                _this.total = (res === null || res === void 0 ? void 0 : (_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.total) || 0;
+                _context.next = 20;
                 break;
-              case 15:
+              case 19:
                 return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 16:
+              case 20:
               case "end":
                 return _context.stop();
             }
@@ -285,32 +332,24 @@ var _default = {
     },
     //tab切换
     tabChange: function tabChange(item, i) {
-      console.log(item);
       if (this.active === i) return;
       this.active = i;
       this.paging.page = 1;
+      this.List = [];
+      this.type = item.key;
       //判断订单状态和支付状态
       if (item.key === "pay") {
-        //isPay: 0,  是否支付
-        this.getOrderDeetail({
-          isPay: item.val
-        });
+        this.isPay = item.val;
       } else {
-        //status: 0,   //订单状态
-        var param = {
-          status: item.val
-        };
-        if (this.isPay.includes(item.val)) {
-          param.isPay = 1; //如果是检测中，检测完成，已完成。则代表已支付
-        }
-
-        this.getOrderDeetail(param);
+        this.status = item.val;
       }
+      this.getOrderDeetail(this.paramFn());
     },
     typeChange: function typeChange(item) {
       if (this.typeActive === item.key) return;
       this.typeActive = item.key;
-      this.getOrderDeetail({});
+      this.List = [];
+      this.getOrderDeetail(this.paramFn());
     },
     goDetail: function goDetail(item) {
       uni.navigateTo({

@@ -13389,7 +13389,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.isLogin = isLogin;
-exports.sendCode = sendCode;
+exports.sendCodeFn = sendCodeFn;
 exports.toLogin = toLogin;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 46));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 48));
@@ -13408,11 +13408,11 @@ function toLogin() {
 }
 
 //发送验证码
-function sendCode(_x, _x2) {
-  return _sendCode.apply(this, arguments);
+function sendCodeFn(_x, _x2) {
+  return _sendCodeFn.apply(this, arguments);
 }
-function _sendCode() {
-  _sendCode = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(phone, type) {
+function _sendCodeFn() {
+  _sendCodeFn = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(phone, type) {
     var params, _yield$uni$$http$post, res;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
@@ -13439,7 +13439,7 @@ function _sendCode() {
       }
     }, _callee);
   }));
-  return _sendCode.apply(this, arguments);
+  return _sendCodeFn.apply(this, arguments);
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 

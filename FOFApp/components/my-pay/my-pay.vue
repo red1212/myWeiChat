@@ -38,25 +38,36 @@
 </template>
 
 <script>
+	import {sendCodeFn} from '../../util/user.js'
+	import {mapState} from 'vuex'
 	export default {
 		name: "my-pay",
 		data() {
 			return {
+				sendCodeFn,
 				code: '',
 				time: 60,
 				sendCodeState: false,
 				timer: null,
+				payType:'',  //支付方式
+				sendCodeType:'',  //发送验证码类型
 				payStyle: [{
 						name: '余额支付',
 						icon: 'wallet',
+						sendCodeType:3,
+						payType:'acount'
 					},
 					{
 						name: '信用支付',
 						icon: 'shop',
+						sendCodeType:4,
+						payType:'credit'
 					},
 					{
 						name: '微信支付',
 						icon: 'weixin',
+						sendCodeType:11,
+						payType:'weixin'
 					}
 				],
 				disable: true
@@ -67,9 +78,13 @@
 				this.disable = val ? false : true
 			}
 		},
+		computed: {
+			...mapState('m_users', ['userinfo'])
+		},
 		methods: {
 			sendCode() {
 				this.timer && clearInterval(this.timer)
+				this.sendCodeFn(this.userinfo.Phone,this.sendCodeType)
 				this.sendCodeState = true
 				this.timer = setInterval(() => {
 					if (this.time <= 0) {
@@ -87,7 +102,8 @@
 				// this.$refs.popup.close()
 			},
 			choosePay(item) {
-				if(item.name !='微信支付'){
+				this.sendCodeType = item.sendCodeType
+				if(item.payType !='weixin'){
 					this.$refs.vertiyRef.$refs.popup.open()
 				}else{
 					//这里调用微信支付

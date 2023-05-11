@@ -1,11 +1,12 @@
 <template>
 	<view>
 		<view class="top">
-		<view class="tabBar typeBar">
-			<view class="tab-item" v-for="(item,i) in typeList" :key="i">
-				<text :class="['text',item.key === typeActive ? 'active' : '']" @click="typeChange(item,i)">{{item.name}}</text>
+			<view class="tabBar typeBar">
+				<view class="tab-item" v-for="(item,i) in typeList" :key="i">
+					<text :class="['text',item.key === typeActive ? 'active' : '']"
+						@click="typeChange(item,i)">{{item.name}}</text>
+				</view>
 			</view>
-		</view>
 		</view>
 		<view class="tabBar" style="background-color: #fff;">
 			<view class="tab-item" v-for="(item,i) in tabList" :key="i">
@@ -29,129 +30,193 @@
 					</view>
 				</view>
 				<view class="row-3">
-					<button type="primary" size="mini" class="btn btnprimary" @click="clickResult(item,'open')">检测说明</button>
-					<button type="primary" size="mini" class="btn btnprimary" @click="clickPay(item,'open')">去支付</button>
+					<button type="primary" size="mini" class="btn btnprimary"
+						@click="clickResult(item,'open')">检测说明</button>
+					<button type="primary" size="mini" class="btn btnprimary"
+						@click="clickPay(item,'open')">去支付</button>
 					<button type="default" size="mini" class="btn" @click="goDetail(item)">订单详情</button>
 				</view>
 			</view>
 		</view>
 		<view v-if="List.length === 0">
-			<no-data/>
+			<no-data />
 		</view>
 		<view>
 			<!-- 普通弹窗 -->
 			<my-popup title="检测结果说明" ref="resultRef" @closePopUp="clickResult('close')"></my-popup>
-			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay"/>
+			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay" />
 		</view>
 	</view>
 </template>
 
 <script>
-	import {isSuccess,errorTip} from '../../../util/index.js'
+	import {
+		isSuccess,
+		errorTip
+	} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
-				typeActive:4,
+				loading: false,
+				typeActive: 4,
 				active: 0,
-				isPay:[1,2,3],
-				typeList:[
-					{name:'材料检测',key:3},
-					{name:'预约检测',key:4}
+				isPaying: [1, 2, 3],
+				isPay: 0, //是否支付
+				status: 0, //订单状态
+				type: 'statu', //默认订单类型
+				typeList: [
+					{
+						name: '材料检测',
+						key: 3
+					},
+					{
+						name: '预约检测',
+						key: 4
+					}
 				],
 				tabList: [
-					{name:'全部订单',key:'statu',val:0},
-					{name:'未支付',key:'pay',val:0},
-					{name:'已支付',key:'pay',val:1},
-					{name:'检测中',key:'statu',val:1},
-					{name:'检测完成',key:'statu',val:2},
-					{name:'已完成',key:'statu',val:3},
+					{
+						name: '全部订单',
+						key: 'statu',
+						val: 0
+					},
+					{
+						name: '未支付',
+						key: 'pay',
+						val: 0
+					},
+					{
+						name: '已支付',
+						key: 'pay',
+						val: 1
+					},
+					{
+						name: '检测中',
+						key: 'statu',
+						val: 1
+					},
+					{
+						name: '检测完成',
+						key: 'statu',
+						val: 2
+					},
+					{
+						name: '已完成',
+						key: 'statu',
+						val: 3
+					},
 				],
 				List: [],
-				paging:{
-					page:1,
-					total:0,
-					pagesize:10
-				}
-				
+				paging: {
+					page: 1,
+					size: 10
+				},
+				total: 0,
+
 			}
 		},
-		onLoad(){
+		onLoad() {
 			this.getOrderDeetail()
 			// this.$refs.payRef.$refs.popup.open()
 		},
+		onReachBottom() {
+			let { page,size } = this.paging
+			if (size * page >= this.total) return uni.$showMsg('数据加载完毕！', 1000)
+			if (this.loading) return
+			this.paging.page += 1
+			this.getOrderDeetail(this.paramFn())
+		},
+		//上拉刷新
+		onPullDownRefresh() {
+			this.paging.page = 1
+			this.List = []
+			this.getOrderDeetail(this.paramFn(), () => uni.stopPullDownRefresh())
+		},
 		methods: {
-			async getOrderDeetail(params={}){
-				uni.showLoading({
-				  title: '数据加载中...',
-				})
-				let {page,pagesize} = this.paging
-				let param={
-					page:page,
-					"extra": {
-						"type": this.typeActive  ,//类型 
-						...params
-					} ,
+			paramFn() {
+				//根据订单类型判断：订单状态和支付支付
+				let { status,isPay,type,isPaying} = this
+				let params = {}
+				if (type === 'pay') {
+					params.isPay = isPay
+				} else {
+					params.status = status
+					if (isPaying.includes(isPay)) {
+						params.isPay = 1 //如果是检测中，检测完成，已完成。则代表已支付
+					}
 				}
-				const { data: res }= await uni.$http.post('user/order/list',param);
+				return params
+			},
+			async getOrderDeetail(params = {}, cb) {
+				uni.showLoading({title: '数据加载中...',})
+				let {page,size} = this.paging
+				let param = {
+					page: page,
+					size: size,
+					"extra": {
+						"type": this.typeActive, //类型 
+						...params
+					},
+				}
+				console.log(param)
+				this.loading = true
+				const {data: res} = await uni.$http.post('user/order/list', param);
+				this.loading = false
 				uni.hideLoading()
-				console.log(res)
-				if(isSuccess(res.code)){
-					this.List = res?.data.extra || []
-					this.paging.total = res?.data?.total || 0
-				}else{
-					return uni.$showMsg(res.message,1500) 
+				cb && cb()
+				if (isSuccess(res.code)) {
+					this.List = [...this.List, ...res?.data.extra || []]
+					this.total = res?.data?.total || 0
+				} else {
+					return uni.$showMsg(res.message, 1500)
 				}
 			},
 			//tab切换
 			tabChange(item, i) {
-				console.log(item)
 				if (this.active === i) return
 				this.active = i
 				this.paging.page = 1
+				this.List = []
+				this.type = item.key
 				//判断订单状态和支付状态
-				if(item.key === "pay"){
-					//isPay: 0,  是否支付
-					this.getOrderDeetail({isPay:item.val})
-				}else{
-					//status: 0,   //订单状态
-					let param ={
-						status:item.val
-					}
-					if(this.isPay.includes(item.val)){
-						param.isPay = 1   //如果是检测中，检测完成，已完成。则代表已支付
-					}
-					this.getOrderDeetail(param)
+				if (item.key === "pay") {
+					this.isPay = item.val
+				} else {
+					this.status = item.val
 				}
+				this.getOrderDeetail(this.paramFn())
 			},
-			typeChange(item){
-				if(this.typeActive === item.key) return
+			typeChange(item) {
+				if (this.typeActive === item.key) return
 				this.typeActive = item.key
-				this.getOrderDeetail({})
+				this.List = []
+				this.getOrderDeetail(this.paramFn())
 			},
+
 			goDetail(item) {
 				uni.navigateTo({
 					url: '/subpages/pages/orderDetail/index?id=1',
 				})
 			},
 			//预测结果
-			clickResult(item,type){
-				if(type === 'open'){
+			clickResult(item, type) {
+				if (type === 'open') {
 					this.$refs.resultRef.$refs.popup.open()
-				}else{
+				} else {
 					this.$refs.resultRef.$refs.popup.close()
 				}
 			},
 			//支付
-			clickPay(item,type){
-				if(type === 'open'){
+			clickPay(item, type) {
+				if (type === 'open') {
 					this.$refs.payRef.$refs.popup.open()
-				}else{
+				} else {
 					this.$refs.payRef.$refs.popup.close()
 				}
-				
+
 			},
 			//支付
-			comfirmPay(){
+			comfirmPay() {
 				console.log('支付成功')
 			}
 		}
@@ -166,18 +231,21 @@
 		padding: 20px 10px;
 		justify-content: space-between;
 	}
-  .top{
+
+	.top {
 		position: sticky;
 		top: 0px;
 		z-index: 10;
 		background-color: $uni-border-color;
 	}
-	.typeBar{
+
+	.typeBar {
 		justify-content: space-between;
 		width: 300rpx;
-		margin:  0 auto;
-		padding:10px;
+		margin: 0 auto;
+		padding: 10px;
 	}
+
 	.text {
 		border-bottom: 2px solid transparent;
 		padding-bottom: 6px;
@@ -204,7 +272,7 @@
 
 	.row-2 {
 		display: flex;
-    align-items: center;
+		align-items: center;
 	}
 
 	.left-item {
@@ -240,7 +308,7 @@
 	.state {
 		font-size: 14px;
 		color: #333;
-		padding:8px 0px;
+		padding: 8px 0px;
 	}
 
 	.price {
@@ -248,11 +316,13 @@
 		font-weight: 600;
 		color: #d42f2f;
 	}
-  .discount{
+
+	.discount {
 		font-size: 12px;
 		color: #333;
 		margin-left: 10px;
 	}
+
 	.row-3 {
 		display: flex;
 		justify-content: flex-end;
@@ -265,17 +335,20 @@
 	.btnprimary {
 		background-color: $uni-color-primary;
 	}
-	.popBox{
+
+	.popBox {
 		padding: 10px 10px;
 		width: 500rpx;
 		min-height: 200px;
 	}
-	.close{
+
+	.close {
 		font-size: 16px;
 		text-align: right;
 		line-height: 30px;
 	}
-	.popup-title{
+
+	.popup-title {
 		font-weight: 600;
 		font-size: 14px;
 		text-align: center;

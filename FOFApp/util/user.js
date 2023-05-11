@@ -13,7 +13,7 @@ export function toLogin() {
 }
 
 //发送验证码
-export async function  sendCode(phone,type){
+export async function  sendCodeFn(phone,type){
 	let params={
 			"phone":phone,
 			"type":type// 枚举值参见接口说明 - 枚举 - 短信验证码

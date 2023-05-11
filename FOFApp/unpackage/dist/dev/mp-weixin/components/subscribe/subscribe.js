@@ -83,7 +83,7 @@ try {
       return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 275))
     },
     myPay: function () {
-      return __webpack_require__.e(/*! import() | components/my-pay/my-pay */ "components/my-pay/my-pay").then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 214))
+      return Promise.all(/*! import() | components/my-pay/my-pay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-pay/my-pay")]).then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 214))
     },
   }
 } catch (e) {

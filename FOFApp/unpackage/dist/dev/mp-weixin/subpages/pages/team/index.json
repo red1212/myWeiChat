@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "委托团体",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "add-teamer": "/components/addTeamer/addTeamer"
   }

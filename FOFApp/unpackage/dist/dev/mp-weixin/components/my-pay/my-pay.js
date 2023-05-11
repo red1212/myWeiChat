@@ -151,66 +151,44 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _user = __webpack_require__(/*! ../../util/user.js */ 65);
+var _vuex = __webpack_require__(/*! vuex */ 34);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
   name: "my-pay",
   data: function data() {
     return {
+      sendCodeFn: _user.sendCodeFn,
       code: '',
       time: 60,
       sendCodeState: false,
       timer: null,
+      payType: '',
+      //支付方式
+      sendCodeType: '',
+      //发送验证码类型
       payStyle: [{
         name: '余额支付',
-        icon: 'wallet'
+        icon: 'wallet',
+        sendCodeType: 3,
+        payType: 'acount'
       }, {
         name: '信用支付',
-        icon: 'shop'
+        icon: 'shop',
+        sendCodeType: 4,
+        payType: 'credit'
       }, {
         name: '微信支付',
-        icon: 'weixin'
+        icon: 'weixin',
+        sendCodeType: 11,
+        payType: 'weixin'
       }],
       disable: true
     };
@@ -220,10 +198,12 @@ var _default = {
       this.disable = val ? false : true;
     }
   },
+  computed: _objectSpread({}, (0, _vuex.mapState)('m_users', ['userinfo'])),
   methods: {
     sendCode: function sendCode() {
       var _this = this;
       this.timer && clearInterval(this.timer);
+      this.sendCodeFn(this.userinfo.Phone, this.sendCodeType);
       this.sendCodeState = true;
       this.timer = setInterval(function () {
         if (_this.time <= 0) {
@@ -240,7 +220,8 @@ var _default = {
       // this.$refs.popup.close()
     },
     choosePay: function choosePay(item) {
-      if (item.name != '微信支付') {
+      this.sendCodeType = item.sendCodeType;
+      if (item.payType != 'weixin') {
         this.$refs.vertiyRef.$refs.popup.open();
       } else {
         //这里调用微信支付

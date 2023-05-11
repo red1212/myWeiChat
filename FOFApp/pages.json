@@ -5,7 +5,8 @@
 		{
 			"path": "pages/type/index",
 			"style": {
-				"navigationBarTitleText": "材料检测"
+				"navigationBarTitleText": "材料检测",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
@@ -30,12 +31,16 @@
 				}
 			},
 			{
-				"path": "pages/collect/index"
+				"path": "pages/collect/index",
+				"style": {
+					"enablePullDownRefresh": true
+				}
 			},
 			{
 				"path": "pages/order/index",
 				"style": {
-					"navigationBarTitleText": "我的订单"
+					"navigationBarTitleText": "我的订单",
+					"enablePullDownRefresh": true
 				}
 			},
 			{
@@ -67,7 +72,8 @@
 			}, {
 				"path": "pages/team/index",
 				"style": {
-					"navigationBarTitleText": "委托团体"
+					"navigationBarTitleText": "委托团体",
+					"enablePullDownRefresh": true
 				}
 
 			}
