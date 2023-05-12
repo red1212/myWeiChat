@@ -52,8 +52,8 @@
 	export default {
 		data() {
 			return {
-				showPop: false,
-				active: null,
+				showPop: false,	
+				active: 'all',
 				queryObj: {
 					page: 1,
 					size: 10,
@@ -82,15 +82,15 @@
 		//上拉刷新
 		onPullDownRefresh() {
 			this.queryObj.page = 1
-			this.goodList = []
+			this.List = []
 			this.getList(() => uni.stopPullDownRefresh())
 		},
 		methods: {
 			async getcates(){
 				const {data: res} = await uni.$http.post('product/cates');
-				console.log(res)
 				if (isSuccess(res.code)){
-					this.catesList = res?.data || []
+					let all = [{Name:'全部',ID:'all'}]
+					this.catesList =[...all,...res?.data || []] 
 				}
 				
 			},
@@ -108,7 +108,6 @@
 				if (isSuccess(res.code)) {
 					this.total = res.data.total || 0
 					this.List = [...this.List, ...res?.data?.extra?.list || []]
-					console.log(res)
 				} else {
 					return uni.$showMsg(res.message, 1500)
 				}
@@ -118,7 +117,12 @@
 				let ID = item.ID
 				if (this.active === ID) return
 				this.active = ID
-				this.queryObj.extra.cateid = ID
+				if(ID === 'all'){
+					this.queryObj.extra ={}
+				}else{
+					this.queryObj.extra.cateid = ID
+				}
+				this.List = []
 				this.queryObj.page = 1
 				this.getList()
 			},

@@ -207,7 +207,7 @@
 
 			goDetail(item) {
 				uni.navigateTo({
-					url: '/subpages/pages/orderDetail/index?id=1',
+					url: `/subpages/pages/orderDetail/index?id=${item.Orderno}`,
 				})
 			},
 			//预测结果

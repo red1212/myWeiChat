@@ -70,6 +70,28 @@
 </template>
 
 <script>
+	import {isSuccess,errorTip} from '../../../util/index.js'
+	export default {
+		data() {
+			return {
+					orderInfo:{}
+			}
+		},
+		async onLoad(option){
+			console.log(option)
+			if(option?.id){
+				uni.showLoading({title: '数据加载中...',})
+				const {data: res} = await uni.$http.post('user/order/detail', {extra:option.id});
+				console.log(res)
+				uni.hideLoading()
+				if (isSuccess(res.code)) {
+						
+				} else {
+					return uni.$showMsg(res.message, 1500)
+				}
+			}
+		}
+	}
 </script>
 
 <style lang="scss" scoped>

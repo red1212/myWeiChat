@@ -25,7 +25,9 @@
 		<button type="default" open-type="contact" class="contactUs">
 			<uni-icons type="headphones" size="20" color="#fff"></uni-icons>
 		</button>
-
+		<!-- 弹窗 -->
+		<my-popup ref="parentRef" :content="content" 
+		@closePopUp="closePopUp" @clickBtnItem="closePopUp"  btnText="我知道了"></my-popup>
 	</view>
 </template>
 
@@ -36,6 +38,9 @@
 			return {
 				imgList: [],
 				products: [],
+				content:`<div>
+				<div style="text-align:center;font-size:14px;margin-bottom:8px">委托声明</div>
+				</div>`
 			}
 		},
 		 onReady: function(res) {
@@ -53,10 +58,16 @@
 				this.imgList = res.data.banner || []
 				this.products = res.data.products || []
 				console.log(res)
+				this.$refs.parentRef.$refs.popup.open()
 			}else{
 				return uni.$showMsg(res.message,1500) 
 			}
 			console.log(res)
+		},
+		methods:{
+			closePopUp() {
+				this.$refs.parentRef.$refs.popup.close()
+			},
 		}
 	}
 </script>

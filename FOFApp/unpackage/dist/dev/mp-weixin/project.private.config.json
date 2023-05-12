@@ -156,6 +156,27 @@
           "query": "ID=5",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpages/pages/orderDetail/index",
+          "query": "id=FOF20230512101",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpages/pages/wallet/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/type/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

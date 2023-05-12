@@ -49,7 +49,7 @@
 				<view><text class="label">剩余额度：</text><text class="price" style="color:#333">{{assetInfo.CreditBalance || 0.00}}</text></view>
 			</view>
 		</view>
-	  <my-popup btnText="支付" title="充值" :disabled="disabled" ref="parentRef"  @closePopUp="closePopUp" @clickBtnItem="confirm">
+	  <my-popup btnText="支付" title="充值" :disabled="disabled" ref="rechargeRef"  @closePopUp="closePopUp" @clickBtnItem="confirm">
 			<view class="input-box">
 				<text>输入充值金额：</text>
 				<input class="uni-input" type="digit" :value="money" @input="(e)=>inputChange(e)"/>
@@ -65,7 +65,8 @@
 			return {
 				money:'',
 				disabled:true,
-				assetInfo:{}
+				assetInfo:{},
+				loading:false
 			}
 		},
 		watch:{
@@ -81,13 +82,23 @@
 				this.money = e.detail.value
 			},
 			Recharge(){
-				this.$refs.parentRef.$refs.popup.open();
+				this.$refs.rechargeRef.$refs.popup.open();
 			},
 			closePopUp(){
-				this.$refs.parentRef.$refs.popup.close();
+				this.$refs.rechargeRef.$refs.popup.close();
+				this.money = ''
 			},
-			confirm(){
-				console.log('走支付接口')
+			async confirm(){
+				console.log('走支付接口',this.money)
+				this.loading = true
+				let {data:res} = await uni.$http.post('user/recharge', {amount:this.money});
+				console.log(res)
+				this.loading = false
+				if (isSuccess(res.code)) {
+					
+				} else {
+					return uni.$showMsg(res.message, 1500)
+				}
 			},
 			async getAssets(){
 				uni.showLoading({
