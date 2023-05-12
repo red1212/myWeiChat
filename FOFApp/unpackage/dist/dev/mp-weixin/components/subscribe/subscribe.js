@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/subscribe/subscribe"],{
 
 /***/ 247:
-/*!**************************************************************************************!*\
-  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue ***!
-  \**************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -42,9 +42,9 @@ component.options.__file = "components/subscribe/subscribe.vue"
 /***/ }),
 
 /***/ 248:
-/*!*********************************************************************************************************************************!*\
-  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=template&id=5cafc54c&scoped=true& ***!
-  \*********************************************************************************************************************************/
+/*!*************************************************************************************************************************************!*\
+  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=template&id=5cafc54c&scoped=true& ***!
+  \*************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64,9 +64,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 249:
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=template&id=5cafc54c&scoped=true& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=template&id=5cafc54c&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -83,7 +83,7 @@ try {
       return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 282))
     },
     myCouponid: function () {
-      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 355))
+      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 293))
     },
     myPay: function () {
       return Promise.all(/*! import() | components/my-pay/my-pay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-pay/my-pay")]).then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 221))
@@ -134,9 +134,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 250:
-/*!***************************************************************************************************************!*\
-  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************/
+/*!*******************************************************************************************************************!*\
+  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -150,9 +150,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 251:
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -205,7 +205,13 @@ var _default = {
       clickCountPrice: false
     };
   },
-  computed: _objectSpread({}, (0, _vuex.mapState)('m_purchase', ['purchaseInfo', 'disable', 'productDetail'])),
+  computed: _objectSpread({}, (0, _vuex.mapState)('m_purchase', ['purchaseInfo', 'disable'])),
+  props: {
+    productDetail: {
+      type: Object,
+      default: {}
+    }
+  },
   methods: {
     inputChange: function inputChange(e, type) {
       if (type === 'startTime' || type === 'endTime') {
@@ -223,7 +229,8 @@ var _default = {
     },
     //计算价格
     countPrice: function countPrice() {
-      console.log('--计算价格-');
+      console.log(this.productDetail);
+      console.log('--计算价格3-');
       var result = this.checkMap(this.baseFrom, this.tip);
       if (!result) return;
       //先走计算价格的接口
@@ -244,7 +251,7 @@ var _default = {
                   _context.next = 19;
                   break;
                 }
-                Code = _this.productDetail.Code;
+                Code = _this.productDetail.product.Code;
                 _this$baseFrom = _this.baseFrom, chenfeng = _this$baseFrom.chenfeng, time = _this$baseFrom.time, startTime = _this$baseFrom.startTime, endTime = _this$baseFrom.endTime;
                 param = {
                   Item: {
@@ -305,9 +312,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 252:
-/*!************************************************************************************************************************************************!*\
-  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=style&index=0&id=5cafc54c&lang=scss&scoped=true& ***!
-  \************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************!*\
+  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=style&index=0&id=5cafc54c&lang=scss&scoped=true& ***!
+  \****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -321,9 +328,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 253:
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=style&index=0&id=5cafc54c&lang=scss&scoped=true& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/subscribe/subscribe.vue?vue&type=style&index=0&id=5cafc54c&lang=scss&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

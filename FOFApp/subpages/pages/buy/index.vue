@@ -11,7 +11,7 @@
 			</view>
 		</uni-section>
 		<!-- 预约下单 -->
-		<subscribe/>
+		<subscribe :productDetail="productDetail"/>
 		<view style="height: 20px;"></view>
 		<!-- 弹窗 -->
 		<my-popup ref="parentRef" :content="content" 

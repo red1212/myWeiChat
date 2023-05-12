@@ -23,7 +23,7 @@
 		</view>
 		<view>
 			<view class="title">预约须知</view>
-			<view class="content" v-html="productDetail.Content3"></view>
+			<view class="content" v-html="productDetail.product.Content3"></view>
 		</view>
 		
 		<view>
@@ -87,7 +87,13 @@
 			};
 		},
 		computed:{
-		...mapState('m_purchase',['purchaseInfo','disable','productDetail'])	
+		...mapState('m_purchase',['purchaseInfo','disable'])	
+		},
+		props:{
+			productDetail:{
+				type: Object,
+				default: {}
+			}	
 		},
 		methods:{
 			inputChange(e,type){
@@ -107,7 +113,8 @@
 			
 			//计算价格
 			countPrice(){
-				console.log('--计算价格-')
+				console.log(this.productDetail)
+				console.log('--计算价格3-')
 				let result = this.checkMap(this.baseFrom,this.tip)
 				if(!result) return
 				//先走计算价格的接口
@@ -119,7 +126,7 @@
 				this.showConfirm = true  //修改信息按钮
 				this.disable = true   //确认信息
 				if(this.clickTime === 2){
-				let {Code} = this.productDetail
+				let {Code} = this.productDetail.product
 				let {chenfeng,time,startTime,endTime} = this.baseFrom
 				let param={
 					Item:{
