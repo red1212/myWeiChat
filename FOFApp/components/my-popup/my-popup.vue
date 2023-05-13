@@ -65,7 +65,7 @@
 		background-color: #fff;
 		border-radius: 8px;
 		overflow: hidden;
-		padding-bottom: 10px;
+		padding-bottom: 20px;
 		display: flex;
 		flex-direction: column;
 	}

@@ -2,6 +2,7 @@
   "usingComponents": {
     "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
     "my-radio": "/components/my-radio/my-radio",
+    "order-in-line": "/components/order-in-line/order-in-line",
     "subscribe": "/components/subscribe/subscribe",
     "my-popup": "/components/my-popup/my-popup"
   }

@@ -77,4 +77,15 @@ swiper.data-v-71e217db {
   margin-right: 1px;
   font-size: 12px;
 }
+.notice-item.data-v-71e217db {
+  margin-bottom: 6px;
+}
+.notice-item .content.data-v-71e217db {
+  max-height: 300px;
+}
+.notice-name.data-v-71e217db {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
 

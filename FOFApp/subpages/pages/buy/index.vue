@@ -10,8 +10,12 @@
 				</view>
 			</view>
 		</uni-section>
+		<!-- 普通下单 -->
+		<order-in-line v-if="productDetail.OrderType === 3" :productDetail="productDetail"/>
+		
 		<!-- 预约下单 -->
-		<subscribe :productDetail="productDetail"/>
+		<subscribe v-else :productDetail="productDetail"/>
+		
 		<view style="height: 20px;"></view>
 		<!-- 弹窗 -->
 		<my-popup ref="parentRef" :content="content" 
@@ -55,7 +59,7 @@
 				if(isSuccess(res.code)){
 					this.productDetail = res.data
 					const {OrderType,Content2,Content3} = res.data.product
-					this.content = OrderType == 3 ? Content2 : Content3
+					this.content = OrderType == 3 ? Content2 : Content3    
 					this.$refs.parentRef.$refs.popup.open()
 				}else{
 					return uni.$showMsg(res.message,1500) 

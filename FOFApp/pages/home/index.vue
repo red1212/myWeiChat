@@ -26,8 +26,16 @@
 			<uni-icons type="headphones" size="20" color="#fff"></uni-icons>
 		</button>
 		<!-- 弹窗 -->
-		<my-popup ref="parentRef" :content="content" 
-		@closePopUp="closePopUp" @clickBtnItem="closePopUp"  btnText="我知道了"></my-popup>
+		<my-popup ref="parentRef"
+		@closePopUp="closePopUp" @clickBtnItem="closePopUp"  btnText="我知道了">
+		<view class="notice-item">
+			<view class="flex-center flex-column">
+				<view class="notice-name">{{notice.Name}}</view>
+				<view>{{notice.CreateAt}}</view>
+			</view>
+			<view class="content" v-html="notice.Content"></view>
+		</view>
+		</my-popup>
 	</view>
 </template>
 
@@ -38,6 +46,7 @@
 			return {
 				imgList: [],
 				products: [],
+				notice:{},
 				content:`<div>
 				<div style="text-align:center;font-size:14px;margin-bottom:8px">委托声明</div>
 				</div>`
@@ -57,6 +66,7 @@
 			if(isSuccess(res.code)){
 				this.imgList = res.data.banner || []
 				this.products = res.data.products || []
+				this.notice = res.data.notice || {}
 				console.log(res)
 				this.$refs.parentRef.$refs.popup.open()
 			}else{
@@ -159,5 +169,16 @@
 	.dolor {
 		margin-right: 1px;
 		font-size: 12px;
+	}
+	.notice-item{
+		margin-bottom: 6px;
+		.content{
+			max-height: 300px;
+		}
+	}
+	.notice-name{
+		font-weight: bold;
+		font-size: 14px;
+		margin-bottom: 6px;
 	}
 </style>

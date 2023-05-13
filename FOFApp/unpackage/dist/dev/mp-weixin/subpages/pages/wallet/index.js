@@ -270,31 +270,36 @@ var _default = {
     confirm: function confirm() {
       var _this = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var _yield$uni$$http$post, res;
+        var param, _yield$uni$$http$post, res;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log('走支付接口', _this.money);
-                _this.loading = true;
-                _context.next = 4;
-                return uni.$http.post('user/recharge', {
-                  amount: _this.money
-                });
-              case 4:
-                _yield$uni$$http$post = _context.sent;
-                res = _yield$uni$$http$post.data;
-                console.log(res);
-                _this.loading = false;
-                if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 11;
+                if (!_this.loading) {
+                  _context.next = 2;
                   break;
                 }
-                _context.next = 12;
+                return _context.abrupt("return");
+              case 2:
+                _this.loading = true;
+                param = {
+                  amount: Number(_this.money)
+                };
+                _context.next = 6;
+                return uni.$http.post('user/recharge', param);
+              case 6:
+                _yield$uni$$http$post = _context.sent;
+                res = _yield$uni$$http$post.data;
+                _this.loading = false;
+                if (!(0, _index.isSuccess)(res.code)) {
+                  _context.next = 12;
+                  break;
+                }
+                _context.next = 13;
                 break;
-              case 11:
-                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
               case 12:
+                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 13:
               case "end":
                 return _context.stop();
             }

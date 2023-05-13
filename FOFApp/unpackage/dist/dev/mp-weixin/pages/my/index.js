@@ -192,12 +192,14 @@ var _default = {
         icon: 'list',
         needLogin: true,
         url: '/subpages/pages/order/index'
-      }, {
-        name: '委托团体',
-        icon: 'personadd',
-        needLogin: true,
-        url: '/subpages/pages/team/index'
-      }, {
+      },
+      // {
+      // 	name: '委托团体',
+      // 	icon: 'personadd',
+      // 	needLogin:true,
+      // 	url: '/subpages/pages/team/index'
+      // },
+      {
         name: '个人资产',
         icon: 'wallet-filled',
         needLogin: true,

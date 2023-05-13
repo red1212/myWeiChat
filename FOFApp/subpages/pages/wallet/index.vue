@@ -89,12 +89,15 @@
 				this.money = ''
 			},
 			async confirm(){
-				console.log('走支付接口',this.money)
+				if(this.loading) return
 				this.loading = true
-				let {data:res} = await uni.$http.post('user/recharge', {amount:this.money});
-				console.log(res)
+				let param = {
+					amount : Number(this.money)
+				}
+				let {data:res} = await uni.$http.post('user/recharge', param);
 				this.loading = false
 				if (isSuccess(res.code)) {
+					//这里对接微信支付
 					
 				} else {
 					return uni.$showMsg(res.message, 1500)

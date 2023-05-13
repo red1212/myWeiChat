@@ -106,8 +106,11 @@ try {
     myRadio: function () {
       return __webpack_require__.e(/*! import() | components/my-radio/my-radio */ "components/my-radio/my-radio").then(__webpack_require__.bind(null, /*! @/components/my-radio/my-radio.vue */ 242))
     },
+    orderInLine: function () {
+      return __webpack_require__.e(/*! import() | components/order-in-line/order-in-line */ "components/order-in-line/order-in-line").then(__webpack_require__.bind(null, /*! @/components/order-in-line/order-in-line.vue */ 247))
+    },
     subscribe: function () {
-      return __webpack_require__.e(/*! import() | components/subscribe/subscribe */ "components/subscribe/subscribe").then(__webpack_require__.bind(null, /*! @/components/subscribe/subscribe.vue */ 247))
+      return __webpack_require__.e(/*! import() | components/subscribe/subscribe */ "components/subscribe/subscribe").then(__webpack_require__.bind(null, /*! @/components/subscribe/subscribe.vue */ 254))
     },
     myPopup: function () {
       return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 164))

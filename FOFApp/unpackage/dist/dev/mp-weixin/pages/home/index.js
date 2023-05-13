@@ -220,11 +220,20 @@ var _index = __webpack_require__(/*! ../../util/index.js */ 39);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       imgList: [],
       products: [],
+      notice: {},
       content: "<div>\n\t\t\t<div style=\"text-align:center;font-size:14px;margin-bottom:8px\">\u59D4\u6258\u58F0\u660E</div>\n\t\t\t</div>"
     };
   },
@@ -249,20 +258,21 @@ var _default = {
               res = _yield$uni$$http$post.data;
               uni.hideLoading();
               if (!(0, _index.isSuccess)(res.code)) {
-                _context.next = 13;
+                _context.next = 14;
                 break;
               }
               _this.imgList = res.data.banner || [];
               _this.products = res.data.products || [];
+              _this.notice = res.data.notice || {};
               console.log(res);
               _this.$refs.parentRef.$refs.popup.open();
-              _context.next = 14;
+              _context.next = 15;
               break;
-            case 13:
-              return _context.abrupt("return", uni.$showMsg(res.message, 1500));
             case 14:
-              console.log(res);
+              return _context.abrupt("return", uni.$showMsg(res.message, 1500));
             case 15:
+              console.log(res);
+            case 16:
             case "end":
               return _context.stop();
           }
