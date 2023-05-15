@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.row.data-v-7908730a {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  min-width: 106px;
+  text-align: center;
+}
+.active.data-v-7908730a {
+  border: 1px solid red;
+}
+

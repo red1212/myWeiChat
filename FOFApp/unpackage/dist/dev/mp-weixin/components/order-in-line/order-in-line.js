@@ -79,11 +79,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uniDatetimePicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 289))
-    },
     myCouponid: function () {
-      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 300))
+      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 289))
+    },
+    uniFilePicker: function () {
+      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 296))
     },
     myPay: function () {
       return Promise.all(/*! import() | components/my-pay/my-pay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-pay/my-pay")]).then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 221))
@@ -112,16 +112,10 @@ var render = function () {
   var _c = _vm._self._c || _h
   if (!_vm._isMounted) {
     _vm.e0 = function (e) {
-      return _vm.inputChange(e, "chenfeng")
+      return _vm.inputChange(e, "sample_name")
     }
     _vm.e1 = function (e) {
-      return _vm.inputChange(e, "time")
-    }
-    _vm.e2 = function (e) {
-      return _vm.inputChange(e, "startTime")
-    }
-    _vm.e3 = function (e) {
-      return _vm.inputChange(e, "endTime")
+      return _vm.inputChange(e, "chenfeng")
     }
   }
 }
@@ -175,21 +169,29 @@ var _default = {
   name: "order-in-line",
   data: function data() {
     return {
+      listStyles: {
+        // 是否显示边框
+        border: false,
+        // 是否显示分隔线
+        dividline: false,
+        // 线条样式
+        borderStyle: {
+          width: 0,
+          color: 'blue',
+          radius: 2
+        }
+      },
       checkMap: _index.checkMap,
       disable: false,
       showConfirm: false,
       payState: false,
       baseFrom: {
-        chenfeng: '',
-        time: '',
-        startTime: '',
-        endTime: ''
+        sample_name: '',
+        chenfeng: ''
       },
       tip: {
-        chenfeng: '请输入成分',
-        time: '请输入预约时长',
-        startTime: '请选择开始时间',
-        endTime: '请选择结束时间'
+        sample_name: '请输入样品名称',
+        chenfeng: '请输入成分'
       },
       clickTime: 0,
       couponList: [{
@@ -202,7 +204,8 @@ var _default = {
         name: '优惠券',
         id: 3
       }],
-      clickCountPrice: false
+      clickCountPrice: false,
+      imageValue: []
     };
   },
   computed: _objectSpread({}, (0, _vuex.mapState)('m_purchase', ['purchaseInfo', 'disable'])),
@@ -214,11 +217,7 @@ var _default = {
   },
   methods: {
     inputChange: function inputChange(e, type) {
-      if (type === 'startTime' || type === 'endTime') {
-        this.baseFrom[type] = e;
-      } else {
-        this.baseFrom[type] = e.detail.value;
-      }
+      this.baseFrom[type] = e.detail.value;
     },
     changeInfo: function changeInfo() {
       //重置按钮状态
@@ -256,11 +255,7 @@ var _default = {
                 param = {
                   Item: {
                     ProductCode: Code,
-                    SampleComponent: chenfeng,
-                    SampleNumber: Number(time),
-                    //预约时长
-                    StartTime: startTime,
-                    EndTime: endTime
+                    SampleComponent: chenfeng
                   },
                   TotalPrice: 100,
                   //这里后期需要计算
@@ -269,7 +264,7 @@ var _default = {
 
                 console.log(param);
                 _context.next = 10;
-                return uni.$http.post('user/order/book', param);
+                return uni.$http.post('user/order/add', param);
               case 10:
                 _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
@@ -303,6 +298,45 @@ var _default = {
       } else {
         this.$refs.payRef.$refs.popup.close();
       }
+    },
+    // 获取上传状态
+    select: function select(e) {
+      console.log('选择文件：', e);
+      var tempFilePaths = e.tempFilePaths;
+      //获取图片临时路径
+      var imgUrl = tempFilePaths[0];
+      uni.uploadFile({
+        //图片上传地址
+        url: 'https://story.nabaiyu.com/apitest/admin/api.upload/file.html',
+        filePath: imgUrl,
+        //上传名字，注意与后台接收的参数名一致
+        name: 'imgUrl',
+        formData: {
+          uptype: '',
+          safe: '0'
+        },
+        //设置请求头
+        header: {
+          "Content-Type": "multipart/form-data"
+        },
+        //请求成功，后台返回自己服务器上的图片地址
+        success: function success(uploadFileRes) {
+          console.log(uploadFileRes);
+          // console.log('uploadFileRes',JSON.parse(uploadFileRes.data));   
+          // //处理数据
+          // const path=JSON.parse(uploadFileRes.data)
+          // //赋值，前端渲染
+          // this.baseFormData.photo=path.imgUrl
+        }
+      });
+    },
+    // 上传成功
+    success: function success(e) {
+      console.log('上传成功');
+    },
+    // 上传失败
+    fail: function fail(e) {
+      console.log('上传失败：', e);
     }
   }
 };

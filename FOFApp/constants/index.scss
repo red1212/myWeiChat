@@ -4,7 +4,9 @@
 .flex1{
 	flex: 1;
 }
-
+.flex-wrap{
+	flex-wrap: wrap;
+}
 .flex-center{
 	display: flex;
 	justify-content: center;
@@ -15,6 +17,12 @@
 	align-items: center;
 	justify-content: flex-end;
 }
+.flex-start{
+	display: flex;
+	align-items: center;
+	justify-content:flex-start;
+}
+
 .flex-column{
 	flex-direction: column;
 }

@@ -184,6 +184,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpages/pages/buy/index",
+          "query": "ID=53",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

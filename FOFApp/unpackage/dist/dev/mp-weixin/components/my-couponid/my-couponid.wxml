@@ -1,1 +1,1 @@
-<view><block wx:for="{{couponList}}" wx:for-item="item" wx:for-index="i" wx:key="i"><view>{{''+item.name+''}}</view></block></view>
+<view class="flex flex-wrap flex-start data-v-7908730a"><block wx:for="{{List}}" wx:for-item="item" wx:for-index="i" wx:key="i"><view data-event-opts="{{[['tap',[['tabChange',['$0'],[[['List','',i]]]]]]]}}" class="{{['data-v-7908730a','row',item.id==select?'active':'']}}" bindtap="__e">{{''+item.name+''}}</view></block></view>

@@ -11,7 +11,7 @@
 			</view>
 		</uni-section>
 		<!-- 普通下单 -->
-		<order-in-line v-if="productDetail.OrderType === 3" :productDetail="productDetail"/>
+		<order-in-line v-if="productDetail.product.OrderType === 3" :productDetail="productDetail"/>
 		
 		<!-- 预约下单 -->
 		<subscribe v-else :productDetail="productDetail"/>
@@ -60,7 +60,9 @@
 					this.productDetail = res.data
 					const {OrderType,Content2,Content3} = res.data.product
 					this.content = OrderType == 3 ? Content2 : Content3    
-					this.$refs.parentRef.$refs.popup.open()
+					
+					// this.$refs.parentRef.$refs.popup.open()   //-----后期放开
+					
 				}else{
 					return uni.$showMsg(res.message,1500) 
 				}

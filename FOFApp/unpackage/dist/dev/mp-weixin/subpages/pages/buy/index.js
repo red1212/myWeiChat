@@ -214,18 +214,19 @@ var _default = {
               res = _yield$uni$$http$post.data;
               uni.hideLoading();
               if (!(0, _index.isSuccess)(res.code)) {
-                _context.next = 14;
+                _context.next = 13;
                 break;
               }
               _this.productDetail = res.data;
               _res$data$product = res.data.product, OrderType = _res$data$product.OrderType, Content2 = _res$data$product.Content2, Content3 = _res$data$product.Content3;
               _this.content = OrderType == 3 ? Content2 : Content3;
-              _this.$refs.parentRef.$refs.popup.open();
-              _context.next = 15;
+
+              // this.$refs.parentRef.$refs.popup.open()   //-----后期放开
+              _context.next = 14;
               break;
-            case 14:
+            case 13:
               return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-            case 15:
+            case 14:
             case "end":
               return _context.stop();
           }
