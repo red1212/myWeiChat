@@ -47,9 +47,7 @@
 				imgList: [],
 				products: [],
 				notice:{},
-				content:`<div>
-				<div style="text-align:center;font-size:14px;margin-bottom:8px">委托声明</div>
-				</div>`
+				content:''
 			}
 		},
 		 onReady: function(res) {
@@ -66,13 +64,17 @@
 			if(isSuccess(res.code)){
 				this.imgList = res.data.banner || []
 				this.products = res.data.products || []
-				this.notice = res.data.notice || {}
-				console.log(res)
-				this.$refs.parentRef.$refs.popup.open()
+				this.notice =  res.data.notice || ''
+				let content = res.data.notice?.Content || ''
+				if(content){
+					content = content.replace(/pt/g ,"px");
+					//字体大小样式替换
+					this.notice.Content = content.toString()
+					this.$refs.parentRef.$refs.popup.open()
+				}
 			}else{
 				return uni.$showMsg(res.message,1500) 
 			}
-			console.log(res)
 		},
 		methods:{
 			closePopUp() {

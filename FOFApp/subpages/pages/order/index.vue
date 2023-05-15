@@ -15,19 +15,19 @@
 		</view>
 
 		<view class="my-order">
-			<view class="order-item" v-for="(item,i) in List" :key="i">
+			<view class="order-item" v-for="(item,i) in List" :key="i" v-if="item.ProductInfo">
 				<view class="row-1">
-					<text class="orderId">{{item.orderId}}</text>
+					<text class="orderId">{{item.ProductInfo.Code || '---'}}</text>
 					<text class="payState">{{item.payState}}</text>
 				</view>
 				<view class="row-2">
 					<view class="left-item">
-						<image :src="item.img" class="pd-img" mode="widthFix"></image>
+						<image :src="item.ProductInfo.Cover" class="pd-img" mode="widthFix"></image>
 					</view>
 					<view class="right-item">
-						<view class="name">{{item.name}}</view>
+						<view class="name">{{item.ProductInfo.Name || '---'}}</view>
 						<view class="state">{{item.state}}</view>
-						<view class="price">¥{{item.price}} <text class="discount">折扣优惠: ￥0</text></view>
+						<view class="price">¥{{item.PayMoney || '---'}} <text class="discount">折扣优惠: ￥{{item.CouponFee || '---'}}</text></view>
 					</view>
 				</view>
 				<view class="row-3">
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-	import {isSuccess,errorTip} from '../../../util/index.js'
+	import {isSuccess,errorTip,isPay,orderStatus} from '../../../util/index.js'
 	export default {
 		data() {
 			return {

@@ -45,3 +45,26 @@ export function errorTip(text){
 	}
 }
 
+
+export const NumberToFormat={
+	0:'A',
+	1:'B',
+	2:'C',
+	3:'D',
+	4:'E',
+	5:'F',
+	6:'G',
+	7:'H',
+	8:'I',
+}
+
+export const isPay = {
+	0:'未支付',
+	1:'已支付'
+}
+
+export const orderStatus = {
+	1:'检测中',
+	2:'检测完成',
+	3:'已完成'
+}
