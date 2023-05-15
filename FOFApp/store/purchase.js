@@ -5,6 +5,7 @@ export default {
 		disable:false,   //控制内容是否可编辑
 		purchaseInfo:{
 			checked:true,
+			CouponID: 0, //优惠券id  如果没有优惠券传 0
 		},
 		productDetail:JSON.parse(uni.getStorageSync('ProductDetail') || '{}'),   //产品详情信息
 		
@@ -12,7 +13,9 @@ export default {
 	mutations:{
 		updatePurchaseInfo(state,info){
 			state.purchaseInfo = {...state.purchaseInfo,...info}
+			console.log('--df--')
 			console.log(state.purchaseInfo)
+			console.log('--df--')
 		},
 		updateDisable(state,val){
 			state.disable = val

@@ -198,6 +198,27 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpages/pages/order/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpages/pages/orderDetail/index",
+          "query": "id=FOF20230515104",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpages/pages/buy/index",
+          "query": "ID=15",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

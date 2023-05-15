@@ -18,7 +18,7 @@
 			<view class="order-item" v-for="(item,i) in List" :key="i" v-if="item.ProductInfo">
 				<view class="row-1">
 					<text class="orderId">{{item.ProductInfo.Code || '---'}}</text>
-					<text class="payState">{{item.payState}}</text>
+					<text class="payState">{{isPayFn[item.IsPay] || '---'}}</text>
 				</view>
 				<view class="row-2">
 					<view class="left-item">
@@ -26,8 +26,8 @@
 					</view>
 					<view class="right-item">
 						<view class="name">{{item.ProductInfo.Name || '---'}}</view>
-						<view class="state">{{item.state}}</view>
-						<view class="price">¥{{item.PayMoney || '---'}} <text class="discount">折扣优惠: ￥{{item.CouponFee || '---'}}</text></view>
+						<view class="state">{{orderStatus[item.TestStatus] || '--'}}</view>
+						<view class="price">¥{{item.PayMoney || '---'}} <text class="discount">折扣优惠: ￥{{item.CouponFee}}</text></view>
 					</view>
 				</view>
 				<view class="row-3">
@@ -44,17 +44,19 @@
 		</view>
 		<view>
 			<!-- 普通弹窗 -->
-			<my-popup title="检测结果说明" ref="resultRef" @closePopUp="clickResult('close')"></my-popup>
+			<my-popup title="检测结果说明" ref="resultRef" @closePopUp="clickResult('close')" :content="item.ResultNote" ></my-popup>
 			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay" :Orderno="Orderno"/>
 		</view>
 	</view>
 </template>
 
 <script>
-	import {isSuccess,errorTip,isPay,orderStatus} from '../../../util/index.js'
+	import {isSuccess,errorTip,isPayFn,orderStatus} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
+				orderStatus,
+				isPayFn,
 				loading: false,
 				typeActive: 4,
 				active: 0,

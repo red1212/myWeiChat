@@ -8,6 +8,7 @@
 						 <text class="weituo" @click="openWeituo">《委托协议》</text>
 					</view>
 				</view>
+				<view style="margin-bottom: 10px;">邮寄地址：{{productDetail.product.MailingAddress || '--'}}</view>
 			</view>
 		</uni-section>
 		<!-- 普通下单 -->
@@ -59,8 +60,13 @@
 				if(isSuccess(res.code)){
 					this.productDetail = res.data
 					const {OrderType,Content2,Content3} = res.data.product
-					this.content = OrderType == 3 ? Content2 : Content3    
-					
+					this.content = OrderType == 3 ? Content2 : Content3  
+					let coupons = res.data.coupons || []
+					if(coupons.length > 0){
+						this.updatePurchaseInfo({CouponID:coupons[0].ID})
+					}else{
+						this.updatePurchaseInfo({CouponID:0})
+					}
 					// this.$refs.parentRef.$refs.popup.open()   //-----后期放开
 					
 				}else{

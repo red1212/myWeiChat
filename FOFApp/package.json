@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@escook/request-miniprogram": "^0.2.1"
+    "@escook/request-miniprogram": "^0.2.1",
+    "dayjs": "^1.11.7"
   }
 }

@@ -58,13 +58,18 @@ export const NumberToFormat={
 	8:'I',
 }
 
-export const isPay = {
+export const isPayFn = {
 	0:'未支付',
 	1:'已支付'
 }
 
 export const orderStatus = {
+	0:'待处理',
 	1:'检测中',
 	2:'检测完成',
-	3:'已完成'
+	3:'已完成',
+	4:'样品已收到',
+	5:'已预约',
+	6:'暂停检测',
+	7:'取消订单'
 }

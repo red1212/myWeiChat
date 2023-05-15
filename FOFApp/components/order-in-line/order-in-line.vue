@@ -19,7 +19,7 @@
 		<view>
 			<view class="title">使用优惠券</view>
 			<view class="content">
-				<my-couponid :List="couponList" select="0" @tabChange="tabChange"/>
+				<my-couponid :List="productDetail.coupons" />
 			</view>
 		</view>
 
@@ -84,19 +84,6 @@
 					chenfeng: '请输入成分',
 				},
 				clickTime: 0,
-				couponList: [{
-						name: '无可用优惠券',
-						id: 0
-					},
-					{
-						name: '优惠券',
-						id: 2
-					},
-					{
-						name: '优惠券',
-						id: 3
-					},
-				],
 				clickCountPrice: false,
 				imageValue: []
 			};
@@ -114,6 +101,7 @@
 			inputChange(e, type) {
 				this.baseFrom[type] = e.detail.value
 			},
+			
 			changeInfo() {
 				//重置按钮状态
 				this.clickCountPrice = false
@@ -180,13 +168,13 @@
 			        const imgUrl=tempFilePaths[0]
 			        uni.uploadFile({
 			          //图片上传地址
-			          url: 'https://story.nabaiyu.com/apitest/admin/api.upload/file.html', 
+			          url: 'http://47.97.216.6/admin/api.upload/file.html', 
 			          filePath: imgUrl,
 			          //上传名字，注意与后台接收的参数名一致
 			          name: 'imgUrl',
 								formData: {
-									uptype:'',
-									safe:'0',
+									safe: 0,
+									uptype: 'local'
 								},
 								
 			          //设置请求头

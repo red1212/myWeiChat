@@ -8,6 +8,7 @@
   text-align: center;
 }
 .active.data-v-7908730a {
-  border: 1px solid red;
+  border: 1px solid #0e67a9;
+  color: #0e67a9;
 }
 

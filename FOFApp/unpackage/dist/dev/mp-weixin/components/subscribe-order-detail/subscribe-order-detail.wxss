@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.info-item.data-v-7233fe38 {
+  margin-bottom: 4px;
+}
+.label.data-v-7233fe38 {
+  color: #333;
+  font-weight: 600;
+  width: 80px;
+  display: inline-block;
+}
+.order-info.data-v-7233fe38 {
+  padding: 0px 10px;
+}
+.info-item.data-v-7233fe38 {
+  margin-bottom: 10px;
+  display: flex;
+}
+.info-value.data-v-7233fe38 {
+  flex: 1;
+}
+.info-label.data-v-7233fe38 {
+  width: 90px;
+  color: #333;
+}
+

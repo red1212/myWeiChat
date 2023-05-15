@@ -6,3 +6,8 @@
   "integrity" "sha512-ueWV5YsaEm/ycQZuEjMiA88GFMhfBQSjy9GrP9omy4xAQajkGTbYIlnhzsDfWzRPmRC1fKmAiKMrCVcgS+SHcQ=="
   "resolved" "https://registry.npmjs.org/@escook/request-miniprogram/-/request-miniprogram-0.2.1.tgz"
   "version" "0.2.1"
+
+"dayjs@^1.11.7":
+  "integrity" "sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ=="
+  "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.7.tgz"
+  "version" "1.11.7"

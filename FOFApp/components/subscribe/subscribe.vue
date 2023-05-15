@@ -29,7 +29,7 @@
 		<view>
 			<view class="title">使用优惠券</view>
 			<view class="content">
-				<my-couponid :couponList="couponList"/>
+				<my-couponid :List="productDetail.coupons" />
 			</view>
 		</view>
 		
@@ -136,8 +136,9 @@
 						StartTime:startTime,
 						EndTime:endTime
 					},
+					MailingAddress:this.productDetail.product.MailingAddress, 
 					TotalPrice:100,  //这里后期需要计算
-					CouponID: 0, //优惠券id  如果没有优惠券传 0
+					CouponID: this.purchaseInfo.CouponID, //优惠券id  如果没有优惠券传 0
 					
 				}
 				console.log(param)
