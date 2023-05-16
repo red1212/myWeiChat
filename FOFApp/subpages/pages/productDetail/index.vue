@@ -127,9 +127,17 @@
 			...mapMutations('m_purchase',['updateProductDetail']),
 			openBuy(){
 				if(!isLogin()) return toLogin()
+				if(this.productDetail.OrderType == 3){
+					uni.navigateTo({
+						url:`/subpages/pages/order-in-line/index?ID=${this.productDetail.ID}`
+					})
+				}else{
 					uni.navigateTo({
 						url:`/subpages/pages/buy/index?ID=${this.productDetail.ID}`
-					})	
+					})
+				}
+				
+	
 			},
 			handCollect(key){
 				if(key != 0){

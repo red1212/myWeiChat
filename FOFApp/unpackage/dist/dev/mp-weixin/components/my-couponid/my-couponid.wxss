@@ -11,4 +11,8 @@
   border: 1px solid #0e67a9;
   color: #0e67a9;
 }
+.wrap.data-v-7908730a::after {
+  content: '';
+  flex: auto;
+}
 

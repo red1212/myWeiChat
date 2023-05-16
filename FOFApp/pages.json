@@ -76,7 +76,15 @@
 					"enablePullDownRefresh": true
 				}
 
+			},
+			{
+				"path": "pages/order-in-line/index",
+				"style": {
+					"navigationBarTitleText": "下单"
+				}
+			
 			}
+			
 		]
 	}],
 	"globalStyle": {

@@ -1,10 +1,7 @@
 <template>
-	<view class="flex flex-wrap flex-start">
-		<view v-for="(item,i) in List" v-if="List.length > 0" :key="i" :class="['row', item.ID == purchaseInfo.CouponID ? 'active' :'']" @click="tabChange(item)">
+	<view class="flex flex-wrap flex-between wrap">
+		<view v-for="(item,i) in List" :key="i" :class="['row', item.ID == CouponID ? 'active' :'']" @click="tabChange(item)">
 			{{item.Price}}
-		</view>
-		<view v-else :class="['row', 'active']">
-			无优惠券可用
 		</view>
 	</view>
 </template>
@@ -25,17 +22,15 @@
 				type: Array,
 				default: []
 			},
-			select:{
-				type: String,
+			CouponID:{
+				type: Number,
 				default: ''
 			}
 		},
 		methods:{
-			...mapMutations('m_purchase',['updatePurchaseInfo',]),
 			tabChange(item){
 				if(this.purchaseInfo.CouponID == item.ID) return
-				this.updatePurchaseInfo(item.ID)
-				console.log(item)
+				this.$emit('changeCouponID',item.ID)
 			}
 		}
 	}
@@ -51,5 +46,9 @@
 	.active{
 		border:1px solid #0e67a9;
 		color:#0e67a9
+	}
+	.wrap::after{
+		content: '';
+        flex: auto; // 或者1
 	}
 </style>

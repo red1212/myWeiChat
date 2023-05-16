@@ -1,19 +1,15 @@
 <template>
-	<view class="flex flex-wrap flex-start">
-		<view v-for="(item,i) in List" :key="i" class="row" @click="tabChange(item)">
-			{{item.name}}
+		<view class="flex flex-wrap wrap">
+			<view v-for="(item,i) in List" :key="i" :class="['row', item == select ? 'select' :'']" @click="tabChange(item)">
+				{{item}}
+			</view>
 		</view>
-	</view>
+
 </template>
 
 <script>
 	export default {
 		name:"my-tab",
-		data() {
-			return {
-				select:''
-			};
-		},
 		props:{
 			List:{
 				type: Array,
@@ -26,7 +22,7 @@
 		},
 		methods:{
 			tabChange(item){
-				console.log(item)
+				this.$emit('tabChange',item)
 			}
 		}
 	}
@@ -35,8 +31,19 @@
 <style lang="scss" scoped>
 	.row{
 		border:1px solid #ccc;
-		padding:6px 10px;
-		min-width: 106px;
+		padding:4px 6px;
+		width: 60px;
 		text-align: center;
+		margin-bottom: 4px;
+		font-size: 12px;
+		margin-right: 8px;
+	}
+	.select{
+		border:1px solid #0e67a9;
+		color:#0e67a9
+	}
+	.wrap::after{
+		content: '';
+        flex: auto; // 或者1
 	}
 </style>

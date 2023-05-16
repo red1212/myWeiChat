@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "下单",
+  "usingComponents": {
+    "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
+    "weituo": "/components/weituo/weituo",
+    "my-tab": "/components/my-tab/my-tab",
+    "my-couponid": "/components/my-couponid/my-couponid",
+    "uni-file-picker": "/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker",
+    "my-pay": "/components/my-pay/my-pay",
+    "my-popup": "/components/my-popup/my-popup"
+  }
+}

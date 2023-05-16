@@ -2384,6 +2384,10 @@
   display: flex;
   justify-content: space-between;
 }
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+}
 button[type=primary] {
   background-color: #0e67a9;
 }

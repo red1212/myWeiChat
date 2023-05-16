@@ -1,0 +1,624 @@
+<template>
+	<view class="buy-wrap">
+		<uni-section>
+			<view class="buy-box">
+				<weituo :disabled="disable"/>
+				<view style="margin-bottom: 10px;">邮寄地址：{{productDetail.product.MailingAddress || '--'}}</view>
+			</view>
+		</uni-section>
+		<!-- 普通下单 -->
+		<view class="subscribe-wrap">
+			<view v-for="(item,i) in renderSampleArr" :key="i">
+				<view class="title">
+					{{NumberToFormat[i]}}检测样品 <text class="tip"><text class="color-red">*</text>以下均为必填选项，请认真填写</text>
+				</view>
+				<view class="content">
+					<view class="item">
+						<view class="label">1.样品名称：</view>
+						<input class="uni-input" placeholder="请输入样品名称" :value="SampleArr.sample_name" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_name')" />
+					</view>
+					<view class="item">
+						<view class="label">2.主要成分：</view>
+						<input class="uni-input" placeholder="请输入主要成分" :value="SampleArr.sample_component" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_component')" />
+					</view>
+					<view class="item">
+						<view class="label">3.样品形态：</view>
+						<view class="flex flex1"><my-tab :List="productDetail.sample_form || []" :select="SampleArr[i].sample_form" @tabChange="(sampleFormItem)=>sampleArrChange(sampleFormItem,i,'sample_form')"/></view>
+					</view>
+					<view class="item">
+						<view class="label">4.样品性质：</view>
+						<view class="flex flex1 flex-column">
+							<view><my-tab :List="productDetail.sample_nature || [] " :select="SampleArr[i].sample_nature" @tabChange="(sampleFormItem)=>sampleArrChange(sampleFormItem,i,'sample_nature')"/></view>
+							<view class="sample_nature_tip"><span style="color: red;">*</span>如因隐瞒样品属性对检测仪器或人员造成危害，后果由委托方承担</view>
+						</view>
+					</view>
+					<view class="item">
+						<view class="label">5.保存条件：</view>
+						<view class="flex flex1 flex-column">
+							<view><my-tab :List="productDetail.sample_storage_condition || [] " :select="SampleArr[i].sample_storage_condition" @tabChange="(sampleFormItem)=>sampleArrChange(sampleFormItem,i,'sample_storage_condition')"/></view>
+						</view>
+					</view>
+					<view class="item">
+						<view class="label">6.测试明细：</view>
+						<view class="flex flex1 flex-column">
+							<view>
+								<view class="flex flex-wrap wrap">
+									<view v-for="(item,skus_list_index) in productDetail.skus || [] " :key="skus_list_index" :class="['row', skusComputed(item,i) ? 'select' :'']" @click="()=>skustabChange(item,i)">
+										{{item.Name}}
+									</view>
+								</view>
+
+							</view>
+						</view>
+					</view>
+					
+				</view>
+			</view>
+			
+			<view>
+				<view class="title">使用优惠券</view>
+				<view class="content">
+					<my-couponid :List="productDetail.coupons" :CouponID="CouponID" @changeCouponID="(ID)=>changeCouponID(ID)"/>
+				</view>
+			</view>
+
+			<view class="content">
+				<uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @select="select"
+					@success="success" @fail="fail" file-extname="png,jpg" :limit="1" :list-styles="listStyles">
+					<button class="submit">上传附件</button>
+				</uni-file-picker>
+			</view>
+
+
+			<view class="menu">
+				<view class="title">明细菜单</view>
+				<view class="content">
+					<text>预约费用：</text><text class="price">￥500</text>
+				</view>
+				<view class="content" style="font-size: 16px;">
+					<text>费用总计：</text><text class="countPrice">500元</text>
+				</view>
+			</view>
+
+			<view class="btn-group" v-if="!clickCountPrice">
+				<button @click="countPrice" class="submit">计算价格</button>
+			</view>
+			<view class="btn-group" v-else>
+				<button @click="changeInfo" class="submit default" v-show="showConfirm">修改信息</button>
+				<button @click="submit" class="submit" v-show="!payState">确认下单</button>
+				<button @click="clickPay('','open')" class="submit" v-show="payState">完成支付</button>
+			</view>
+			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay" />
+		</view>
+
+		<view style="height: 20px;"></view>
+
+		<my-popup ref="skusRef" @closePopUp="skusclosePopUp" @clickBtnItem="skusclosePopUp" btnText="确定">
+			<view class="flex flex-wrap wrap">
+				<view v-for="(skusList,skus_list_i) in skus_item.List || [] " :key="skus_list_i" :class="['row', skusItemComputed(skusList) ? 'select' :'']" style="width: 114px;" @click="()=>skus_listtabChange(skusList)">
+					{{skusList.Name}}
+				</view>
+			</view>
+		</my-popup>
+		<!-- 弹窗 -->
+		<my-popup ref="parentRef" :content="content" @closePopUp="closePopUp" @clickBtnItem="closePopUp" btnText="立即下单"></my-popup>
+	</view>
+</template>
+
+<script>
+	import {mapState,mapMutations} from 'vuex'
+	import {isSuccess,errorTip,checkMap,NumberToFormat} from '../../../util/index.js'
+	import { isEmpty } from 'lodash';
+	export default {
+		data() {
+			return {
+				NumberToFormat,
+				content: '',
+				productDetail: {},
+				listStyles: {
+					// 是否显示边框
+					border: false,
+					// 是否显示分隔线
+					dividline: false,
+					// 线条样式
+					borderStyle: {
+						width: 0,
+						color: 'blue',
+						radius: 2
+					}
+				},
+				checkMap,
+				disable: false,
+				showConfirm: false,
+				payState: false,
+				baseFrom: {
+					sample_name: '',
+					chenfeng: '',
+				},
+				tip: {
+					sample_name: '请输入样品名称',
+					chenfeng: '请输入成分',
+				},
+				clickTime: 0,
+				clickCountPrice: false,
+				imageValue: [],
+				CouponID:0,
+				skus_index:0,
+				skus_item:{},
+				select_skus:[],
+				renderSampleArr:[
+					{}
+				],
+				SampleArr:[
+					{
+						"sampleNum": "A",
+						"sample_name": "", //样品名称
+						"sample_component": "", //主要成分
+						sample_sku:[
+							{
+								name: "XAFS硬线中能",
+								price: 0,
+								list:{
+									'0':{
+										item_id: 999,
+										item_name: "含量大于5%",
+										item_price: 4000,
+									}
+								}		
+							}
+						]
+					},
+					{
+						"sampleNum": "B",
+						sample_sku:[
+							{
+								name: "XAFS硬---线中能",
+								price: 0,
+								list:{
+									'0':{
+										item_id: 1000,
+										item_name: "含量大于1%",
+										item_price: 4000,
+									}
+								}		
+							}
+						]
+					}
+				]
+
+			}
+		},
+		computed: {
+			...mapState('m_client', ['teamList']),
+			...mapState('m_purchase', ['purchaseInfo']),
+			//计算明细是否选中--大项
+			skusComputed: function () {
+				return (item,i)=>{
+					let Name = item.Name
+					let sampleNum = this.NumberToFormat[i]
+					let isActive = false
+					let res = this.SampleArr.filter((item)=>{
+						return item.sampleNum == sampleNum
+					})
+					if(!isEmpty(res)){
+						let sample_sku_item = res[0].sample_sku.filter((item)=>{
+						return item.name == Name
+						})
+						if(!isEmpty(sample_sku_item)){
+							isActive = true
+						}else{
+							isActive = false
+						}
+
+					}
+					return isActive
+				} 
+			},
+			//计算明细项列表样式
+			skusItemComputed: function () {
+				return (item)=>{
+					let isActive = false
+					if(this.skus_item.List){
+						let Name = this.skus_item.Name
+						let res = this.isCurrentItem()
+						if(!isEmpty(res)){
+							let sample_sku_item = res[0].sample_sku.filter((item)=>{
+							return item.name == Name
+							})
+
+							if(!isEmpty(sample_sku_item)){
+								let sample_sku_item_child = sample_sku_item[0].list[0] || {}
+								if(!isEmpty(sample_sku_item_child)){
+									isActive = sample_sku_item_child.item_id == item.ID ? true : false
+								}
+
+							}
+						}
+					}
+					return isActive
+				} 
+			},
+		},
+
+		async onLoad(option) {
+			uni.showLoading({title: '数据加载中...',})
+			let param = {
+				ID: parseInt(option.ID)
+			}
+			const {data: res} = await uni.$http.post('user/order/view', param);
+			uni.hideLoading()
+			if (isSuccess(res.code)) {
+				this.productDetail = res.data
+				this.content  = res.data.product.Content2 || ''
+				let coupons = res.data.coupons || []
+				if (coupons.length > 0) {
+					this.CouponID = coupons[0].ID
+				} else {
+					coupons = [{ID:0,Price:'无优惠券可用'}]
+					this.CouponID = coupons[0].ID
+				}
+				this.SampleArr[0].sample_form = res?.data?.sample_form ? res.data.sample_form[0] : ''  //提交 样品形态
+
+				this.SampleArr[0].sample_nature = res?.data?.sample_nature ? res.data.sample_nature[0] : ''  //提交 样品性质
+
+				this.SampleArr[0].sample_storage_condition = res?.data?.sample_storage_condition ? res.data.sample_storage_condition[0] : ''  //提交 保存条件
+
+				//let sample_sku = res.data?.skus || []  //提交 保存条件
+
+				// if(sample_sku.length > 0){
+				// 	let fist_sample_sku =  sample_sku[0]
+				// 	let fist_list = fist_sample_sku.List[0]
+				// 	this.SampleArr[0].sample_sku[0] ={
+				// 		name:fist_sample_sku.Name,
+				// 		price:fist_sample_sku.Price,
+				// 		list:{
+				// 			'0':{
+				// 				item_id:fist_list.ID,
+				// 				item_price:fist_list.Price,
+				// 				item_name:fist_list.Name,
+				// 			}
+				// 		}
+				// 	}
+				// }
+				console.log(this.SampleArr,'--------')
+
+			
+				console.log(this.renderSampleArr,'----',res.data.sample_form[0])
+				this.productDetail.coupons = coupons
+				// this.$refs.parentRef.$refs.popup.open()   //-----后期放开
+
+			} else {
+				return uni.$showMsg(res.message, 1500)
+			}
+
+		},
+		methods: {
+			...mapMutations('m_purchase', ['updatePurchaseInfo',]),
+			//是否操作的当前项
+			isCurrentItem(){
+				let i = this.skus_index
+				let sampleNum = this.NumberToFormat[i]
+				let res = this.SampleArr.filter((item)=>{
+					return item.sampleNum == sampleNum
+				})
+				return res
+			},
+			closePopUp() {
+				this.$refs.parentRef.$refs.popup.close()
+			},
+			changeCouponID(ID){
+				this.CouponID = ID
+			},
+			//检测明细
+			skustabChange(item,i){
+				this.skus_item = item
+				this.skus_index = i
+				this.$refs.skusRef.$refs.popup.open()
+				console.log(item,i)
+			},
+			//添加明细
+			addSkus(is_cur_opt,item){
+				is_cur_opt[0].sample_sku.push({
+					name:this.skus_item.Name,
+					price:this.skus_item.Price,
+					list:{
+						"0":{
+							item_id:item.ID,
+							item_price:item.Price,
+							item_name:item.Name,
+							}
+					}
+				})
+			},
+			skus_listtabChange(item){
+				if(this.disable) return 
+				//第一 先判断点击的当前项之前知否选中
+				let is_cur_opt = this.isCurrentItem()
+				let is_cur_id = false
+
+				// 如果 明细选项不为空
+				if(!isEmpty(is_cur_opt)){
+					if(!isEmpty(is_cur_opt[0].sample_sku)){
+						//如果当前操作的和已有的一样则删除
+						let cur_id = is_cur_opt[0].sample_sku[0].list[0].item_id || ''
+						is_cur_id = cur_id == item.ID
+						if(is_cur_id){
+							is_cur_opt[0].sample_sku = is_cur_opt[0].sample_sku.filter((item)=>{
+								return item.name !== this.skus_item.Name
+							})
+						}else{
+							let is_cur_opt_item = is_cur_opt[0].sample_sku.filter((item)=>{
+								return item.name === this.skus_item.Name
+							})
+							//修改
+							if(!isEmpty(is_cur_opt_item)){
+								is_cur_opt_item[0].list={
+									"0":{
+										item_id:item.ID,
+										item_price:item.Price,
+										item_name:item.Name,
+									}
+								}
+							}else{
+								//添加
+								this.addSkus(is_cur_opt,item)
+							}
+						}
+						this.$forceUpdate()
+					}else{
+						//添加
+						this.addSkus(is_cur_opt,item)
+						this.$forceUpdate()
+					}
+				}
+				console.log(this.SampleArr,'---SampleArr---')
+			},
+			skusclosePopUp(){
+				this.$refs.skusRef.$refs.popup.close()
+			},
+			//tab 区域选择
+			sampleArrChange(sampleFormItem,i,type){
+				this.SampleArr[i][type] = sampleFormItem
+				this.$forceUpdate()
+			},
+			inputChange(e,i,type) {
+				let _is_CurrentItem = this.isCurrentItem(i)
+				if(!isEmpty(_is_CurrentItem)){
+					_is_CurrentItem[0][type] = e.detail.value
+				}
+				console.log(this.SampleArr,'---SampleArr---')
+				this.$forceUpdate()
+			},
+
+			changeInfo() {
+				//重置按钮状态
+				this.clickCountPrice = false
+				this.disable = false
+				this.showConfirm = false
+				this.clickTime = 0
+			},
+
+			//计算价格
+			countPrice() {
+				console.log(this.productDetail)
+				console.log('--计算价格3-')
+				let result = this.checkMap(this.baseFrom, this.tip)
+				if (!result) return
+				//先走计算价格的接口
+				this.clickCountPrice = true
+			},
+
+			async submit() {
+				this.clickTime = this.clickTime + 1 //点击次数
+				this.showConfirm = true //修改信息按钮
+				this.disable = true //确认信息
+				if (this.clickTime === 2) {
+					let {Code} = this.productDetail.product
+					let param = {
+						Item: {
+							ProductCode: Code,
+						},
+						TotalPrice: 100, //这里后期需要计算
+						CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
+
+					}
+					console.log(param)
+					const {data: res} = await uni.$http.post('user/order/add', param);
+					if (isSuccess(res.code)) {
+						this.showConfirm = false
+						if (!this.showConfirm && this.disable) {
+							this.payState = true
+						} else {
+							this.payState = false
+						}
+					} else {
+						this.clickTime = 0
+						return uni.$showMsg(res.message, 1500)
+					}
+				}
+			},
+			//完成支付
+			clickPay(item, type) {
+				if (type === 'open') {
+					this.$refs.payRef.$refs.popup.open()
+				} else {
+					this.$refs.payRef.$refs.popup.close()
+				}
+
+			},
+			// 获取上传状态
+			select(e) {
+				console.log('选择文件：', e)
+				const tempFilePaths = e.tempFilePaths;
+				//获取图片临时路径
+				const imgUrl = tempFilePaths[0]
+				uni.uploadFile({
+					//图片上传地址
+					url: 'http://47.97.216.6/admin/api.upload/file.html',
+					filePath: imgUrl,
+					//上传名字，注意与后台接收的参数名一致
+					name: 'imgUrl',
+					formData: {
+						safe: 0,
+						uptype: 'local'
+					},
+
+					//设置请求头
+					header: {
+						"Content-Type": "multipart/form-data"
+					},
+					//请求成功，后台返回自己服务器上的图片地址
+					success: (uploadFileRes) => {
+						console.log(uploadFileRes)
+						// console.log('uploadFileRes',JSON.parse(uploadFileRes.data));   
+						// //处理数据
+						// const path=JSON.parse(uploadFileRes.data)
+						// //赋值，前端渲染
+						// this.baseFormData.photo=path.imgUrl
+					}
+				});
+			},
+			// 上传成功
+			success(e) {
+				console.log('上传成功')
+			},
+
+			// 上传失败
+			fail(e) {
+				console.log('上传失败：', e)
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.buy-wrap {
+		background-color: #fff;
+		min-height: 100vh;
+	}
+	.buy-box {
+		padding: 0px 10px;
+	}
+
+	.radio-item {
+		display: flex;
+		align-items: center;
+	}
+	.label {
+		width: 90px;
+	}
+
+	.color {
+		color: $uni-color-primary;
+	}
+
+	.service-box {
+		display: flex;
+		flex: 1;
+		flex-wrap: wrap;
+	}
+
+	.service-base {
+		width: 60px;
+		height: 30px;
+		text-align: center;
+		line-height: 30px;
+		border: 1px solid $uni-border-color;
+		box-sizing: border-box;
+		border-radius: 6px;
+		margin-bottom: 10px;
+		font-size: 12px;
+		margin-right: 6px;
+	}
+
+	.service-act {
+		border: 1px solid $uni-color-primary;
+		color: $uni-color-primary;
+	}
+	.subscribe-wrap {
+		background-color: #fff;
+	}
+	
+	.content {
+		padding: 10px;
+		font-size: 14px;
+	}
+	
+	.title {
+		color: $uni-color-primary;
+		font-weight: bold;
+		background-color: $uni-bg-primary;
+		padding: 10px;
+	}
+	
+	.item {
+		display: flex;
+		align-items: baseline;
+		margin-bottom: 10px;
+	}
+	.tip {
+		font-size: 12px;
+		margin-left: 40rpx;
+	}
+	
+	.color-red {
+		color: $uni-color-price;
+	}
+	
+	.uni-input {
+		border-bottom: 1px solid $uni-border-color;
+		line-height: 30px;
+		height: 30px;
+		flex: 1;
+	}
+	
+	.btn-group {
+		display: flex;
+		justify-content: center;
+		width: 50%;
+		margin: 0 auto;
+	}
+	
+	.submit {
+		background-color: $uni-color-primary;
+		color: #fff;
+		font-size: 14px;
+	}
+	
+	.default {
+		background-color: $uni-border-color;
+		color: #333;
+	}
+	
+	.price {
+		background-color: $uni-color-price;
+		color: #fff;
+		border-radius: 50px;
+		padding: 2px 10px;
+	}
+	
+	.countPrice {
+		color: $uni-color-price;
+	}
+	.sample_nature_tip{
+		font-size: 12px;
+		color:#ccc
+	}
+	.row{
+		border:1px solid #ccc;
+		padding:4px 6px;
+		width: 60px;
+		text-align: center;
+		margin-bottom: 4px;
+		font-size: 12px;
+		margin-right: 8px;
+	}
+	.select{
+		border:1px solid #0e67a9;
+		color:#0e67a9
+	}
+	.wrap::after{
+		content: '';
+        flex: auto; // 或者1
+	}
+</style>

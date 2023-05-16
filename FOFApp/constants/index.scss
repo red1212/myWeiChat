@@ -30,6 +30,10 @@
 	display: flex;
 	justify-content: space-between;
 }
+.flex-around{
+	display: flex;
+	justify-content: space-around;
+}
 // 初始化button颜色
 button[type=primary]{
 	background-color: $uni-color-primary;
