@@ -15,11 +15,11 @@
 				<view class="content">
 					<view class="item">
 						<view class="label">1.样品名称：</view>
-						<input class="uni-input" placeholder="请输入样品名称" :value="SampleArr.sample_name" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_name')" />
+						<input class="uni-input" placeholder="请输入样品名称" :value="SampleArr[i].sample_name" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_name')" />
 					</view>
 					<view class="item">
 						<view class="label">2.主要成分：</view>
-						<input class="uni-input" placeholder="请输入主要成分" :value="SampleArr.sample_component" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_component')" />
+						<input class="uni-input" placeholder="请输入主要成分" :value="SampleArr[i].sample_component" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_component')" />
 					</view>
 					<view class="item">
 						<view class="label">3.样品形态：</view>
@@ -51,7 +51,21 @@
 							</view>
 						</view>
 					</view>
-					
+					<view class="item">
+						<view class="label">7.样品是否回收：</view>
+							<radio-group @change="(e)=>inputChange(e,i,'sample_recycle')" class="flex">
+								<label v-for="(sample_recycle, index) in sample_recycle_list" :key="sample_recycle.key" class="flex" style="margin-right: 8px;">
+									<view>
+										<radio :value="sample_recycle.key" :checked="sample_recycle.key === SampleArr[i].sample_recycle" />
+									</view>
+									<view>{{sample_recycle.key}}</view>
+								</label>
+							</radio-group>
+					</view>
+					<view class="item">
+						<view class="label">8.是否加急：</view>
+						<view :class="['row', isUrgent(i) ? 'select' :'']" @click="handleUrgent(i)">加急</view>
+					</view>
 				</view>
 			</view>
 			
@@ -92,7 +106,17 @@
 		</view>
 
 		<view style="height: 20px;"></view>
-
+		
+		<!-- 是否加急弹窗 -->
+		<my-popup ref="urgentRef" @closePopUp="urgentclosePopUp" @clickBtnItem="urgentclosePopUp" btnText="确定">
+			<view class="flex flex-wrap wrap">
+				<view v-for="(urgentItem,urgent_list_i) in productDetail.urgents || [] " :key="urgent_list_i" :class="['row', urgentComputed(urgentItem) ? 'select' :'']" style="width: 114px;" @click="()=>urgent_listtabChange(urgentItem)">
+					{{urgentItem.Name}}
+				</view>
+			</view>
+		</my-popup>
+		
+		<!-- 明细弹窗 -->
 		<my-popup ref="skusRef" @closePopUp="skusclosePopUp" @clickBtnItem="skusclosePopUp" btnText="确定">
 			<view class="flex flex-wrap wrap">
 				<view v-for="(skusList,skus_list_i) in skus_item.List || [] " :key="skus_list_i" :class="['row', skusItemComputed(skusList) ? 'select' :'']" style="width: 114px;" @click="()=>skus_listtabChange(skusList)">
@@ -100,6 +124,7 @@
 				</view>
 			</view>
 		</my-popup>
+		
 		<!-- 弹窗 -->
 		<my-popup ref="parentRef" :content="content" @closePopUp="closePopUp" @clickBtnItem="closePopUp" btnText="立即下单"></my-popup>
 	</view>
@@ -146,6 +171,7 @@
 				skus_index:0,
 				skus_item:{},
 				select_skus:[],
+				obj_index:0,
 				renderSampleArr:[
 					{}
 				],
@@ -154,6 +180,9 @@
 						"sampleNum": "A",
 						"sample_name": "", //样品名称
 						"sample_component": "", //主要成分
+						"sample_recycle": "否",  //是否回收
+						"urgent_name": "", //加急项目
+						"urgent_price_per": "", //加急价格
 						sample_sku:[
 							{
 								name: "XAFS硬线中能",
@@ -184,6 +213,10 @@
 							}
 						]
 					}
+				],
+				sample_recycle_list:[
+					{key:'是'},
+					{key:'否'}
 				]
 
 			}
@@ -220,7 +253,7 @@
 					let isActive = false
 					if(this.skus_item.List){
 						let Name = this.skus_item.Name
-						let res = this.isCurrentItem()
+						let res = this.isCurrentItem(this.skus_index)
 						if(!isEmpty(res)){
 							let sample_sku_item = res[0].sample_sku.filter((item)=>{
 							return item.name == Name
@@ -238,6 +271,34 @@
 					return isActive
 				} 
 			},
+			//是否加急
+			isUrgent:function(){
+				return (i)=>{
+					let isCurrentItem_res = this.isCurrentItem(i)
+					console.log(isCurrentItem_res,'--isCurrentItem_res--')
+					if(!isEmpty(isCurrentItem_res)){
+						let  row_item= isCurrentItem_res[0]
+						console.log(row_item,'---row_item---')
+						if(row_item.urgent_name && row_item.urgent_price_per){
+							return true
+						}else{
+							return false
+						}
+					}
+				}
+			},
+			urgentComputed:function(){
+				return (item)=>{
+					let fil_sample = this.isCurrentItem(this.obj_index)
+					if(!isEmpty(fil_sample)){
+						if(fil_sample[0].urgent_name == item.Name && fil_sample[0].urgent_price_per == item.PricePer){
+							return true
+						}else{
+							return false
+						}
+					}
+				}
+			}
 		},
 
 		async onLoad(option) {
@@ -294,9 +355,8 @@
 		},
 		methods: {
 			...mapMutations('m_purchase', ['updatePurchaseInfo',]),
-			//是否操作的当前项
-			isCurrentItem(){
-				let i = this.skus_index
+			//是否操作的当前项 ---明细
+			isCurrentItem(i){
 				let sampleNum = this.NumberToFormat[i]
 				let res = this.SampleArr.filter((item)=>{
 					return item.sampleNum == sampleNum
@@ -308,6 +368,27 @@
 			},
 			changeCouponID(ID){
 				this.CouponID = ID
+			},
+			//点击加急
+			handleUrgent(i){
+				if(this.disable) return 
+				let isCurrentItem_res = this.isCurrentItem(i)
+				this.obj_index = i
+				this.$refs.urgentRef.$refs.popup.open()
+					console.log(i,'------',isCurrentItem_res)
+			},
+			urgent_listtabChange(item){
+				let fil_sample = this.isCurrentItem(this.obj_index)
+				if(!isEmpty(fil_sample)){
+					fil_sample[0].urgent_name = item.Name
+					fil_sample[0].urgent_price_per = item.PricePer
+					console.log(this.SampleArr,'---SampleArr---')
+					this.$forceUpdate()
+				}
+				console.log(fil_sample)
+			},
+			urgentclosePopUp(){
+				this.$refs.urgentRef.$refs.popup.close()
 			},
 			//检测明细
 			skustabChange(item,i){
@@ -333,7 +414,7 @@
 			skus_listtabChange(item){
 				if(this.disable) return 
 				//第一 先判断点击的当前项之前知否选中
-				let is_cur_opt = this.isCurrentItem()
+				let is_cur_opt = this.isCurrentItem(this.skus_index)
 				let is_cur_id = false
 
 				// 如果 明细选项不为空
