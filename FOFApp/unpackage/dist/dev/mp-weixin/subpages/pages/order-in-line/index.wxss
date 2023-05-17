@@ -54,7 +54,6 @@
 }
 .item.data-v-bbe49450 {
   display: flex;
-  align-items: baseline;
   margin-bottom: 10px;
 }
 .tip.data-v-bbe49450 {
@@ -110,6 +109,13 @@
 .select.data-v-bbe49450 {
   border: 1px solid #0e67a9;
   color: #0e67a9;
+}
+.textarea.data-v-bbe49450 {
+  color: #333;
+  font-size: 12px;
+  background-color: #f4f4f4;
+  padding: 4px;
+  height: 60px;
 }
 .wrap.data-v-bbe49450::after {
   content: '';

@@ -1,8 +1,12 @@
 <template>
 	<view class="detail-box">
 		<!-- 普通下单 -->
-		<view v-if="orderInfo.OrderType !=4">
-			<view class="order-state">
+		<view>
+			<view class="order-state" v-if="orderInfo.IsPay ==1">
+				支付成功
+				<view>请打印检测项目表，随样品邮寄至检测处。</view >
+			</view>
+			<view class="order-state" v-else>
 				订单未支付，请完成支付！
 			</view>
 		</view>
@@ -29,18 +33,20 @@
 			<view class="label" style="width: auto;">样品信息及要求：</view>
 		</view>
 		<subscribe-order-detail v-if="orderInfo.OrderType ==4" :orderInfo="orderInfo"/>
-	  <uni-card>
-			<text class="label">邮寄地址：</text>
-			{{orderInfo.ProductInfo.MailingAddress || '--'}}
-			<view style="margin-top:10px;" v-if="orderInfo.OrderType !=4">
-				<!-- 普通下单 -->
-				<text class="label" style="width: 105px;">数据下载链接：</text>
-				<view>链接:</view> 
-				<uni-link class="link" href="https://pan.baidu.com/s/1XtSRY7flYw8ZPo45YEoeXg?pwd=d44j" text="https://pan.baidu.com/s/1XtSRY7flYw8ZPo45YEoeXg?pwd=d44j"></uni-link>
-				<view>提取码:</view> 
-				<uni-link class="link" href="d44j" text="d44j"></uni-link>
-				
-			</view>
+		
+		<inline-order-detail v-if="orderInfo.OrderType ==3" :orderInfo="orderInfo"/>
+		<uni-card>
+				<text class="label">邮寄地址：</text>
+				{{orderInfo.ProductInfo.MailingAddress || '--'}}
+				<view style="margin-top:10px;" v-if="orderInfo.OrderType !=4">
+					<!-- 普通下单 -->
+					<text class="label" style="width: 105px;">数据下载链接：</text>
+					<view>链接:</view> 
+					<uni-link class="link" href="https://pan.baidu.com/s/1XtSRY7flYw8ZPo45YEoeXg?pwd=d44j" text="https://pan.baidu.com/s/1XtSRY7flYw8ZPo45YEoeXg?pwd=d44j"></uni-link>
+					<view>提取码:</view> 
+					<uni-link class="link" href="d44j" text="d44j"></uni-link>
+					
+				</view>
 		</uni-card>
 	</view>
 </template>

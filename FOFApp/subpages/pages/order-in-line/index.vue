@@ -70,9 +70,23 @@
 						<view class="label">9.检测样品数：</view>
 						<input class="uni-input" type="digit" :value="SampleArr[i].sample_number" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_number')"/>
 					</view>
+					<view class="item">
+						<view class="label" style="width:102px">请为样品排序：</view>
+						<view>
+							<input class="uni-input" :value="SampleArr[i].sample_sort" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_sort')"/>
+							<view class="sample_nature_tip"><span style="color: red;">*</span>如“ 1, 2…”，便于标记，以防混乱。</view>
+						</view>
+					</view>
+					<view class="item">
+						<view class="label">10.实验要求及目的：</view>
+						<textarea class="textarea" placeholder-style="color:#ccc" v-model="SampleArr[i].test_purpose" :disabled="disable" @input="(e)=>inputChange(e,i,'test_purpose')" placeholder="请填写具体的测试要求，如果有参考图或者参考文献，请上传附件以备参考，如果您对此实验不太了解，请与客服沟通后再下单。"></textarea>
+					</view>
 				</view>
 			</view>
-			
+			<view class="item content flex-column">
+				<button @click="addProd" class="submit" style="width:158px;margin:0px">增加一个样品组</button>
+				<view class="sample_nature_tip"><span style="color: red;">*</span>当您的检测要求或样品类型不一样时，可以再增加一组样品。</view>
+			</view>
 			<view>
 				<view class="title">使用优惠券</view>
 				<view class="content">
@@ -172,13 +186,13 @@
 				clickCountPrice: false,
 				imageValue: [],
 				CouponID:0,
+				File:"",    //文件上传路径
 				skus_index:0,
 				skus_item:{},
 				select_skus:[],
 				obj_index:0,
 				renderSampleArr:[
 					{},
-					{}
 				],
 				SampleArr:[
 					{
@@ -188,37 +202,39 @@
 						"sample_recycle": "否",  //是否回收
 						"urgent_name": "", //加急项目
 						"urgent_price_per": "", //加急价格
-						"sample_number":'1',   // 检测样品数
+						"sample_number":'',   // 检测样品数
+						"sample_sort":'',    //样品排序
+						"test_purpose":'',   //实验要求及目的
 						sample_sku:[
 							{
 								name: "XAFS硬线中能",
-								price: 0,
+								price: '0',
 								list:{
 									'0':{
-										item_id: 999,
+										item_id: '999',
 										item_name: "含量大于5%",
-										item_price: 4000,
+										item_price: '4000',
 									}
 								}		
 							}
 						]
 					},
-					{
-						"sampleNum": "B",
-						sample_sku:[
-							{
-								name: "XAFS硬---线中能",
-								price: 0,
-								list:{
-									'0':{
-										item_id: 1000,
-										item_name: "含量大于1%",
-										item_price: 4000,
-									}
-								}		
-							}
-						]
-					}
+					// {
+					// 	"sampleNum": "B",
+					// 	sample_sku:[
+					// 		{
+					// 			name: "XAFS硬---线中能",
+					// 			price: 0,
+					// 			list:{
+					// 				'0':{
+					// 					item_id: 1000,
+					// 					item_name: "含量大于1%",
+					// 					item_price: 4000,
+					// 				}
+					// 			}		
+					// 		}
+					// 	]
+					// }
 				],
 				sample_recycle_list:[
 					{key:'是'},
@@ -284,7 +300,6 @@
 					console.log(isCurrentItem_res,'--isCurrentItem_res--')
 					if(!isEmpty(isCurrentItem_res)){
 						let  row_item= isCurrentItem_res[0]
-						console.log(row_item,'---row_item---')
 						if(row_item.urgent_name && row_item.urgent_price_per){
 							return true
 						}else{
@@ -418,11 +433,11 @@
 			addSkus(is_cur_opt,item){
 				is_cur_opt[0].sample_sku.push({
 					name:this.skus_item.Name,
-					price:this.skus_item.Price,
+					price:this.skus_item.Price +'',
 					list:{
 						"0":{
-							item_id:item.ID,
-							item_price:item.Price,
+							item_id:item.ID +'',
+							item_price:item.Price +'',
 							item_name:item.Name,
 							}
 					}
@@ -452,8 +467,8 @@
 							if(!isEmpty(is_cur_opt_item)){
 								is_cur_opt_item[0].list={
 									"0":{
-										item_id:item.ID,
-										item_price:item.Price,
+										item_id:item.ID + '',
+										item_price:item.Price +'',
 										item_name:item.Name,
 									}
 								}
@@ -498,12 +513,26 @@
 
 			//计算价格
 			countPrice() {
-				console.log(this.productDetail)
-				console.log('--计算价格3-')
-				let result = this.checkMap(this.baseFrom, this.tip)
-				if (!result) return
-				//先走计算价格的接口
+				// console.log(this.productDetail)
+				// console.log('--计算价格3-')
+				// console.log(this.SampleArr)
+				// let _SampleArr = [...this.SampleArr]
+				// console.log(Object.assign({},_SampleArr),'---_SampleArr---')
+
+				// let _val_SampleArr = _SampleArr.map(item=>{
+				// 	return {
+				// 		...item,
+				// 		sample_sku:Object.assign({},item.sample_sku)
+				// 	}
+				// })
+				// _val_SampleArr = Object.assign({},_val_SampleArr)
+
+				// console.log(_val_SampleArr,'---bb---')
+				// let result = this.checkMap(this.baseFrom, this.tip)
+				// if (!result) return
+				// //先走计算价格的接口
 				this.clickCountPrice = true
+
 			},
 
 			async submit() {
@@ -512,16 +541,29 @@
 				this.disable = true //确认信息
 				if (this.clickTime === 2) {
 					let {Code} = this.productDetail.product
+					let _SampleArr = [...this.SampleArr]
+					let _val_SampleArr = _SampleArr.map(item=>{
+						return {
+							...item,
+							sample_sku:Object.assign({},item.sample_sku)
+						}
+					})
+					_val_SampleArr = Object.assign({},_val_SampleArr)
+
 					let param = {
 						Item: {
 							ProductCode: Code,
+							"File": this.File, //上传的附件路径，可选
+							SampleArr: _val_SampleArr,
 						},
 						TotalPrice: 100, //这里后期需要计算
 						CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
 
 					}
 					console.log(param)
+
 					const {data: res} = await uni.$http.post('user/order/add', param);
+					
 					if (isSuccess(res.code)) {
 						this.showConfirm = false
 						if (!this.showConfirm && this.disable) {
@@ -543,6 +585,11 @@
 					this.$refs.payRef.$refs.popup.close()
 				}
 
+			},
+
+			//增加一个样品组
+			addProd(){
+				this.renderSampleArr.push({})
 			},
 			// 获取上传状态
 			select(e) {
@@ -651,7 +698,7 @@
 	
 	.item {
 		display: flex;
-		align-items: baseline;
+		// align-items: baseline;
 		margin-bottom: 10px;
 	}
 	.tip {
@@ -714,6 +761,13 @@
 	.select{
 		border:1px solid #0e67a9;
 		color:#0e67a9
+	}
+	.textarea{
+		color:#333;
+		font-size: 12px;
+		background-color: #f4f4f4;
+		padding:4px;
+		height: 60px;
 	}
 	.wrap::after{
 		content: '';
