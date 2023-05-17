@@ -104,10 +104,10 @@ try {
       return __webpack_require__.e(/*! import() | components/logo/logo */ "components/logo/logo").then(__webpack_require__.bind(null, /*! @/components/logo/logo.vue */ 182))
     },
     phoneLogin: function () {
-      return Promise.all(/*! import() | components/phoneLogin/phoneLogin */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/phoneLogin/phoneLogin")]).then(__webpack_require__.bind(null, /*! @/components/phoneLogin/phoneLogin.vue */ 286))
+      return Promise.all(/*! import() | components/phoneLogin/phoneLogin */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/phoneLogin/phoneLogin")]).then(__webpack_require__.bind(null, /*! @/components/phoneLogin/phoneLogin.vue */ 288))
     },
     register: function () {
-      return Promise.all(/*! import() | components/register/register */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/register/register")]).then(__webpack_require__.bind(null, /*! @/components/register/register.vue */ 293))
+      return Promise.all(/*! import() | components/register/register */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/register/register")]).then(__webpack_require__.bind(null, /*! @/components/register/register.vue */ 295))
     },
   }
 } catch (e) {

@@ -9,8 +9,9 @@
 		<!-- 普通下单 -->
 		<view class="subscribe-wrap">
 			<view v-for="(item,i) in renderSampleArr" :key="i">
-				<view class="title">
-					{{NumberToFormat[i]}}检测样品 <text class="tip"><text class="color-red">*</text>以下均为必填选项，请认真填写</text>
+				<view class="title flex-between">
+					<view>{{NumberToFormat[i]}}检测样品 <text class="tip"><text class="color-red">*</text>以下均为必填选项，请认真填写</text></view>
+					<view v-if="renderSampleArr.length > 1" class="delText" @click="()=>delProd(item,i)">删除</view>
 				</view>
 				<view class="content">
 					<view class="item">
@@ -83,7 +84,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="item content flex-column">
+			<view class="item content flex-column" v-if="renderSampleArr.length < 9">
 				<button @click="addProd" class="submit" style="width:158px;margin:0px">增加一个样品组</button>
 				<view class="sample_nature_tip"><span style="color: red;">*</span>当您的检测要求或样品类型不一样时，可以再增加一组样品。</view>
 			</view>
@@ -151,7 +152,7 @@
 <script>
 	import {mapState,mapMutations} from 'vuex'
 	import {isSuccess,errorTip,checkMap,NumberToFormat} from '../../../util/index.js'
-	import { isEmpty } from 'lodash';
+	import { isEmpty,difference } from 'lodash';
 	export default {
 		data() {
 			return {
@@ -196,7 +197,7 @@
 				],
 				SampleArr:[
 					{
-						"sampleNum": "A",
+						"sampleNum": "A",  //序列👌
 						"sample_name": "", //样品名称
 						"sample_component": "", //主要成分
 						"sample_recycle": "否",  //是否回收
@@ -206,35 +207,19 @@
 						"sample_sort":'',    //样品排序
 						"test_purpose":'',   //实验要求及目的
 						sample_sku:[
-							{
-								name: "XAFS硬线中能",
-								price: '0',
-								list:{
-									'0':{
-										item_id: '999',
-										item_name: "含量大于5%",
-										item_price: '4000',
-									}
-								}		
-							}
+							// {
+							// 	name: "XAFS硬线中能",
+							// 	price: '0',
+							// 	list:{
+							// 		'0':{
+							// 			item_id: '999',
+							// 			item_name: "含量大于5%",
+							// 			item_price: '4000',
+							// 		}
+							// 	}		
+							// }
 						]
 					},
-					// {
-					// 	"sampleNum": "B",
-					// 	sample_sku:[
-					// 		{
-					// 			name: "XAFS硬---线中能",
-					// 			price: 0,
-					// 			list:{
-					// 				'0':{
-					// 					item_id: 1000,
-					// 					item_name: "含量大于1%",
-					// 					item_price: 4000,
-					// 				}
-					// 			}		
-					// 		}
-					// 	]
-					// }
 				],
 				sample_recycle_list:[
 					{key:'是'},
@@ -339,6 +324,7 @@
 					coupons = [{ID:0,Price:'无优惠券可用'}]
 					this.CouponID = coupons[0].ID
 				}
+
 				this.SampleArr[0].sample_form = res?.data?.sample_form ? res.data.sample_form[0] : ''  //提交 样品形态
 
 				this.SampleArr[0].sample_nature = res?.data?.sample_nature ? res.data.sample_nature[0] : ''  //提交 样品性质
@@ -591,6 +577,16 @@
 			addProd(){
 				this.renderSampleArr.push({})
 			},
+			delProd(item,i){
+				let _isCurrentItem = this.isCurrentItem(i)
+				console.log(item,i)
+				console.log(_isCurrentItem)
+				this.SampleArr = difference(this.SampleArr,_isCurrentItem) //删除指定项
+				console.log(this.SampleArr,'---this.SampleArr---')
+				this.renderSampleArr.shift()
+				this.$forceUpdate()
+				console.log(this.renderSampleArr)
+			},
 			// 获取上传状态
 			select(e) {
 				console.log('选择文件：', e)
@@ -772,5 +768,9 @@
 	.wrap::after{
 		content: '';
         flex: auto; // 或者1
+	}
+	.delText{
+		font-size: 14px;
+		padding: 4px;
 	}
 </style>

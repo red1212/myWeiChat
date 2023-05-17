@@ -121,4 +121,8 @@
   content: '';
   flex: auto;
 }
+.delText.data-v-bbe49450 {
+  font-size: 14px;
+  padding: 4px;
+}
 

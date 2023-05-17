@@ -101,19 +101,19 @@ var components
 try {
   components = {
     uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 258))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 260))
     },
     weituo: function () {
-      return __webpack_require__.e(/*! import() | components/weituo/weituo */ "components/weituo/weituo").then(__webpack_require__.bind(null, /*! @/components/weituo/weituo.vue */ 265))
+      return __webpack_require__.e(/*! import() | components/weituo/weituo */ "components/weituo/weituo").then(__webpack_require__.bind(null, /*! @/components/weituo/weituo.vue */ 267))
     },
     myTab: function () {
-      return __webpack_require__.e(/*! import() | components/my-tab/my-tab */ "components/my-tab/my-tab").then(__webpack_require__.bind(null, /*! @/components/my-tab/my-tab.vue */ 307))
+      return __webpack_require__.e(/*! import() | components/my-tab/my-tab */ "components/my-tab/my-tab").then(__webpack_require__.bind(null, /*! @/components/my-tab/my-tab.vue */ 309))
     },
     myCouponid: function () {
-      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 314))
+      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 316))
     },
     uniFilePicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 321))
+      return Promise.all(/*! import() | uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue */ 323))
     },
     myPay: function () {
       return Promise.all(/*! import() | components/my-pay/my-pay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-pay/my-pay")]).then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 232))
@@ -143,6 +143,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.renderSampleArr.length
   var l1 = _vm.__map(_vm.renderSampleArr, function (item, i) {
     var $orig = _vm.__get_orig(item)
     var l0 = _vm.__map(
@@ -163,6 +164,7 @@ var render = function () {
       m1: m1,
     }
   })
+  var g1 = _vm.renderSampleArr.length
   var l2 = _vm.__map(
     _vm.productDetail.urgents || [],
     function (urgentItem, urgent_list_i) {
@@ -186,16 +188,17 @@ var render = function () {
     }
   )
   if (!_vm._isMounted) {
-    _vm.e0 = function (e, i) {
+    _vm.e0 = function (item, i) {
       var args = [],
         len = arguments.length - 2
       while (len-- > 0) args[len] = arguments[len + 2]
 
       var _temp = args[args.length - 1].currentTarget.dataset,
         _temp2 = _temp.eventParams || _temp["event-params"],
+        item = _temp2.item,
         i = _temp2.i
       var _temp, _temp2
-      return _vm.inputChange(e, i, "sample_name")
+      return _vm.delProd(item, i)
     }
     _vm.e1 = function (e, i) {
       var args = [],
@@ -206,9 +209,9 @@ var render = function () {
         _temp4 = _temp3.eventParams || _temp3["event-params"],
         i = _temp4.i
       var _temp3, _temp4
-      return _vm.inputChange(e, i, "sample_component")
+      return _vm.inputChange(e, i, "sample_name")
     }
-    _vm.e2 = function (sampleFormItem, i) {
+    _vm.e2 = function (e, i) {
       var args = [],
         len = arguments.length - 2
       while (len-- > 0) args[len] = arguments[len + 2]
@@ -217,7 +220,7 @@ var render = function () {
         _temp6 = _temp5.eventParams || _temp5["event-params"],
         i = _temp6.i
       var _temp5, _temp6
-      return _vm.sampleArrChange(sampleFormItem, i, "sample_form")
+      return _vm.inputChange(e, i, "sample_component")
     }
     _vm.e3 = function (sampleFormItem, i) {
       var args = [],
@@ -228,7 +231,7 @@ var render = function () {
         _temp8 = _temp7.eventParams || _temp7["event-params"],
         i = _temp8.i
       var _temp7, _temp8
-      return _vm.sampleArrChange(sampleFormItem, i, "sample_nature")
+      return _vm.sampleArrChange(sampleFormItem, i, "sample_form")
     }
     _vm.e4 = function (sampleFormItem, i) {
       var args = [],
@@ -239,30 +242,30 @@ var render = function () {
         _temp10 = _temp9.eventParams || _temp9["event-params"],
         i = _temp10.i
       var _temp9, _temp10
-      return _vm.sampleArrChange(sampleFormItem, i, "sample_storage_condition")
+      return _vm.sampleArrChange(sampleFormItem, i, "sample_nature")
     }
-    _vm.e5 = function (item, i) {
+    _vm.e5 = function (sampleFormItem, i) {
       var args = [],
         len = arguments.length - 2
       while (len-- > 0) args[len] = arguments[len + 2]
 
       var _temp11 = args[args.length - 1].currentTarget.dataset,
         _temp12 = _temp11.eventParams || _temp11["event-params"],
-        item = _temp12.item,
         i = _temp12.i
       var _temp11, _temp12
-      return _vm.skustabChange(item, i)
+      return _vm.sampleArrChange(sampleFormItem, i, "sample_storage_condition")
     }
-    _vm.e6 = function (e, i) {
+    _vm.e6 = function (item, i) {
       var args = [],
         len = arguments.length - 2
       while (len-- > 0) args[len] = arguments[len + 2]
 
       var _temp13 = args[args.length - 1].currentTarget.dataset,
         _temp14 = _temp13.eventParams || _temp13["event-params"],
+        item = _temp14.item,
         i = _temp14.i
       var _temp13, _temp14
-      return _vm.inputChange(e, i, "sample_recycle")
+      return _vm.skustabChange(item, i)
     }
     _vm.e7 = function (e, i) {
       var args = [],
@@ -273,7 +276,7 @@ var render = function () {
         _temp16 = _temp15.eventParams || _temp15["event-params"],
         i = _temp16.i
       var _temp15, _temp16
-      return _vm.inputChange(e, i, "sample_number")
+      return _vm.inputChange(e, i, "sample_recycle")
     }
     _vm.e8 = function (e, i) {
       var args = [],
@@ -284,7 +287,7 @@ var render = function () {
         _temp18 = _temp17.eventParams || _temp17["event-params"],
         i = _temp18.i
       var _temp17, _temp18
-      return _vm.inputChange(e, i, "sample_sort")
+      return _vm.inputChange(e, i, "sample_number")
     }
     _vm.e9 = function (e, i) {
       var args = [],
@@ -295,31 +298,42 @@ var render = function () {
         _temp20 = _temp19.eventParams || _temp19["event-params"],
         i = _temp20.i
       var _temp19, _temp20
-      return _vm.inputChange(e, i, "test_purpose")
+      return _vm.inputChange(e, i, "sample_sort")
     }
-    _vm.e10 = function (ID) {
-      return _vm.changeCouponID(ID)
-    }
-    _vm.e11 = function (urgentItem) {
+    _vm.e10 = function (e, i) {
       var args = [],
-        len = arguments.length - 1
-      while (len-- > 0) args[len] = arguments[len + 1]
+        len = arguments.length - 2
+      while (len-- > 0) args[len] = arguments[len + 2]
 
       var _temp21 = args[args.length - 1].currentTarget.dataset,
         _temp22 = _temp21.eventParams || _temp21["event-params"],
-        urgentItem = _temp22.urgentItem
+        i = _temp22.i
       var _temp21, _temp22
-      return _vm.urgent_listtabChange(urgentItem)
+      return _vm.inputChange(e, i, "test_purpose")
     }
-    _vm.e12 = function (skusList) {
+    _vm.e11 = function (ID) {
+      return _vm.changeCouponID(ID)
+    }
+    _vm.e12 = function (urgentItem) {
       var args = [],
         len = arguments.length - 1
       while (len-- > 0) args[len] = arguments[len + 1]
 
       var _temp23 = args[args.length - 1].currentTarget.dataset,
         _temp24 = _temp23.eventParams || _temp23["event-params"],
-        skusList = _temp24.skusList
+        urgentItem = _temp24.urgentItem
       var _temp23, _temp24
+      return _vm.urgent_listtabChange(urgentItem)
+    }
+    _vm.e13 = function (skusList) {
+      var args = [],
+        len = arguments.length - 1
+      while (len-- > 0) args[len] = arguments[len + 1]
+
+      var _temp25 = args[args.length - 1].currentTarget.dataset,
+        _temp26 = _temp25.eventParams || _temp25["event-params"],
+        skusList = _temp26.skusList
+      var _temp25, _temp26
       return _vm.skus_listtabChange(skusList)
     }
   }
@@ -327,7 +341,9 @@ var render = function () {
     {},
     {
       $root: {
+        g0: g0,
         l1: l1,
+        g1: g1,
         l2: l2,
         l3: l3,
       },
@@ -425,6 +441,7 @@ var _default = {
       renderSampleArr: [{}],
       SampleArr: [{
         "sampleNum": "A",
+        //序列👌
         "sample_name": "",
         //样品名称
         "sample_component": "",
@@ -441,36 +458,20 @@ var _default = {
         //样品排序
         "test_purpose": '',
         //实验要求及目的
-        sample_sku: [{
-          name: "XAFS硬线中能",
-          price: '0',
-          list: {
-            '0': {
-              item_id: '999',
-              item_name: "含量大于5%",
-              item_price: '4000'
-            }
-          }
-        }]
-      }
-      // {
-      // 	"sampleNum": "B",
-      // 	sample_sku:[
-      // 		{
-      // 			name: "XAFS硬---线中能",
-      // 			price: 0,
-      // 			list:{
-      // 				'0':{
-      // 					item_id: 1000,
-      // 					item_name: "含量大于1%",
-      // 					item_price: 4000,
-      // 				}
-      // 			}		
-      // 		}
-      // 	]
-      // }
-      ],
-
+        sample_sku: [
+          // {
+          // 	name: "XAFS硬线中能",
+          // 	price: '0',
+          // 	list:{
+          // 		'0':{
+          // 			item_id: '999',
+          // 			item_name: "含量大于5%",
+          // 			item_price: '4000',
+          // 		}
+          // 	}		
+          // }
+        ]
+      }],
       sample_recycle_list: [{
         key: '是'
       }, {
@@ -860,6 +861,16 @@ var _default = {
     //增加一个样品组
     addProd: function addProd() {
       this.renderSampleArr.push({});
+    },
+    delProd: function delProd(item, i) {
+      var _isCurrentItem = this.isCurrentItem(i);
+      console.log(item, i);
+      console.log(_isCurrentItem);
+      this.SampleArr = (0, _lodash.difference)(this.SampleArr, _isCurrentItem); //删除指定项
+      console.log(this.SampleArr, '---this.SampleArr---');
+      this.renderSampleArr.shift();
+      this.$forceUpdate();
+      console.log(this.renderSampleArr);
     },
     // 获取上传状态
     select: function select(e) {

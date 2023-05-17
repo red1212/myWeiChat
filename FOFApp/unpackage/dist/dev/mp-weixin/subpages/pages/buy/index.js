@@ -101,16 +101,16 @@ var components
 try {
   components = {
     uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 258))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 260))
     },
     weituo: function () {
-      return __webpack_require__.e(/*! import() | components/weituo/weituo */ "components/weituo/weituo").then(__webpack_require__.bind(null, /*! @/components/weituo/weituo.vue */ 265))
+      return __webpack_require__.e(/*! import() | components/weituo/weituo */ "components/weituo/weituo").then(__webpack_require__.bind(null, /*! @/components/weituo/weituo.vue */ 267))
     },
     orderInLine: function () {
-      return __webpack_require__.e(/*! import() | components/order-in-line/order-in-line */ "components/order-in-line/order-in-line").then(__webpack_require__.bind(null, /*! @/components/order-in-line/order-in-line.vue */ 272))
+      return __webpack_require__.e(/*! import() | components/order-in-line/order-in-line */ "components/order-in-line/order-in-line").then(__webpack_require__.bind(null, /*! @/components/order-in-line/order-in-line.vue */ 274))
     },
     subscribe: function () {
-      return __webpack_require__.e(/*! import() | components/subscribe/subscribe */ "components/subscribe/subscribe").then(__webpack_require__.bind(null, /*! @/components/subscribe/subscribe.vue */ 279))
+      return __webpack_require__.e(/*! import() | components/subscribe/subscribe */ "components/subscribe/subscribe").then(__webpack_require__.bind(null, /*! @/components/subscribe/subscribe.vue */ 281))
     },
     myPopup: function () {
       return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 175))
