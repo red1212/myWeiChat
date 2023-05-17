@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.content.data-v-6dce0604 {
+  padding: 10px;
+  font-size: 14px;
+}
+.title.data-v-6dce0604 {
+  color: #0e67a9;
+  font-weight: bold;
+  background-color: #f5f4f4;
+  padding: 10px;
+}
+.menuRow.data-v-6dce0604 {
+  font-size: 12px;
+  color: #999;
+}
+.menuValue.data-v-6dce0604 {
+  color: #999;
+  padding-left: 16px;
+}
+.mingxi.data-v-6dce0604 {
+  margin-bottom: 4px;
+}
+.moneyBox.data-v-6dce0604 {
+  background-color: #cd2828;
+  font-size: 10px;
+  border-radius: 11px;
+  height: 20px;
+  line-height: 20px;
+  color: #fff;
+  width: 66px;
+  text-align: center;
+  margin-left: 6px;
+}
+.countPrice.data-v-6dce0604 {
+  color: #d42f2f;
+}
+.border.data-v-6dce0604 {
+  border-bottom: 1px dashed #ebeef5;
+}
+

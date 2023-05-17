@@ -6,6 +6,7 @@
     "my-tab": "/components/my-tab/my-tab",
     "my-couponid": "/components/my-couponid/my-couponid",
     "uni-file-picker": "/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker",
+    "menu-detail": "/components/menu-detail/menu-detail",
     "my-pay": "/components/my-pay/my-pay",
     "my-popup": "/components/my-popup/my-popup"
   }

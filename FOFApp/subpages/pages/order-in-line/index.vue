@@ -102,16 +102,8 @@
 				</uni-file-picker>
 			</view>
 
-
-			<view class="menu">
-				<view class="title">明细菜单</view>
-				<view class="content">
-					<text>预约费用：</text><text class="price">￥500</text>
-				</view>
-				<view class="content" style="font-size: 16px;">
-					<text>费用总计：</text><text class="countPrice">500元</text>
-				</view>
-			</view>
+			<!-- 菜单明细 -->
+			<menu-detail :SampleArr="SampleArr"/>
 
 			<view class="btn-group" v-if="!clickCountPrice">
 				<button @click="countPrice" class="submit">计算价格</button>
@@ -152,7 +144,7 @@
 <script>
 	import {mapState,mapMutations} from 'vuex'
 	import {isSuccess,errorTip,NumberToFormat} from '../../../util/index.js'
-	import { isEmpty,difference } from 'lodash';
+	import { isEmpty,difference,find} from 'lodash';
 	export default {
 		data() {
 			return {
@@ -174,9 +166,12 @@
 				disable: false,
 				showConfirm: false,
 				payState: false,
-				tip: {
-					sample_name: '请输入样品名称',
-					chenfeng: '请输入成分',
+				errTip: {
+					'sample_name': '请输入样品名称',
+					'sample_component': '请输入成分',
+					'sample_number':'请输入检测样品数',
+					'test_purpose':'请输入实验要求及目的',
+					'sample_sku':'请选择测试明细'
 				},
 				clickTime: 0,
 				clickCountPrice: false,
@@ -521,22 +516,31 @@
 
 			//计算价格
 			countPrice() {
-				// console.log(this.productDetail)
-				// console.log('--计算价格3-')
-				// console.log(this.SampleArr)
-				// let _SampleArr = [...this.SampleArr]
-				// console.log(Object.assign({},_SampleArr),'---_SampleArr---')
+				let errTip = this.errTip
+				
+				//判断必填的是否为空
+				let no_sample_name = find(this.SampleArr,{sample_name:''}) //样品名称
+				if(!isEmpty(no_sample_name)){
+					return uni.$showMsg(errTip['sample_name'], 1500)
+				}
+				let no_sample_component = find(this.SampleArr,{sample_component:''})  //样品成分
+				if(!isEmpty(no_sample_component)){
+					return uni.$showMsg(errTip['sample_component'], 1500)
+				}
+				let no_sample_number = find(this.SampleArr,{sample_number:''})  //样品数量
+				if(!isEmpty(no_sample_number)){
+					return uni.$showMsg(errTip['sample_number'], 1500)
+				}
+				let no_test_purpose = find(this.SampleArr,{test_purpose:''})  //检测目的
+				if(!isEmpty(no_test_purpose)){
+					return uni.$showMsg(errTip['test_purpose'], 1500)
+				}
 
-				// let _val_SampleArr = _SampleArr.map(item=>{
-				// 	return {
-				// 		...item,
-				// 		sample_sku:Object.assign({},item.sample_sku)
-				// 	}
-				// })
-				// _val_SampleArr = Object.assign({},_val_SampleArr)
+				let no_sample_sku = this.SampleArr.filter((item)=>item.sample_sku.length == 0)
+				if(!isEmpty(no_sample_sku)){
+					return uni.$showMsg(errTip['test_purpose'], 1500)
+				}
 
-				// console.log(_val_SampleArr,'---bb---')
-				// if (!result) return
 				// //先走计算价格的接口
 				this.clickCountPrice = true
 
@@ -762,10 +766,6 @@
 		color: #fff;
 		border-radius: 50px;
 		padding: 2px 10px;
-	}
-	
-	.countPrice {
-		color: $uni-color-price;
 	}
 	.sample_nature_tip{
 		font-size: 12px;
