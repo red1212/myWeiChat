@@ -151,7 +151,7 @@
 
 <script>
 	import {mapState,mapMutations} from 'vuex'
-	import {isSuccess,errorTip,checkMap,NumberToFormat} from '../../../util/index.js'
+	import {isSuccess,errorTip,NumberToFormat} from '../../../util/index.js'
 	import { isEmpty,difference } from 'lodash';
 	export default {
 		data() {
@@ -171,14 +171,9 @@
 						radius: 2
 					}
 				},
-				checkMap,
 				disable: false,
 				showConfirm: false,
 				payState: false,
-				baseFrom: {
-					sample_name: '',
-					chenfeng: '',
-				},
 				tip: {
 					sample_name: '请输入样品名称',
 					chenfeng: '请输入成分',
@@ -192,6 +187,18 @@
 				skus_item:{},
 				select_skus:[],
 				obj_index:0,
+				defaultValA:{
+					"sampleNum": "A",  //序列👌
+					"sample_name": "", //样品名称
+					"sample_component": "", //主要成分
+					"sample_recycle": "否",  //是否回收
+					"urgent_name": "", //加急项目
+					"urgent_price_per": "", //加急价格
+					"sample_number":'',   // 检测样品数
+					"sample_sort":'',    //样品排序
+					"test_purpose":'',   //实验要求及目的
+				},
+				defaultVal:{},
 				renderSampleArr:[
 					{},
 				],
@@ -224,13 +231,23 @@
 				sample_recycle_list:[
 					{key:'是'},
 					{key:'否'}
-				]
+				],
+				TotalPrice:100,  //总价
 
+			}
+		},
+		watch:{
+			renderSampleArr:function(val,newVal){
+				val.map((item,i)=>{
+					this.SampleArr[i].sampleNum = this.NumberToFormat[i]
+					this.$forceUpdate()
+				})
 			}
 		},
 		computed: {
 			...mapState('m_client', ['teamList']),
 			...mapState('m_purchase', ['purchaseInfo']),
+
 			//计算明细是否选中--大项
 			skusComputed: function () {
 				return (item,i)=>{
@@ -325,6 +342,13 @@
 					this.CouponID = coupons[0].ID
 				}
 
+				let _defaultVal = {
+					sample_form:res?.data?.sample_form ? res.data.sample_form[0] : '',  //提交 样品形态
+					sample_nature:res?.data?.sample_nature ? res.data.sample_nature[0] : '',  //提交 样品性质
+					sample_storage_condition:res?.data?.sample_storage_condition ? res.data.sample_storage_condition[0] : ''  //提交 保存条件
+				}
+				this.defaultVal=_defaultVal
+
 				this.SampleArr[0].sample_form = res?.data?.sample_form ? res.data.sample_form[0] : ''  //提交 样品形态
 
 				this.SampleArr[0].sample_nature = res?.data?.sample_nature ? res.data.sample_nature[0] : ''  //提交 样品性质
@@ -379,10 +403,8 @@
 			//点击加急
 			handleUrgent(i){
 				if(this.disable) return 
-				let isCurrentItem_res = this.isCurrentItem(i)
 				this.obj_index = i
 				this.$refs.urgentRef.$refs.popup.open()
-					console.log(i,'------',isCurrentItem_res)
 			},
 			//操作加急
 			urgent_listtabChange(item){
@@ -514,7 +536,6 @@
 				// _val_SampleArr = Object.assign({},_val_SampleArr)
 
 				// console.log(_val_SampleArr,'---bb---')
-				// let result = this.checkMap(this.baseFrom, this.tip)
 				// if (!result) return
 				// //先走计算价格的接口
 				this.clickCountPrice = true
@@ -527,6 +548,8 @@
 				this.disable = true //确认信息
 				if (this.clickTime === 2) {
 					let {Code} = this.productDetail.product
+
+					// ----转换数据格式start----
 					let _SampleArr = [...this.SampleArr]
 					let _val_SampleArr = _SampleArr.map(item=>{
 						return {
@@ -535,21 +558,20 @@
 						}
 					})
 					_val_SampleArr = Object.assign({},_val_SampleArr)
+					// ----转换数据格式end----
 
 					let param = {
 						Item: {
 							ProductCode: Code,
-							"File": this.File, //上传的附件路径，可选
+							File: this.File, //上传的附件路径，可选
 							SampleArr: _val_SampleArr,
 						},
-						TotalPrice: 100, //这里后期需要计算
+						TotalPrice: this.TotalPrice, //这里后期需要计算
 						CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
 
 					}
-					console.log(param)
 
 					const {data: res} = await uni.$http.post('user/order/add', param);
-					
 					if (isSuccess(res.code)) {
 						this.showConfirm = false
 						if (!this.showConfirm && this.disable) {
@@ -576,13 +598,17 @@
 			//增加一个样品组
 			addProd(){
 				this.renderSampleArr.push({})
+				this.SampleArr.push(
+					{
+						...this.defaultValA,
+						...this.defaultVal,
+						sample_sku:[]
+					},
+				)
 			},
 			delProd(item,i){
 				let _isCurrentItem = this.isCurrentItem(i)
-				console.log(item,i)
-				console.log(_isCurrentItem)
 				this.SampleArr = difference(this.SampleArr,_isCurrentItem) //删除指定项
-				console.log(this.SampleArr,'---this.SampleArr---')
 				this.renderSampleArr.shift()
 				this.$forceUpdate()
 				console.log(this.renderSampleArr)
