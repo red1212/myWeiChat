@@ -85,7 +85,7 @@
 				</view>
 			</view>
 			<view class="item content flex-column" v-if="renderSampleArr.length < 9">
-				<button @click="addProd" class="submit" style="width:158px;margin:0px">增加一个样品组</button>
+				<button @click="addProd" class="submit" style="width:130px;margin:0px;font-size: 12px;">增加一个样品组</button>
 				<view class="sample_nature_tip"><span style="color: red;">*</span>当您的检测要求或样品类型不一样时，可以再增加一组样品。</view>
 			</view>
 			<view>
@@ -743,7 +743,8 @@
 	}
 	.sample_nature_tip{
 		font-size: 12px;
-		color:#ccc
+		color:#ccc;
+		margin-top:4px;
 	}
 	.row{
 		border:1px solid #ccc;

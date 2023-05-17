@@ -96,6 +96,7 @@
 .sample_nature_tip.data-v-bbe49450 {
   font-size: 12px;
   color: #ccc;
+  margin-top: 4px;
 }
 .row.data-v-bbe49450 {
   border: 1px solid #ccc;
