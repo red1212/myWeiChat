@@ -264,29 +264,40 @@ var render = function () {
       var _temp13, _temp14
       return _vm.inputChange(e, i, "sample_recycle")
     }
-    _vm.e7 = function (ID) {
-      return _vm.changeCouponID(ID)
-    }
-    _vm.e8 = function (urgentItem) {
+    _vm.e7 = function (e, i) {
       var args = [],
-        len = arguments.length - 1
-      while (len-- > 0) args[len] = arguments[len + 1]
+        len = arguments.length - 2
+      while (len-- > 0) args[len] = arguments[len + 2]
 
       var _temp15 = args[args.length - 1].currentTarget.dataset,
         _temp16 = _temp15.eventParams || _temp15["event-params"],
-        urgentItem = _temp16.urgentItem
+        i = _temp16.i
       var _temp15, _temp16
-      return _vm.urgent_listtabChange(urgentItem)
+      return _vm.inputChange(e, i, "sample_number")
     }
-    _vm.e9 = function (skusList) {
+    _vm.e8 = function (ID) {
+      return _vm.changeCouponID(ID)
+    }
+    _vm.e9 = function (urgentItem) {
       var args = [],
         len = arguments.length - 1
       while (len-- > 0) args[len] = arguments[len + 1]
 
       var _temp17 = args[args.length - 1].currentTarget.dataset,
         _temp18 = _temp17.eventParams || _temp17["event-params"],
-        skusList = _temp18.skusList
+        urgentItem = _temp18.urgentItem
       var _temp17, _temp18
+      return _vm.urgent_listtabChange(urgentItem)
+    }
+    _vm.e10 = function (skusList) {
+      var args = [],
+        len = arguments.length - 1
+      while (len-- > 0) args[len] = arguments[len + 1]
+
+      var _temp19 = args[args.length - 1].currentTarget.dataset,
+        _temp20 = _temp19.eventParams || _temp19["event-params"],
+        skusList = _temp20.skusList
+      var _temp19, _temp20
       return _vm.skus_listtabChange(skusList)
     }
   }
@@ -386,7 +397,7 @@ var _default = {
       skus_item: {},
       select_skus: [],
       obj_index: 0,
-      renderSampleArr: [{}],
+      renderSampleArr: [{}, {}],
       SampleArr: [{
         "sampleNum": "A",
         "sample_name": "",
@@ -399,6 +410,8 @@ var _default = {
         //加急项目
         "urgent_price_per": "",
         //加急价格
+        "sample_number": '1',
+        // 检测样品数
         sample_sku: [{
           name: "XAFS硬线中能",
           price: 0,
@@ -607,11 +620,20 @@ var _default = {
       this.$refs.urgentRef.$refs.popup.open();
       console.log(i, '------', isCurrentItem_res);
     },
+    //操作加急
     urgent_listtabChange: function urgent_listtabChange(item) {
       var fil_sample = this.isCurrentItem(this.obj_index);
       if (!(0, _lodash.isEmpty)(fil_sample)) {
-        fil_sample[0].urgent_name = item.Name;
-        fil_sample[0].urgent_price_per = item.PricePer;
+        var urgent_name = fil_sample[0].urgent_name;
+        var urgent_price_per = fil_sample[0].urgent_price_per;
+        if (urgent_name == item.Name && urgent_price_per == item.PricePer) {
+          //删除
+          fil_sample[0].urgent_name = '', fil_sample[0].urgent_price_per = '';
+        } else {
+          //添加/修改
+          fil_sample[0].urgent_name = item.Name;
+          fil_sample[0].urgent_price_per = item.PricePer;
+        }
         console.log(this.SampleArr, '---SampleArr---');
         this.$forceUpdate();
       }

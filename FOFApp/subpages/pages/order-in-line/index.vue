@@ -66,6 +66,10 @@
 						<view class="label">8.是否加急：</view>
 						<view :class="['row', isUrgent(i) ? 'select' :'']" @click="handleUrgent(i)">加急</view>
 					</view>
+					<view class="item">
+						<view class="label">9.检测样品数：</view>
+						<input class="uni-input" type="digit" :value="SampleArr[i].sample_number" :disabled="disable" @input="(e)=>inputChange(e,i,'sample_number')"/>
+					</view>
 				</view>
 			</view>
 			
@@ -173,6 +177,7 @@
 				select_skus:[],
 				obj_index:0,
 				renderSampleArr:[
+					{},
 					{}
 				],
 				SampleArr:[
@@ -183,6 +188,7 @@
 						"sample_recycle": "否",  //是否回收
 						"urgent_name": "", //加急项目
 						"urgent_price_per": "", //加急价格
+						"sample_number":'1',   // 检测样品数
 						sample_sku:[
 							{
 								name: "XAFS硬线中能",
@@ -377,11 +383,22 @@
 				this.$refs.urgentRef.$refs.popup.open()
 					console.log(i,'------',isCurrentItem_res)
 			},
+			//操作加急
 			urgent_listtabChange(item){
 				let fil_sample = this.isCurrentItem(this.obj_index)
 				if(!isEmpty(fil_sample)){
-					fil_sample[0].urgent_name = item.Name
-					fil_sample[0].urgent_price_per = item.PricePer
+					let urgent_name = fil_sample[0].urgent_name
+					let urgent_price_per = fil_sample[0].urgent_price_per
+					if(urgent_name == item.Name && urgent_price_per == item.PricePer){
+						//删除
+						fil_sample[0].urgent_name = '',
+						fil_sample[0].urgent_price_per = ''
+					}else{
+						//添加/修改
+						fil_sample[0].urgent_name = item.Name
+						fil_sample[0].urgent_price_per = item.PricePer
+					}
+					
 					console.log(this.SampleArr,'---SampleArr---')
 					this.$forceUpdate()
 				}
