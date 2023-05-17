@@ -372,7 +372,7 @@
 			
 				console.log(this.renderSampleArr,'----',res.data.sample_form[0])
 				this.productDetail.coupons = coupons
-				// this.$refs.parentRef.$refs.popup.open()   //-----后期放开
+				this.$refs.parentRef.$refs.popup.open()   //-----后期放开
 
 			} else {
 				return uni.$showMsg(res.message, 1500)
@@ -618,36 +618,59 @@
 				console.log(this.renderSampleArr)
 			},
 			// 获取上传状态
-			select(e) {
+			async select(e) {
 				console.log('选择文件：', e)
 				const tempFilePaths = e.tempFilePaths;
 				//获取图片临时路径
 				const imgUrl = tempFilePaths[0]
-				uni.uploadFile({
-					//图片上传地址
-					url: 'http://47.97.216.6/admin/api.upload/file.html',
-					filePath: imgUrl,
-					//上传名字，注意与后台接收的参数名一致
-					name: 'imgUrl',
-					formData: {
-						safe: 0,
-						uptype: 'local'
-					},
-
-					//设置请求头
-					header: {
-						"Content-Type": "multipart/form-data"
-					},
-					//请求成功，后台返回自己服务器上的图片地址
-					success: (uploadFileRes) => {
-						console.log(uploadFileRes)
-						// console.log('uploadFileRes',JSON.parse(uploadFileRes.data));   
-						// //处理数据
-						// const path=JSON.parse(uploadFileRes.data)
-						// //赋值，前端渲染
-						// this.baseFormData.photo=path.imgUrl
-					}
+				let param={
+					key: imgUrl,
+					uptype:'',
+					safe:0,
+					name:'imgUrl',
+				}
+				
+				uni.request({
+				    url: 'http://47.97.216.6/admin/api.upload/state.html', //仅为示例，并非真实接口地址。
+				    data: {
+				       key: imgUrl,
+				       uptype:'',
+				       safe:0,
+				       name:'imgUrl',
+				    },
+				    header: {
+				        "Content-Type": "multipart/form-data",
+				    },
+				    success: (res) => {
+				        console.log(res);
+				        // this.text = 'request success';
+				    }
 				});
+
+				// let {data:res} = await uni.$http.post('admin/api.upload/state.html',param)
+				// console.log(res)
+				// uni.uploadFile({
+				// 	//图片上传地址
+				// 	url: 'http://47.97.216.6/admin/api.upload/state.html',  //'http://47.97.216.6/admin/api.upload/file.html',
+				// 	key: imgUrl,
+				// 	uptype:'',
+				// 	safe:0,
+				// 	name:'imgUrl',
+				// 	//上传名字，注意与后台接收的参数名一致
+				// 	//设置请求头
+				// 	header: {
+				// 		"Content-Type": "multipart/form-data"
+				// 	},
+				// 	//请求成功，后台返回自己服务器上的图片地址
+				// 	success: (uploadFileRes) => {
+				// 		console.log(uploadFileRes)
+				// 		// console.log('uploadFileRes',JSON.parse(uploadFileRes.data));   
+				// 		// //处理数据
+				// 		// const path=JSON.parse(uploadFileRes.data)
+				// 		// //赋值，前端渲染
+				// 		// this.baseFormData.photo=path.imgUrl
+				// 	}
+				// });
 			},
 			// 上传成功
 			success(e) {

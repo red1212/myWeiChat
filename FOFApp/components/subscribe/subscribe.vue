@@ -29,7 +29,7 @@
 		<view>
 			<view class="title">使用优惠券</view>
 			<view class="content">
-				<my-couponid :List="productDetail.coupons" />
+				<my-couponid :List="productDetail.coupons" :CouponID="CouponID" @changeCouponID="(ID)=>changeCouponID(ID)"/>
 			</view>
 		</view>
 		
@@ -65,6 +65,7 @@
 				disable:false,
 				showConfirm:false,
 				payState:false,
+				CouponID:0,
 				baseFrom:{
 					chenfeng:'',
 					time:'',
@@ -96,6 +97,9 @@
 			}	
 		},
 		methods:{
+			changeCouponID(ID){
+				this.CouponID = ID
+			},
 			inputChange(e,type){
 				if(type === 'startTime' || type === 'endTime'){
 					this.baseFrom[type] = e

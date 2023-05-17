@@ -73,9 +73,9 @@
 		font-size: 12px;
 		background-color: $uni-color-primary;
 		border-radius: 0px;
-		padding: 8px;
+		padding: 0px;
 		color: #fff;
-		min-width:60px;
+		min-width:70px;
 		border-radius: 6px;
 	}
 	.close{

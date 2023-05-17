@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["subpages/pages/buy/index"],{
 
 /***/ 125:
-/*!*********************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/main.js?{"page":"subpages%2Fpages%2Fbuy%2Findex"} ***!
-  \*********************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/main.js?{"page":"subpages%2Fpages%2Fbuy%2Findex"} ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,9 +22,9 @@ createPage(_index.default);
 /***/ }),
 
 /***/ 126:
-/*!************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue ***!
-  \************************************************************************************/
+/*!********************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63,9 +63,9 @@ component.options.__file = "subpages/pages/buy/index.vue"
 /***/ }),
 
 /***/ 127:
-/*!*******************************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=template&id=d18ea5fe&scoped=true& ***!
-  \*******************************************************************************************************************************/
+/*!***************************************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=template&id=d18ea5fe&scoped=true& ***!
+  \***************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85,9 +85,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 128:
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=template&id=d18ea5fe&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=template&id=d18ea5fe&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -106,11 +106,14 @@ try {
     weituo: function () {
       return __webpack_require__.e(/*! import() | components/weituo/weituo */ "components/weituo/weituo").then(__webpack_require__.bind(null, /*! @/components/weituo/weituo.vue */ 267))
     },
-    orderInLine: function () {
-      return __webpack_require__.e(/*! import() | components/order-in-line/order-in-line */ "components/order-in-line/order-in-line").then(__webpack_require__.bind(null, /*! @/components/order-in-line/order-in-line.vue */ 274))
+    uniDatetimePicker: function () {
+      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 274))
     },
-    subscribe: function () {
-      return __webpack_require__.e(/*! import() | components/subscribe/subscribe */ "components/subscribe/subscribe").then(__webpack_require__.bind(null, /*! @/components/subscribe/subscribe.vue */ 281))
+    myCouponid: function () {
+      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 286))
+    },
+    myPay: function () {
+      return Promise.all(/*! import() | components/my-pay/my-pay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-pay/my-pay")]).then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 232))
     },
     myPopup: function () {
       return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 175))
@@ -137,6 +140,23 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function (e) {
+      return _vm.inputChange(e, "chenfeng")
+    }
+    _vm.e1 = function (e) {
+      return _vm.inputChange(e, "time")
+    }
+    _vm.e2 = function (e) {
+      return _vm.inputChange(e, "startTime")
+    }
+    _vm.e3 = function (e) {
+      return _vm.inputChange(e, "endTime")
+    }
+    _vm.e4 = function (ID) {
+      return _vm.changeCouponID(ID)
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -147,9 +167,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 129:
-/*!*************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -163,9 +183,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 130:
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -188,14 +208,43 @@ var _default = {
   data: function data() {
     return {
       content: '',
-      productDetail: {}
+      productDetail: {},
+      checkMap: _index.checkMap,
+      disable: false,
+      showConfirm: false,
+      payState: false,
+      CouponID: 0,
+      baseFrom: {
+        chenfeng: '',
+        time: '',
+        startTime: '',
+        endTime: ''
+      },
+      tip: {
+        chenfeng: '请输入成分',
+        time: '请输入预约时长',
+        startTime: '请选择开始时间',
+        endTime: '请选择结束时间'
+      },
+      clickTime: 0,
+      couponList: [{
+        name: '无可用优惠券',
+        id: 0
+      }, {
+        name: '优惠券',
+        id: 2
+      }, {
+        name: '优惠券',
+        id: 3
+      }],
+      clickCountPrice: false
     };
   },
   computed: _objectSpread(_objectSpread({}, (0, _vuex.mapState)('m_client', ['teamList'])), (0, _vuex.mapState)('m_purchase', ['purchaseInfo', 'disable'])),
   onLoad: function onLoad(option) {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var param, _yield$uni$$http$post, res, _res$data$product, OrderType, Content2, Content3, coupons;
+      var param, _yield$uni$$http$post, res, Content3, coupons;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -213,28 +262,28 @@ var _default = {
               res = _yield$uni$$http$post.data;
               uni.hideLoading();
               if (!(0, _index.isSuccess)(res.code)) {
-                _context.next = 15;
+                _context.next = 16;
                 break;
               }
               _this.productDetail = res.data;
-              _res$data$product = res.data.product, OrderType = _res$data$product.OrderType, Content2 = _res$data$product.Content2, Content3 = _res$data$product.Content3;
-              _this.content = OrderType == 3 ? Content2 : Content3;
+              Content3 = res.data.product.Content3;
+              _this.content = res.data.product.Content3 || '';
               coupons = res.data.coupons || [];
               if (coupons.length > 0) {
-                _this.updatePurchaseInfo({
-                  CouponID: coupons[0].ID
-                });
+                _this.CouponID = coupons[0].ID;
               } else {
-                _this.updatePurchaseInfo({
-                  CouponID: 0
-                });
+                coupons = [{
+                  ID: 0,
+                  Price: '无优惠券可用'
+                }];
+                _this.CouponID = coupons[0].ID;
               }
-              // this.$refs.parentRef.$refs.popup.open()   //-----后期放开
-              _context.next = 16;
+              _this.$refs.parentRef.$refs.popup.open(); //-----后期放开
+              _context.next = 17;
               break;
-            case 15:
-              return _context.abrupt("return", uni.$showMsg(res.message, 1500));
             case 16:
+              return _context.abrupt("return", uni.$showMsg(res.message, 1500));
+            case 17:
             case "end":
               return _context.stop();
           }
@@ -242,7 +291,104 @@ var _default = {
       }, _callee);
     }))();
   },
-  methods: _objectSpread({}, (0, _vuex.mapMutations)('m_purchase', ['updatePurchaseInfo', 'updateDisable']))
+  methods: _objectSpread(_objectSpread({}, (0, _vuex.mapMutations)('m_purchase', ['updatePurchaseInfo', 'updateDisable'])), {}, {
+    closePopUp: function closePopUp() {
+      this.$refs.parentRef.$refs.popup.close();
+    },
+    changeCouponID: function changeCouponID(ID) {
+      this.CouponID = ID;
+    },
+    inputChange: function inputChange(e, type) {
+      if (type === 'startTime' || type === 'endTime') {
+        this.baseFrom[type] = e;
+      } else {
+        this.baseFrom[type] = e.detail.value;
+      }
+    },
+    changeInfo: function changeInfo() {
+      //重置按钮状态
+      this.clickCountPrice = false;
+      this.disable = false;
+      this.showConfirm = false;
+      this.clickTime = 0;
+    },
+    //计算价格
+    countPrice: function countPrice() {
+      var result = this.checkMap(this.baseFrom, this.tip);
+      if (!result) return;
+      //先走计算价格的接口
+      this.clickCountPrice = true;
+    },
+    submit: function submit() {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var Code, _this2$baseFrom, chenfeng, time, startTime, endTime, param, _yield$uni$$http$post2, res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.clickTime = _this2.clickTime + 1; //点击次数
+                _this2.showConfirm = true; //修改信息按钮
+                _this2.disable = true; //确认信息
+                if (!(_this2.clickTime === 2)) {
+                  _context2.next = 19;
+                  break;
+                }
+                Code = _this2.productDetail.product.Code;
+                _this2$baseFrom = _this2.baseFrom, chenfeng = _this2$baseFrom.chenfeng, time = _this2$baseFrom.time, startTime = _this2$baseFrom.startTime, endTime = _this2$baseFrom.endTime;
+                param = {
+                  Item: {
+                    ProductCode: Code,
+                    SampleComponent: chenfeng,
+                    SampleNumber: Number(time),
+                    //预约时长
+                    StartTime: startTime,
+                    EndTime: endTime
+                  },
+                  MailingAddress: _this2.productDetail.product.MailingAddress,
+                  TotalPrice: 100,
+                  //这里后期需要计算
+                  CouponID: _this2.purchaseInfo.CouponID //优惠券id  如果没有优惠券传 0
+                };
+
+                console.log(param);
+                _context2.next = 10;
+                return uni.$http.post('user/order/book', param);
+              case 10:
+                _yield$uni$$http$post2 = _context2.sent;
+                res = _yield$uni$$http$post2.data;
+                if (!(0, _index.isSuccess)(res.code)) {
+                  _context2.next = 17;
+                  break;
+                }
+                _this2.showConfirm = false;
+                if (!_this2.showConfirm && _this2.disable) {
+                  _this2.payState = true;
+                } else {
+                  _this2.payState = false;
+                }
+                _context2.next = 19;
+                break;
+              case 17:
+                _this2.clickTime = 0;
+                return _context2.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 19:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    //完成支付
+    clickPay: function clickPay(item, type) {
+      if (type === 'open') {
+        this.$refs.payRef.$refs.popup.open();
+      } else {
+        this.$refs.payRef.$refs.popup.close();
+      }
+    }
+  })
 };
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
@@ -250,9 +396,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 131:
-/*!**********************************************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=style&index=0&id=d18ea5fe&lang=scss&scoped=true& ***!
-  \**********************************************************************************************************************************************/
+/*!******************************************************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=style&index=0&id=d18ea5fe&lang=scss&scoped=true& ***!
+  \******************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -266,9 +412,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 132:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=style&index=0&id=d18ea5fe&lang=scss&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/buy/index.vue?vue&type=style&index=0&id=d18ea5fe&lang=scss&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
