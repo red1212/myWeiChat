@@ -94,12 +94,13 @@
 					<my-couponid :List="productDetail.coupons" :CouponID="CouponID" @changeCouponID="(ID)=>changeCouponID(ID)"/>
 				</view>
 			</view>
-
+			
 			<view class="content">
 				<uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @select="select"
 					@success="success" @fail="fail" file-extname="png,jpg" :limit="1" :list-styles="listStyles">
 					<button class="submit">上传附件</button>
 				</uni-file-picker>
+				<view class="sample_nature_tip"><span style="color: red;">*</span>上传的文件格式只能是office不同版本文件和txt！建议附件大小不大于20M</view>
 			</view>
 
 			<!-- 菜单明细 -->
@@ -371,8 +372,6 @@
 				// }
 				console.log(this.SampleArr,'--------')
 
-			
-				console.log(this.renderSampleArr,'----',res.data.sample_form[0])
 				this.productDetail.coupons = coupons
 				this.$refs.parentRef.$refs.popup.open()   //-----后期放开
 
@@ -430,6 +429,7 @@
 			},
 			//检测明细
 			skustabChange(item,i){
+				if(this.disable) return 
 				this.skus_item = item
 				this.skus_index = i
 				this.$refs.skusRef.$refs.popup.open()
@@ -582,30 +582,6 @@
 				this.showConfirm = true //修改信息按钮
 				this.disable = true //确认信息
 				if (this.clickTime === 2) {
-					// let {Code} = this.productDetail.product
-
-					// // ----转换数据格式start----
-					// let _SampleArr = [...this.SampleArr]
-					// let _val_SampleArr = _SampleArr.map(item=>{
-					// 	return {
-					// 		...item,
-					// 		sample_sku:Object.assign({},item.sample_sku)
-					// 	}
-					// })
-					// _val_SampleArr = Object.assign({},_val_SampleArr)
-					// // ----转换数据格式end----
-
-					// let param = {
-					// 	Item: {
-					// 		ProductCode: Code,
-					// 		File: this.File, //上传的附件路径，可选
-					// 		SampleArr: _val_SampleArr,
-					// 	},
-					// 	TotalPrice: this.TotalPrice, //这里后期需要计算
-					// 	CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
-
-					// }
-
 					const {data: res} = await uni.$http.post('user/order/add', this.orderParam());
 					if (isSuccess(res.code)) {
 						this.showConfirm = false
@@ -807,7 +783,7 @@
 	.submit {
 		background-color: $uni-color-primary;
 		color: #fff;
-		font-size: 14px;
+		font-size: 12px;
 	}
 	
 	.default {

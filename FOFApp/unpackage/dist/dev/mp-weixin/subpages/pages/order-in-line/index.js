@@ -611,7 +611,7 @@ var _default = {
               res = _yield$uni$$http$post.data;
               uni.hideLoading();
               if (!(0, _index.isSuccess)(res.code)) {
-                _context.next = 23;
+                _context.next = 22;
                 break;
               }
               _this6.productDetail = res.data;
@@ -659,14 +659,13 @@ var _default = {
               // 	}
               // }
               console.log(_this6.SampleArr, '--------');
-              console.log(_this6.renderSampleArr, '----', res.data.sample_form[0]);
               _this6.productDetail.coupons = coupons;
               _this6.$refs.parentRef.$refs.popup.open(); //-----后期放开
-              _context.next = 24;
+              _context.next = 23;
               break;
-            case 23:
+            case 22:
               return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-            case 24:
+            case 23:
             case "end":
               return _context.stop();
           }
@@ -720,6 +719,7 @@ var _default = {
     },
     //检测明细
     skustabChange: function skustabChange(item, i) {
+      if (this.disable) return;
       this.skus_item = item;
       this.skus_index = i;
       this.$refs.skusRef.$refs.popup.open();
