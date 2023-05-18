@@ -54,7 +54,7 @@ _requestMiniprogram.$http.afterRequest = function (response) {
     });
     setTimeout(function () {
       uni.navigateTo({
-        url: './subpages/pages/login/index'
+        url: '/subpages/pages/login/index'
       });
     }, 1000);
   } else {

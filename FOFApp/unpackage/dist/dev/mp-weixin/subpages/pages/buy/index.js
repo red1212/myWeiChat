@@ -346,7 +346,9 @@ var _default = {
               case 8:
                 //先走计算价格的接口
                 _this2.clickCountPrice = true;
-              case 9:
+                _this2.showConfirm = true; //修改信息按钮
+                _this2.disable = true; //确认信息
+              case 11:
               case "end":
                 return _context2.stop();
             }
@@ -387,19 +389,15 @@ var _default = {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _this3.clickTime = _this3.clickTime + 1; //点击次数
-                _this3.showConfirm = true; //修改信息按钮
-                _this3.disable = true; //确认信息
-                if (!(_this3.clickTime === 2)) {
-                  _context3.next = 16;
-                  break;
-                }
-                _context3.next = 6;
+                // this.showConfirm = true  //修改信息按钮
+                //this.disable = true   //确认信息
+                _context3.next = 3;
                 return uni.$http.post('user/order/book', _this3.orderParam());
-              case 6:
+              case 3:
                 _yield$uni$$http$post2 = _context3.sent;
                 res = _yield$uni$$http$post2.data;
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context3.next = 14;
+                  _context3.next = 11;
                   break;
                 }
                 _this3.Orderno = res.data.Orderno || '';
@@ -409,12 +407,11 @@ var _default = {
                 } else {
                   _this3.payState = false;
                 }
-                _context3.next = 16;
+                _context3.next = 12;
                 break;
-              case 14:
-                _this3.clickTime = 0;
+              case 11:
                 return _context3.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 16:
+              case 12:
               case "end":
                 return _context3.stop();
             }

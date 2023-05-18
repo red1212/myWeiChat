@@ -42,7 +42,7 @@ $http.beforeRequest = function (options) {
  		});
  		setTimeout(function() {
  			uni.navigateTo({
- 				url:'./subpages/pages/login/index'
+ 				url:'/subpages/pages/login/index'
  			});
  		}, 1000)
   

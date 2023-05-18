@@ -169,6 +169,8 @@
 				if(this.totalPrice == '--') return
 				//先走计算价格的接口
 				this.clickCountPrice=true
+				this.showConfirm = true //修改信息按钮
+				this.disable = true   //确认信息
 			},
 			orderParam(){
 				let {Code} = this.productDetail.product
@@ -190,9 +192,8 @@
 			},
 			async submit(){
 				this.clickTime = this.clickTime + 1 //点击次数
-				this.showConfirm = true  //修改信息按钮
-				this.disable = true   //确认信息
-				if(this.clickTime === 2){
+				// this.showConfirm = true  //修改信息按钮
+				//this.disable = true   //确认信息
 				const { data: res }= await uni.$http.post('user/order/book',this.orderParam());
 				if(isSuccess(res.code)){
 					this.Orderno = res.data.Orderno || ''
@@ -203,9 +204,7 @@
 						this.payState = false
 					}
 				}else{
-					this.clickTime = 0
 					return uni.$showMsg(res.message,1500) 
-				}
 				}
 			},
 			//完成支付
