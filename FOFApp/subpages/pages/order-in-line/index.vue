@@ -94,7 +94,7 @@
 					<my-couponid :List="productDetail.coupons" :CouponID="CouponID" @changeCouponID="(ID)=>changeCouponID(ID)"/>
 				</view>
 			</view>
-			
+
 			<view class="content">
 				<uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @select="select"
 					@success="success" @fail="fail" file-extname="png,jpg" :limit="1" :list-styles="listStyles">
@@ -114,7 +114,7 @@
 				<button @click="submit" class="submit" v-show="!payState">确认下单</button>
 				<button @click="clickPay('','open')" class="submit" v-show="payState">完成支付</button>
 			</view>
-			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay" />
+			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay" :Orderno="Orderno"/>
 		</view>
 
 		<view style="height: 20px;"></view>
@@ -144,7 +144,7 @@
 
 <script>
 	import {mapState,mapMutations} from 'vuex'
-	import {isSuccess,errorTip,NumberToFormat} from '../../../util/index.js'
+	import {isSuccess,NumberToFormat} from '../../../util/index.js'
 	import {orderPrice} from '../../../util/user.js'
 	import { isEmpty,difference,find} from 'lodash';
 	export default {
@@ -178,6 +178,7 @@
 				clickTime: 0,
 				clickCountPrice: false,
 				imageValue: [],
+				Orderno:'',
 				CouponID:0,
 				File:"",    //文件上传路径
 				skus_index:0,
@@ -453,15 +454,14 @@
 				if(this.disable) return 
 				//第一 先判断点击的当前项之前知否选中
 				let is_cur_opt = this.isCurrentItem(this.skus_index)
-				let is_cur_id = false
-
 				// 如果 明细选项不为空
 				if(!isEmpty(is_cur_opt)){
 					if(!isEmpty(is_cur_opt[0].sample_sku)){
 						//如果当前操作的和已有的一样则删除
-						let cur_id = is_cur_opt[0].sample_sku[0].list[0].item_id || ''
-						is_cur_id = cur_id == item.ID
-						if(is_cur_id){
+						let is_cur_id_list = is_cur_opt[0].sample_sku.filter((list_item)=>{
+							return list_item.list[0].item_id == item.ID
+						})
+						if(!isEmpty(is_cur_id_list)){
 							is_cur_opt[0].sample_sku = is_cur_opt[0].sample_sku.filter((item)=>{
 								return item.name !== this.skus_item.Name
 							})
@@ -584,6 +584,7 @@
 				if (this.clickTime === 2) {
 					const {data: res} = await uni.$http.post('user/order/add', this.orderParam());
 					if (isSuccess(res.code)) {
+						this.Orderno = res.data.Orderno || ''
 						this.showConfirm = false
 						if (!this.showConfirm && this.disable) {
 							this.payState = true
@@ -605,7 +606,12 @@
 				}
 
 			},
-
+			comfirmPay() {
+				this.$refs.payRef.$refs.popup.close()
+				uni.navigateTo({
+					url: '/subpages/pages/order/index'
+				})
+			},
 			//增加一个样品组
 			addProd(){
 				this.renderSampleArr.push({})

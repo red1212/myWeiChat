@@ -392,6 +392,8 @@ var _default = {
     //支付
     comfirmPay: function comfirmPay() {
       this.$refs.payRef.$refs.popup.close();
+      this.List = [];
+      this.resetPage();
       this.getOrderDeetail(this.paramFn());
     },
     //重置分页

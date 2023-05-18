@@ -101,22 +101,22 @@ var components
 try {
   components = {
     uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 260))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 251))
     },
     weituo: function () {
-      return __webpack_require__.e(/*! import() | components/weituo/weituo */ "components/weituo/weituo").then(__webpack_require__.bind(null, /*! @/components/weituo/weituo.vue */ 267))
+      return __webpack_require__.e(/*! import() | components/weituo/weituo */ "components/weituo/weituo").then(__webpack_require__.bind(null, /*! @/components/weituo/weituo.vue */ 432))
     },
     uniDatetimePicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 274))
+      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 330))
     },
     myCouponid: function () {
-      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 286))
+      return __webpack_require__.e(/*! import() | components/my-couponid/my-couponid */ "components/my-couponid/my-couponid").then(__webpack_require__.bind(null, /*! @/components/my-couponid/my-couponid.vue */ 298))
     },
     myPay: function () {
-      return Promise.all(/*! import() | components/my-pay/my-pay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-pay/my-pay")]).then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 232))
+      return Promise.all(/*! import() | components/my-pay/my-pay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/my-pay/my-pay")]).then(__webpack_require__.bind(null, /*! @/components/my-pay/my-pay.vue */ 230))
     },
     myPopup: function () {
-      return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 175))
+      return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 173))
     },
   }
 } catch (e) {
@@ -202,7 +202,7 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _vuex = __webpack_require__(/*! vuex */ 34);
 var _index = __webpack_require__(/*! ../../../util/index.js */ 39);
-var _user = __webpack_require__(/*! ../../../util/user.js */ 66);
+var _user = __webpack_require__(/*! ../../../util/user.js */ 65);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
@@ -239,10 +239,11 @@ var _default = {
         id: 3
       }],
       clickCountPrice: false,
-      totalPrice: 0 //总价
+      totalPrice: 0,
+      //总价
+      Orderno: ''
     };
   },
-
   computed: _objectSpread(_objectSpread({}, (0, _vuex.mapState)('m_client', ['teamList'])), (0, _vuex.mapState)('m_purchase', ['purchaseInfo', 'disable'])),
   onLoad: function onLoad(option) {
     var _this = this;
@@ -282,7 +283,7 @@ var _default = {
                 _this.CouponID = coupons[0].ID;
                 _this.$forceUpdate();
               }
-              _this.$refs.parentRef.$refs.popup.open(); //-----后期放开
+              _this.$refs.parentRef.$refs.popup.open();
               _context.next = 16;
               break;
             case 15:
@@ -389,7 +390,7 @@ var _default = {
                 _this3.showConfirm = true; //修改信息按钮
                 _this3.disable = true; //确认信息
                 if (!(_this3.clickTime === 2)) {
-                  _context3.next = 15;
+                  _context3.next = 16;
                   break;
                 }
                 _context3.next = 6;
@@ -398,21 +399,22 @@ var _default = {
                 _yield$uni$$http$post2 = _context3.sent;
                 res = _yield$uni$$http$post2.data;
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context3.next = 13;
+                  _context3.next = 14;
                   break;
                 }
+                _this3.Orderno = res.data.Orderno || '';
                 _this3.showConfirm = false;
                 if (!_this3.showConfirm && _this3.disable) {
                   _this3.payState = true;
                 } else {
                   _this3.payState = false;
                 }
-                _context3.next = 15;
+                _context3.next = 16;
                 break;
-              case 13:
+              case 14:
                 _this3.clickTime = 0;
                 return _context3.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 15:
+              case 16:
               case "end":
                 return _context3.stop();
             }
@@ -427,6 +429,12 @@ var _default = {
       } else {
         this.$refs.payRef.$refs.popup.close();
       }
+    },
+    comfirmPay: function comfirmPay() {
+      this.$refs.payRef.$refs.popup.close();
+      uni.navigateTo({
+        url: '/subpages/pages/order/index'
+      });
     }
   })
 };

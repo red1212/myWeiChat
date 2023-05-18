@@ -38,7 +38,7 @@
 </template>
 
 <script>
-	import {isSuccess,errorTip} from '../../util/index.js'
+	import {isSuccess} from '../../util/index.js'
 	import {sendCodeFn} from '../../util/user.js'
 	import {mapState} from 'vuex'
 	export default {

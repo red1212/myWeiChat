@@ -57,7 +57,7 @@
 				<button @click="submit" class="submit" v-show="!payState">确认下单</button>
 				<button @click="clickPay('','open')" class="submit" v-show="payState">完成支付</button>
 			</view>
-			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay"/>
+			<my-pay @closePopUp="clickPay('close')" ref="payRef" @comfirmPay="comfirmPay" :Orderno="Orderno"/>
 		</view>
 		
 		<view style="height: 20px;"></view>
@@ -101,7 +101,7 @@
 				],
 				clickCountPrice:false,
 				totalPrice:0,  //总价
-
+				Orderno:'',
 			}
 		},
 		computed:{
@@ -130,7 +130,7 @@
 						this.CouponID = coupons[0].ID
 						this.$forceUpdate()
 					}
-					this.$refs.parentRef.$refs.popup.open()   //-----后期放开
+					this.$refs.parentRef.$refs.popup.open() 
 					
 				}else{
 					return uni.$showMsg(res.message,1500) 
@@ -195,6 +195,7 @@
 				if(this.clickTime === 2){
 				const { data: res }= await uni.$http.post('user/order/book',this.orderParam());
 				if(isSuccess(res.code)){
+					this.Orderno = res.data.Orderno || ''
 					this.showConfirm = false
 					if(!this.showConfirm && this.disable){
 						this.payState = true
@@ -214,7 +215,12 @@
 				}else{
 					this.$refs.payRef.$refs.popup.close()
 				}
-				
+			},
+			comfirmPay() {
+				this.$refs.payRef.$refs.popup.close()
+				uni.navigateTo({
+					url: '/subpages/pages/order/index'
+				})
 			},
 		}
 	}

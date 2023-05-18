@@ -51,7 +51,7 @@
 </template>
 
 <script>
-	import {isSuccess,errorTip,isPayFn,orderStatus} from '../../../util/index.js'
+	import {isSuccess,isPayFn,orderStatus} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
@@ -234,6 +234,8 @@
 			//支付
 			comfirmPay() {
 				this.$refs.payRef.$refs.popup.close()
+				this.List = []
+				this.resetPage()
 				this.getOrderDeetail(this.paramFn())
 			},
 			//重置分页
