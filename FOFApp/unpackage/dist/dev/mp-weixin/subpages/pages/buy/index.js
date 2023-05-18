@@ -300,6 +300,7 @@ var _default = {
       this.$refs.parentRef.$refs.popup.close();
     },
     changeCouponID: function changeCouponID(ID) {
+      if (this.disable) return;
       this.CouponID = ID;
     },
     inputChange: function inputChange(e, type) {

@@ -55,9 +55,9 @@
 					<view class="item">
 						<view class="label">7.样品是否回收：</view>
 							<radio-group @change="(e)=>inputChange(e,i,'sample_recycle')" class="flex">
-								<label v-for="(sample_recycle, index) in sample_recycle_list" :key="sample_recycle.key" class="flex" style="margin-right: 8px;">
+								<label v-for="(sample_recycle) in sample_recycle_list" :key="sample_recycle.key" class="flex" style="margin-right: 8px;">
 									<view>
-										<radio :value="sample_recycle.key" :checked="sample_recycle.key === SampleArr[i].sample_recycle" />
+										<radio :value="sample_recycle.key" :disabled="disable" :checked="sample_recycle.key === SampleArr[i].sample_recycle" />
 									</view>
 									<view>{{sample_recycle.key}}</view>
 								</label>
@@ -395,6 +395,7 @@
 				this.$refs.parentRef.$refs.popup.close()
 			},
 			changeCouponID(ID){
+				if(this.disable) return 
 				this.CouponID = ID
 			},
 			//点击加急
@@ -496,6 +497,7 @@
 			},
 			//tab 区域选择
 			sampleArrChange(sampleFormItem,i,type){
+				if(this.disable) return 
 				this.SampleArr[i][type] = sampleFormItem
 				this.$forceUpdate()
 			},

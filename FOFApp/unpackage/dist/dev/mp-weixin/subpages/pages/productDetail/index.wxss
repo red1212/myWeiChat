@@ -95,4 +95,8 @@
   padding: 10px 0px;
   border-bottom: 1px solid #ebeef5;
 }
+.label_a.data-v-12f1001b {
+  width: 100px;
+  padding-right: 6px;
+}
 

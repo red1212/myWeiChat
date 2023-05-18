@@ -143,6 +143,7 @@
 				this.$refs.parentRef.$refs.popup.close()
 			},
 			changeCouponID(ID){
+				if(this.disable) return 
 				this.CouponID = ID
 			},
 			inputChange(e,type){

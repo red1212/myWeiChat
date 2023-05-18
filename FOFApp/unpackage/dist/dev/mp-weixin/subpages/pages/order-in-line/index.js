@@ -687,6 +687,7 @@ var _default = {
       this.$refs.parentRef.$refs.popup.close();
     },
     changeCouponID: function changeCouponID(ID) {
+      if (this.disable) return;
       this.CouponID = ID;
     },
     //点击加急
@@ -787,6 +788,7 @@ var _default = {
     },
     //tab 区域选择
     sampleArrChange: function sampleArrChange(sampleFormItem, i, type) {
+      if (this.disable) return;
       this.SampleArr[i][type] = sampleFormItem;
       this.$forceUpdate();
     },

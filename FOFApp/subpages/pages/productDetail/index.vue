@@ -39,8 +39,8 @@
 							<view class="prod_title">技术参数</view>
 							<view class="content-Item">
 									<view v-for="(item,i) in productDetail.SpecsJson" :key="i" class="flex-between Specs">
-										<view>{{item.specs_name}}</view>
-										<view style="text-align: right;">{{item.specs_desc}}</view>
+										<view class="label_a">{{item.specs_name}}</view>
+										<view style="text-align: right; flex:1">{{item.specs_desc}}</view>
 									</view>
 							</view>
 					</view>
@@ -289,5 +289,9 @@
 	.Specs{
 		padding: 10px 0px;
 		border-bottom: 1px solid $uni-border-color;
+	}
+	.label_a{
+		width: 100px;
+		padding-right: 6px;
 	}
 </style>
