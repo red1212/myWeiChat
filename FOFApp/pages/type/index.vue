@@ -140,6 +140,10 @@
 		display: flex;
 		width: 100%;
 		position: relative;
+		position: sticky;
+		z-index: 10;
+		top:0px;
+		background: $uni-color-write
 	}
 
 	.scroll-he {

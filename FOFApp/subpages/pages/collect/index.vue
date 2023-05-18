@@ -58,6 +58,7 @@
 			//上拉刷新
 			onPullDownRefresh() {
 				this.resetPage()
+				this.paging.page = 1
 				this.collectList = []
 				this.getList(() => uni.stopPullDownRefresh())
 			},
@@ -82,6 +83,8 @@
 				const { data: res }= await uni.$http.post('user/mark/del',{ProductId:item.Product.ID});
 				if(isSuccess(res.code)){
 					uni.$showMsg('取消成功',1500) 
+					this.collectList = []
+					this.paging.page = 1
 					this.getList()
 				}else{
 					return uni.$showMsg(res.message,1500) 

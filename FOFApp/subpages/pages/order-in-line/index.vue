@@ -126,7 +126,7 @@
 		<!-- 是否加急弹窗 -->
 		<my-popup ref="urgentRef" @closePopUp="urgentclosePopUp" @clickBtnItem="urgentclosePopUp" btnText="确定">
 			<view class="flex flex-wrap wrap">
-				<view v-for="(urgentItem,urgent_list_i) in productDetail.urgents || [] " :key="urgent_list_i" :class="['row', urgentComputed(urgentItem) ? 'select' :'']" style="width: 114px;" @click="()=>urgent_listtabChange(urgentItem)">
+				<view v-for="(urgentItem,urgent_list_i) in productDetail.urgents || [] " :key="urgent_list_i" :class="['row', urgentComputed(urgentItem) ? 'select' :'']" style="width: 244rpx;" @click="()=>urgent_listtabChange(urgentItem)">
 					{{urgentItem.Name}}
 				</view>
 			</view>
@@ -134,8 +134,8 @@
 		
 		<!-- 明细弹窗 -->
 		<my-popup ref="skusRef" @closePopUp="skusclosePopUp" @clickBtnItem="skusclosePopUp" btnText="确定">
-			<view class="flex flex-wrap wrap">
-				<view v-for="(skusList,skus_list_i) in skus_item.List || [] " :key="skus_list_i" :class="['row', skusItemComputed(skusList) ? 'select' :'']" style="width: 114px;" @click="()=>skus_listtabChange(skusList)">
+			<view class="flex flex-wrap">
+				<view v-for="(skusList,skus_list_i) in skus_item.List || [] " :key="skus_list_i" :class="['row', skusItemComputed(skusList) ? 'select' :'']" style="width: 244rpx;" @click="()=>skus_listtabChange(skusList)">
 					{{skusList.Name}}
 				</view>
 			</view>
@@ -603,7 +603,7 @@
 			},
 			comfirmPay() {
 				this.$refs.payRef.$refs.popup.close()
-				uni.navigateTo({
+				uni.redirectTo({
 					url: '/subpages/pages/order/index'
 				})
 			},

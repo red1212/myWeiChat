@@ -443,6 +443,13 @@
           "query": "ID=15",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/type/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

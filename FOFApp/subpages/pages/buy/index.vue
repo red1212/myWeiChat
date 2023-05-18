@@ -218,7 +218,7 @@
 			},
 			comfirmPay() {
 				this.$refs.payRef.$refs.popup.close()
-				uni.navigateTo({
+				uni.redirectTo({
 					url: '/subpages/pages/order/index'
 				})
 			},
