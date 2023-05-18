@@ -415,6 +415,13 @@
           "query": "ID=5",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "subpages/pages/buy/index",
+          "query": "ID=5",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

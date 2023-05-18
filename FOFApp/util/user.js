@@ -23,3 +23,13 @@ export async function  sendCodeFn(phone,type){
 		return uni.$showMsg(res.message,1500) 
 	}
 }
+//支付价格查询
+export async function  orderPrice(params){
+	const { data: res }= await uni.$http.post('user/order/price', params);
+	if(!isSuccess(res.code)){
+		uni.$showMsg(res.message,1500) 
+		return '--'
+	}
+	return res.data.totalPrice
+}
+

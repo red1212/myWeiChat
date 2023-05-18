@@ -31,7 +31,7 @@
 		<view class="notice-item">
 			<view class="flex-center flex-column">
 				<view class="notice-name">{{notice.Name}}</view>
-				<view>{{notice.CreateAt}}</view>
+				<view style="margin-bottom: 6px;">{{notice.CreateAt && dayjs(notice.CreateAt).format('YYYY-MM-DD HH:mm:ss')}}</view>
 			</view>
 			<view class="content" v-html="notice.Content"></view>
 		</view>
@@ -40,14 +40,16 @@
 </template>
 
 <script>
-	import {isSuccess,errorTip} from '../../util/index.js'
+	import dayjs from "dayjs"
+	import {isSuccess} from '../../util/index.js'
 	export default {
 		data() {
 			return {
 				imgList: [],
 				products: [],
 				notice:{},
-				content:''
+				content:'',
+				dayjs
 			}
 		},
 		 onReady: function(res) {

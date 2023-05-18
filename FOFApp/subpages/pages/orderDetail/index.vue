@@ -4,7 +4,7 @@
 		<view>
 			<view class="order-state" v-if="orderInfo.IsPay ==1">
 				支付成功
-				<view>请打印检测项目表，随样品邮寄至检测处。</view >
+				<view>请前往官网打印检测项目表，随样品邮寄至检测处。</view >
 			</view>
 			<view class="order-state" v-else>
 				订单未支付，请完成支付！
@@ -88,6 +88,7 @@
 		padding:20px 10px;
 		text-align: center;
 		margin-top: 10px;
+		font-size: 12px;
 	}
 	.info-item{
 		margin-bottom: 4px;

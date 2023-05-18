@@ -17,6 +17,9 @@
 					</view>
 				</uni-swipe-action-item>
 			</view>
+			<view v-if="collectList.length === 0">
+				<no-data />
+			</view>
 		</uni-swipe-action>
 	</view>
 </template>
@@ -26,7 +29,7 @@
 	export default {
 		data() {
 			return {
-				obj:{
+				paging:{
 					page:1,
 					size:10
 				},
@@ -37,22 +40,37 @@
 						backgroundColor: '#0e67a9'
 					}
 				}],
-				collectList: []
+				collectList: [],
+				loading: false,
 			}
 		},
 		 onLoad(){
-			console.log('---df---')
 			this.getList()
 		},
 		methods: {
-			async getList(){
+			onReachBottom() {
+				let { page,size } = this.paging
+				if (size * page >= this.total) return uni.$showMsg('数据加载完毕！', 1000)
+				if (this.loading) return
+				this.paging.page += 1
+				this.getList()
+			},
+			//上拉刷新
+			onPullDownRefresh() {
+				this.resetPage()
+				this.collectList = []
+				this.getList(() => uni.stopPullDownRefresh())
+			},
+			async getList(cb){
 				uni.showLoading({
 				  title: '数据加载中...',
 				})
-				const { data: res }= await uni.$http.post('user/mark/list',this.obj);
+				this.loading = true
+				const { data: res }= await uni.$http.post('user/mark/list',this.paging);
+				this.loading = false
 				uni.hideLoading()
+				cb && cb()
 				if(isSuccess(res.code)){
-					console.log(res)
 					this.total = res.data.total
 					this.collectList = [...this.collectList,...res.data.extra || []]
 				}else{

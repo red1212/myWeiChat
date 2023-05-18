@@ -43,10 +43,10 @@
 			<view>
 				<view class="title">明细菜单</view>
 				<view class="content">
-					<text>预约费用：</text><text class="price">￥500</text>
+					<text>预约费用：</text><text class="price">￥{{totalPrice}}</text>
 				</view>
 				<view class="content" style="font-size: 16px;">
-					<text>费用总计：</text><text class="countPrice">500元</text>
+					<text>费用总计：</text><text class="countPrice">{{totalPrice}}元</text>
 				</view>
 			</view>
 			<view class="btn-group" v-if="!clickCountPrice">
@@ -70,6 +70,7 @@
 <script>
 	import {mapState,mapMutations} from 'vuex'
 	import {checkMap,isSuccess,errorTip} from '../../../util/index.js'
+	import {orderPrice} from '../../../util/user.js'
 	export default {
 		data() {
 			return {
@@ -98,7 +99,9 @@
 					{name:'优惠券',id:2},
 					{name:'优惠券',id:3},
 				],
-				clickCountPrice:false
+				clickCountPrice:false,
+				totalPrice:0,  //总价
+
 			}
 		},
 		computed:{
@@ -117,14 +120,15 @@
 				uni.hideLoading()
 				if(isSuccess(res.code)){
 					this.productDetail = res.data
-					const {Content3} = res.data.product
 					this.content  = res.data.product.Content3 || ''
 					let coupons = res.data.coupons || []
 					if (coupons.length > 0) {
 						this.CouponID = coupons[0].ID
 					} else {
 						coupons = [{ID:0,Price:'无优惠券可用'}]
+						this.productDetail.coupons = coupons
 						this.CouponID = coupons[0].ID
+						this.$forceUpdate()
 					}
 					this.$refs.parentRef.$refs.popup.open()   //-----后期放开
 					
@@ -157,18 +161,15 @@
 			},
 			
 			//计算价格
-			countPrice(){
+			async countPrice(){
 				let result = this.checkMap(this.baseFrom,this.tip)
 				if(!result) return
+				this.totalPrice  = await orderPrice(this.orderParam())   //计算价格
+				if(this.totalPrice == '--') return
 				//先走计算价格的接口
 				this.clickCountPrice=true
 			},
-			
-			async submit(){
-				this.clickTime = this.clickTime + 1 //点击次数
-				this.showConfirm = true  //修改信息按钮
-				this.disable = true   //确认信息
-				if(this.clickTime === 2){
+			orderParam(){
 				let {Code} = this.productDetail.product
 				let {chenfeng,time,startTime,endTime} = this.baseFrom
 				let param={
@@ -180,12 +181,18 @@
 						EndTime:endTime
 					},
 					MailingAddress:this.productDetail.product.MailingAddress, 
-					TotalPrice:100,  //这里后期需要计算
-					CouponID: this.purchaseInfo.CouponID, //优惠券id  如果没有优惠券传 0
+					TotalPrice:this.totalPrice,  //这里后期需要计算
+					CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
 					
 				}
-				console.log(param)
-				const { data: res }= await uni.$http.post('user/order/book',param);
+				return param
+			},
+			async submit(){
+				this.clickTime = this.clickTime + 1 //点击次数
+				this.showConfirm = true  //修改信息按钮
+				this.disable = true   //确认信息
+				if(this.clickTime === 2){
+				const { data: res }= await uni.$http.post('user/order/book',this.orderParam());
 				if(isSuccess(res.code)){
 					this.showConfirm = false
 					if(!this.showConfirm && this.disable){

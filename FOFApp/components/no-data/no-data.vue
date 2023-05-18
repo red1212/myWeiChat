@@ -18,7 +18,7 @@
 <style lang="scss" scoped>
 .no-data{
 	font-size: 14px;
-	margin-top: 40px;
+	padding-top: 40px;
 	color: #999;
 	text-align: center;
 }

@@ -103,7 +103,7 @@
 			</view>
 
 			<!-- 菜单明细 -->
-			<menu-detail :SampleArr="SampleArr"/>
+			<menu-detail :SampleArr="SampleArr" :totalPrice="totalPrice"/>
 
 			<view class="btn-group" v-if="!clickCountPrice">
 				<button @click="countPrice" class="submit">计算价格</button>
@@ -144,6 +144,7 @@
 <script>
 	import {mapState,mapMutations} from 'vuex'
 	import {isSuccess,errorTip,NumberToFormat} from '../../../util/index.js'
+	import {orderPrice} from '../../../util/user.js'
 	import { isEmpty,difference,find} from 'lodash';
 	export default {
 		data() {
@@ -227,7 +228,7 @@
 					{key:'是'},
 					{key:'否'}
 				],
-				TotalPrice:100,  //总价
+				totalPrice:0,  //总价
 
 			}
 		},
@@ -334,6 +335,7 @@
 					this.CouponID = coupons[0].ID
 				} else {
 					coupons = [{ID:0,Price:'无优惠券可用'}]
+					
 					this.CouponID = coupons[0].ID
 				}
 
@@ -414,7 +416,7 @@
 					}else{
 						//添加/修改
 						fil_sample[0].urgent_name = item.Name
-						fil_sample[0].urgent_price_per = item.PricePer
+						fil_sample[0].urgent_price_per = item.PricePer + ''
 					}
 					
 					console.log(this.SampleArr,'---SampleArr---')
@@ -502,7 +504,6 @@
 				if(!isEmpty(_is_CurrentItem)){
 					_is_CurrentItem[0][type] = e.detail.value
 				}
-				console.log(this.SampleArr,'---SampleArr---')
 				this.$forceUpdate()
 			},
 
@@ -515,7 +516,7 @@
 			},
 
 			//计算价格
-			countPrice() {
+			async countPrice() {
 				let errTip = this.errTip
 				
 				//判断必填的是否为空
@@ -540,42 +541,70 @@
 				if(!isEmpty(no_sample_sku)){
 					return uni.$showMsg(errTip['test_purpose'], 1500)
 				}
+				this.totalPrice  = await orderPrice(this.orderParam())
 
+				if(this.totalPrice == '--') return
+				console.log(this.totalPrice)
 				// //先走计算价格的接口
 				this.clickCountPrice = true
 
 			},
+			orderParam(){
+				let {Code} = this.productDetail.product
 
+				// ----转换数据格式start----
+				let _SampleArr = [...this.SampleArr]
+				let _val_SampleArr = _SampleArr.map(item=>{
+					return {
+						...item,
+						sample_sku:Object.assign({},item.sample_sku)
+					}
+				})
+				_val_SampleArr = Object.assign({},_val_SampleArr)
+				// ----转换数据格式end----
+
+				let param = {
+					Item: {
+						ProductCode: Code,
+						File: this.File, //上传的附件路径，可选
+						SampleArr: _val_SampleArr,
+					},
+					TotalPrice: this.totalPrice, //这里后期需要计算
+					CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
+
+				}
+				return param
+			},
 			async submit() {
 				this.clickTime = this.clickTime + 1 //点击次数
 				this.showConfirm = true //修改信息按钮
 				this.disable = true //确认信息
 				if (this.clickTime === 2) {
-					let {Code} = this.productDetail.product
+					// let {Code} = this.productDetail.product
 
-					// ----转换数据格式start----
-					let _SampleArr = [...this.SampleArr]
-					let _val_SampleArr = _SampleArr.map(item=>{
-						return {
-							...item,
-							sample_sku:Object.assign({},item.sample_sku)
-						}
-					})
-					_val_SampleArr = Object.assign({},_val_SampleArr)
-					// ----转换数据格式end----
+					// // ----转换数据格式start----
+					// let _SampleArr = [...this.SampleArr]
+					// let _val_SampleArr = _SampleArr.map(item=>{
+					// 	return {
+					// 		...item,
+					// 		sample_sku:Object.assign({},item.sample_sku)
+					// 	}
+					// })
+					// _val_SampleArr = Object.assign({},_val_SampleArr)
+					// // ----转换数据格式end----
 
-					let param = {
-						Item: {
-							ProductCode: Code,
-							File: this.File, //上传的附件路径，可选
-							SampleArr: _val_SampleArr,
-						},
-						TotalPrice: this.TotalPrice, //这里后期需要计算
-						CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
+					// let param = {
+					// 	Item: {
+					// 		ProductCode: Code,
+					// 		File: this.File, //上传的附件路径，可选
+					// 		SampleArr: _val_SampleArr,
+					// 	},
+					// 	TotalPrice: this.TotalPrice, //这里后期需要计算
+					// 	CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
 
-					}
+					// }
 
-					const {data: res} = await uni.$http.post('user/order/add', param);
+					const {data: res} = await uni.$http.post('user/order/add', this.orderParam());
 					if (isSuccess(res.code)) {
 						this.showConfirm = false
 						if (!this.showConfirm && this.disable) {

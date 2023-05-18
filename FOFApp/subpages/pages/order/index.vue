@@ -33,7 +33,7 @@
 				<view class="row-3">
 					<button type="primary" size="mini" class="btn btnprimary"
 						@click="clickResult(item,'open')">检测说明</button>
-					<button type="primary" size="mini" class="btn btnprimary"
+					<button type="primary" size="mini" class="btn btnprimary" v-if="item.IsPay !== 1"
 						@click="clickPay(item,'open')">去支付</button>
 					<button type="default" size="mini" class="btn" @click="goDetail(item)">订单详情</button>
 				</view>
@@ -58,7 +58,7 @@
 				orderStatus,
 				isPayFn,
 				loading: false,
-				typeActive: 4,
+				typeActive: 3,
 				active: 0,
 				isPaying: [1, 2, 3],
 				isPay: '', //是否支付

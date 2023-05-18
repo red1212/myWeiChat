@@ -20,7 +20,7 @@
 					</view>
 				</view>
 				<view class="content" style="font-size: 16px;">
-					<text>费用总计：</text><text class="countPrice">500元</text>
+					<text>费用总计：</text><text class="countPrice">{{totalPrice}}元</text>
 				</view>
 			</view>
 	</view>
@@ -51,6 +51,10 @@
 			SampleArr: {
 				type: Array,
 				default: () => []
+			},
+			totalPrice: {
+				type: Number,
+				default: 0
 			}
 		},
 	}
