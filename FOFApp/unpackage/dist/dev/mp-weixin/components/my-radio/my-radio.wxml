@@ -1,1 +1,1 @@
-<view><radio value="r1" color="#0e67a9" checked="{{checked}}" disabled="{{disabled}}" data-event-opts="{{[['tap',[['radioChange',['$event']]]]]}}" bindtap="__e">{{text}}</radio></view>
+<view class="flex flex-start"><radio style="transform:scale(0.7);" value="r1" color="#0e67a9" checked="{{checked}}" disabled="{{disabled}}" data-event-opts="{{[['tap',[['radioChange',['$event']]]]]}}" bindtap="__e"></radio><text>{{text}}</text></view>

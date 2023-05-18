@@ -255,33 +255,31 @@ var _default = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(option);
               if (!(option !== null && option !== void 0 && option.id)) {
-                _context.next = 14;
+                _context.next = 12;
                 break;
               }
               uni.showLoading({
                 title: '数据加载中...'
               });
-              _context.next = 5;
+              _context.next = 4;
               return uni.$http.post('user/order/detail', {
                 extra: option.id
               });
-            case 5:
+            case 4:
               _yield$uni$$http$post = _context.sent;
               res = _yield$uni$$http$post.data;
-              console.log(res);
               uni.hideLoading();
               if (!(0, _index.isSuccess)(res.code)) {
-                _context.next = 13;
+                _context.next = 11;
                 break;
               }
               _this.orderInfo = res.data || {};
-              _context.next = 14;
+              _context.next = 12;
               break;
-            case 13:
+            case 11:
               return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-            case 14:
+            case 12:
             case "end":
               return _context.stop();
           }

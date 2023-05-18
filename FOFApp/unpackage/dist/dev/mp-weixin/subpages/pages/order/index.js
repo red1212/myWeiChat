@@ -308,27 +308,26 @@ var _default = {
                     "type": _this.typeActive
                   }, params)
                 };
-                console.log(param);
                 _this.loading = true;
-                _context.next = 9;
+                _context.next = 8;
                 return uni.$http.post('user/order/list', param);
-              case 9:
+              case 8:
                 _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
                 _this.loading = false;
                 uni.hideLoading();
                 cb && cb();
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 19;
+                  _context.next = 18;
                   break;
                 }
                 _this.List = [].concat((0, _toConsumableArray2.default)(_this.List), (0, _toConsumableArray2.default)((res === null || res === void 0 ? void 0 : res.data.extra) || []));
                 _this.total = (res === null || res === void 0 ? void 0 : (_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.total) || 0;
-                _context.next = 20;
+                _context.next = 19;
                 break;
-              case 19:
+              case 18:
                 return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 20:
+              case 19:
               case "end":
                 return _context.stop();
             }
@@ -348,7 +347,6 @@ var _default = {
       if (item.key === "pay") {
         this.isPay = item.val;
       } else {
-        console.log(item, item.val);
         //如果是全部则清空支付状态
         if (item.val == 0) {
           this.isPay = '';

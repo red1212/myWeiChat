@@ -228,17 +228,16 @@ var _default = {
               res = _yield$uni$$http$post.data;
               uni.hideLoading();
               if (!(0, _index.isSuccess)(res.code)) {
-                _context.next = 12;
+                _context.next = 11;
                 break;
               }
               _this.contactus = res.data.contactus || [];
               _this.company = res.data.company || [];
-              console.log(res);
-              _context.next = 13;
+              _context.next = 12;
               break;
-            case 12:
+            case 11:
               return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-            case 13:
+            case 12:
             case "end":
               return _context.stop();
           }

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-	import {isSuccess,errorTip} from '../../../util/index.js'
+	import {isSuccess} from '../../../util/index.js'
 	export default{
 		data(){
 			return{
@@ -48,7 +48,6 @@
 			if(isSuccess(res.code)){
 				this.contactus = res.data.contactus || []
 				this.company = res.data.company || []
-				console.log(res)
 			}else{
 				return uni.$showMsg(res.message,1500) 
 			}

@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "uni-datetime-picker": "/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker",
-    "my-couponid": "/components/my-couponid/my-couponid",
-    "my-pay": "/components/my-pay/my-pay"
-  },
-  "component": true
-}

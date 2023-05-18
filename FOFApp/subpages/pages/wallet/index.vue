@@ -59,7 +59,7 @@
 </template>
 
 <script>
-	import {isSuccess,errorTip} from '../../../util/index.js'
+	import {isSuccess} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
@@ -112,7 +112,6 @@
 				this.loading = false
 				uni.hideLoading()
 				if (isSuccess(res.code)) {
-					console.log(res)
 					this.assetInfo = res?.data || {}
 				} else {
 					return uni.$showMsg(res.message, 1500)

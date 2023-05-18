@@ -45,7 +45,7 @@
 
 <script>
 	import {mapMutations} from 'vuex'
-	import {isSuccess,errorTip} from '../../util/index.js'
+	import {isSuccess} from '../../util/index.js'
 	export default {
 		data() {
 			return {
@@ -94,12 +94,11 @@
 				let params={
 						"phone": this.phone,
 						"type": 2 // 枚举值参见接口说明 - 枚举 - 短信验证码
-				}
+					}
 				const { data: res }= await uni.$http.post('user/code/send', params);
 				if(!isSuccess(res.code)){
 					return uni.$showMsg(res.message,1500) 
 				}
-			console.log(res)
 			},
 			submit() {
 				let {phone,password,active,code} = this
@@ -116,10 +115,7 @@
 				
 				}else{
 					if (!code) return uni.$showMsg('请输入验证码', duration)
-					let params={
-						phone,
-						code
-					}
+					let params={phone,code}
 					this.login('user/login/sms', params)
 				}
 			},
@@ -214,7 +210,6 @@
 
 	.send-code {
 		background-color: $uni-color-primary;
-		background-color: #0e67a9;
 		font-size: 10px;
 		padding: 3px 4px;
 	  width: 80px;

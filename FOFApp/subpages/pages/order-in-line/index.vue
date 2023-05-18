@@ -57,7 +57,7 @@
 							<radio-group @change="(e)=>inputChange(e,i,'sample_recycle')" class="flex">
 								<label v-for="(sample_recycle) in sample_recycle_list" :key="sample_recycle.key" class="flex" style="margin-right: 8px;">
 									<view>
-										<radio :value="sample_recycle.key" :disabled="disable" :checked="sample_recycle.key === SampleArr[i].sample_recycle" />
+										<radio :value="sample_recycle.key" :disabled="disable" color="#0e67a9" :checked="sample_recycle.key === SampleArr[i].sample_recycle" style="transform:scale(0.7)"/>
 									</view>
 									<view>{{sample_recycle.key}}</view>
 								</label>
@@ -94,7 +94,7 @@
 					<my-couponid :List="productDetail.coupons" :CouponID="CouponID" @changeCouponID="(ID)=>changeCouponID(ID)"/>
 				</view>
 			</view>
-
+			
 			<view class="content">
 				<uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @select="select"
 					@success="success" @fail="fail" file-extname="png,jpg" :limit="1" :list-styles="listStyles">
@@ -297,7 +297,6 @@
 			isUrgent:function(){
 				return (i)=>{
 					let isCurrentItem_res = this.isCurrentItem(i)
-					console.log(isCurrentItem_res,'--isCurrentItem_res--')
 					if(!isEmpty(isCurrentItem_res)){
 						let  row_item= isCurrentItem_res[0]
 						if(row_item.urgent_name && row_item.urgent_price_per){
@@ -371,8 +370,7 @@
 				// 		}
 				// 	}
 				// }
-				console.log(this.SampleArr,'--------')
-
+				
 				this.productDetail.coupons = coupons
 				this.$refs.parentRef.$refs.popup.open()   //-----后期放开
 
@@ -419,11 +417,8 @@
 						fil_sample[0].urgent_name = item.Name
 						fil_sample[0].urgent_price_per = item.PricePer + ''
 					}
-					
-					console.log(this.SampleArr,'---SampleArr---')
 					this.$forceUpdate()
 				}
-				console.log(fil_sample)
 			},
 			urgentclosePopUp(){
 				this.$refs.urgentRef.$refs.popup.close()
@@ -434,7 +429,6 @@
 				this.skus_item = item
 				this.skus_index = i
 				this.$refs.skusRef.$refs.popup.open()
-				console.log(item,i)
 			},
 			//添加明细
 			addSkus(is_cur_opt,item){
@@ -490,7 +484,6 @@
 						this.$forceUpdate()
 					}
 				}
-				console.log(this.SampleArr,'---SampleArr---')
 			},
 			skusclosePopUp(){
 				this.$refs.skusRef.$refs.popup.close()
@@ -546,7 +539,6 @@
 				this.totalPrice  = await orderPrice(this.orderParam())
 
 				if(this.totalPrice == '--') return
-				console.log(this.totalPrice)
 				// //先走计算价格的接口
 				this.clickCountPrice = true
 
@@ -628,7 +620,6 @@
 				this.SampleArr = difference(this.SampleArr,_isCurrentItem) //删除指定项
 				this.renderSampleArr.shift()
 				this.$forceUpdate()
-				console.log(this.renderSampleArr)
 			},
 			// 获取上传状态
 			async select(e) {

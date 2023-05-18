@@ -27,7 +27,7 @@
 
 <script>
 	import {mapMutations,mapState} from 'vuex'
-	import {checkMap,isSuccess,errorTip} from '../../util/index.js'
+	import {checkMap} from '../../util/index.js'
 	export default {
 		name: "addTeamer",
 		data() {

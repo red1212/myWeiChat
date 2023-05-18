@@ -327,16 +327,15 @@ var _default = {
                 _this2.loading = false;
                 uni.hideLoading();
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context2.next = 13;
+                  _context2.next = 12;
                   break;
                 }
-                console.log(res);
                 _this2.assetInfo = (res === null || res === void 0 ? void 0 : res.data) || {};
-                _context2.next = 14;
+                _context2.next = 13;
                 break;
-              case 13:
+              case 12:
                 return _context2.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 14:
+              case 13:
               case "end":
                 return _context2.stop();
             }

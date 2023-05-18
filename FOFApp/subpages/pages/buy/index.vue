@@ -69,7 +69,7 @@
 
 <script>
 	import {mapState,mapMutations} from 'vuex'
-	import {checkMap,isSuccess,errorTip} from '../../../util/index.js'
+	import {checkMap,isSuccess} from '../../../util/index.js'
 	import {orderPrice} from '../../../util/user.js'
 	export default {
 		data() {

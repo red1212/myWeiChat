@@ -315,7 +315,6 @@ var _default = {
     },
     //下单
     buttonClick: function buttonClick(e) {
-      console.log(e);
       this.options[2].info++;
     }
   })

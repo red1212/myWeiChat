@@ -161,7 +161,6 @@
 						...params
 					},
 				}
-				console.log(param)
 				this.loading = true
 				const {data: res} = await uni.$http.post('user/order/list', param);
 				this.loading = false
@@ -186,7 +185,6 @@
 				if (item.key === "pay") {
 					this.isPay = item.val
 				} else {
-						console.log(item,item.val)
 					//如果是全部则清空支付状态
 					if(item.val == 0){
 						this.isPay = ''

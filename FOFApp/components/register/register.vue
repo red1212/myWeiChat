@@ -50,7 +50,7 @@
 </template>
 <script>
 	import {mapMutations} from 'vuex'
-	import {isSuccess,errorTip} from '../../util/index.js'
+	import {isSuccess} from '../../util/index.js'
 	export default {
 		name:"register",
 		data() {

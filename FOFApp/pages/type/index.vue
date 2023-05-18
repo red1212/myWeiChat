@@ -45,10 +45,7 @@
 </template>
 
 <script>
-	import {
-		isSuccess,
-		errorTip
-	} from '../../util/index.js'
+	import {isSuccess} from '../../util/index.js'
 	export default {
 		data() {
 			return {

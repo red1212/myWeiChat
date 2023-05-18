@@ -1,17 +1,13 @@
 <template>
-	<view>
-		<radio value="r1" color="#0e67a9" :checked="checked" @click="radioChange" :disabled="disabled">{{text}}</radio>
+	<view class="flex flex-start">
+		<radio value="r1" color="#0e67a9" :checked="checked" @click="radioChange" :disabled="disabled" style="transform:scale(0.7)"></radio>
+		<text>{{text}}</text>
 	</view>
 </template>
 
 <script>
 	export default {
 		name: "my-radio",
-		data() {
-			return {
-
-			};
-		},
 		props: {
 			checked: {
 				type: Boolean,

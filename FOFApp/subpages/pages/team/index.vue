@@ -35,7 +35,7 @@
 
 <script>
 	import {mapState,mapMutations} from 'vuex'
-	import {isSuccess,errorTip} from '../../../util/index.js'
+	import {isSuccess} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
@@ -160,7 +160,6 @@
 		margin-bottom: 10px;
 		button{
 			margin:0px 0px 0px 6px;
-			
 		}
 	}
 </style>

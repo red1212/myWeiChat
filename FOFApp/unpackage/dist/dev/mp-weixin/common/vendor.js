@@ -40530,9 +40530,7 @@ var _default = {
 
   mutations: {
     updateClientForm: function updateClientForm(state, val) {
-      console.log('---store------', val);
       state.clientForm = _objectSpread(_objectSpread({}, state.clientForm), val);
-      console.log('--结果-', state.clientForm);
     },
     updateTeamList: function updateTeamList(state, val) {
       if (val && val.length === 0) {
@@ -40588,9 +40586,6 @@ var _default = {
   mutations: {
     updatePurchaseInfo: function updatePurchaseInfo(state, info) {
       state.purchaseInfo = _objectSpread(_objectSpread({}, state.purchaseInfo), info);
-      console.log('--df--');
-      console.log(state.purchaseInfo);
-      console.log('--df--');
     },
     updateDisable: function updateDisable(state, val) {
       state.disable = val;
@@ -40774,9 +40769,6 @@ function checkMap(map, mapText) {
   }
   return res;
 }
-var Code = {
-  'success': 200
-};
 function isSuccess(code) {
   return code === '200';
 }

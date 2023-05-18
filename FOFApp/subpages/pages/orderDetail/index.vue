@@ -52,7 +52,7 @@
 </template>
 
 <script>
-	import {isSuccess,errorTip} from '../../../util/index.js'
+	import {isSuccess} from '../../../util/index.js'
 	import dayjs from "dayjs"
 	export default {
 		data() {
@@ -62,11 +62,9 @@
 			}
 		},
 		async onLoad(option){
-			console.log(option)
 			if(option?.id){
 				uni.showLoading({title: '数据加载中...',})
 				const {data: res} = await uni.$http.post('user/order/detail', {extra:option.id});
-				console.log(res)
 				uni.hideLoading()
 				if (isSuccess(res.code)) {
 						this.orderInfo = res.data || {} 

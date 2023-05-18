@@ -41,7 +41,6 @@
 						return '---'
 					}
 					let val = new BigNumber(item.list[0].item_price).multipliedBy(sample_number).toString()
-					console.log(sample_number,item.list[0].item_price,'--计算价格--',val)
 					return val == 'NaN' ? '---' : val
 
 				}

@@ -26,9 +26,7 @@ export default {
 	}),
 	mutations: {
 		updateClientForm(state, val){
-			console.log('---store------',val)
 			state.clientForm = {...state.clientForm,...val}
-			console.log('--结果-',state.clientForm)
 		},
 		updateTeamList(state, val){
 			if(val && val.length ===0){

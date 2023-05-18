@@ -15,18 +15,12 @@ $http.baseUrl = 'https://story.nabaiyu.com/apitest/api/'
 
 //请求拦截器
 $http.beforeRequest = function (options) {
-	console.log(options)
 	let token = store.state.m_users.token || ''
 	if(token){
-		console.log(store.state.m_users.token)
 		options.header={
 			'x-token':token
 		}
 	}
-
-  // uni.showLoading({
-  //   title: '数据加载中...',
-  // })
 }
  //响应拦截器
  $http.afterRequest = function(response) {

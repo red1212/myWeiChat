@@ -74,19 +74,16 @@
 					</view>
 				</view>
 				<view class="nav-right-item" @click="openBuy()">
-					<!-- 预约机时  http://47.97.216.6/index/order/yuyue/?code=T7357389146975537536-->
 						<button type="primary" class="purchase" v-if="productDetail.OrderType == 3">在线下单</button>
 						<button type="primary" class="purchase" v-else>预约下单</button>
 				</view>
 			</view>
-			<!-- <uni-goods-nav :fill="true" :options="options" :button-group="buttonGroup" @click="onClick"
-				@buttonClick="buttonClick" style="margin-top: 20px;" /> -->
 		</view>
 	</view>
 </template>
 
 <script>
-	import {isSuccess,errorTip} from '../../../util/index.js'
+	import {isSuccess} from '../../../util/index.js'
 	import {isLogin,toLogin} from '../../../util/user.js'
 	import {mapState,mapMutations} from 'vuex'
 	export default {
@@ -180,7 +177,6 @@
 			},
 			//下单
 			buttonClick(e) {
-				console.log(e)
 				this.options[2].info++
 			}
 		}
@@ -188,13 +184,10 @@
 </script>
 
 <style lang="scss" scoped>
-	.pro-detail {}
-
 	.card {
 		background-color: $uni-color-write;
 		padding: 10px;
 	}
-
 	.banner {
 		height: 240px;
 	}
@@ -212,7 +205,6 @@
 
 	.label {
 		width: 70px;
-
 	}
 	.desc-item {
 		display: flex;

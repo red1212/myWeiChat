@@ -13,9 +13,6 @@ export default {
 	mutations:{
 		updatePurchaseInfo(state,info){
 			state.purchaseInfo = {...state.purchaseInfo,...info}
-			console.log('--df--')
-			console.log(state.purchaseInfo)
-			console.log('--df--')
 		},
 		updateDisable(state,val){
 			state.disable = val

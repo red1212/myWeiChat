@@ -29,10 +29,6 @@ export function checkMap(map,mapText,duration=1500){
 	return res
 }
 
-const Code ={
-	'success':200
-}
-
 export function isSuccess(code){
  return code === '200'
 }

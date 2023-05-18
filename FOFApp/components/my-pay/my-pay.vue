@@ -128,10 +128,8 @@
 			},
 			//确认支付
 			async comfirmPay() {
-				console.log(this.code)
 				if(this.loading) return
 				let {payType,code} = this
-				console.log('--payType-',payType)
 				let param={
 					"payType": payType, //接口说明-枚举-支付类型
 					"orderNo": this.Orderno,
