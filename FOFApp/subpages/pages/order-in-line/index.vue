@@ -24,7 +24,11 @@
 					</view>
 					<view class="item">
 						<view class="label">3.样品形态：</view>
-						<view class="flex flex1"><my-tab :List="productDetail.sample_form || []" :select="SampleArr[i].sample_form" @tabChange="(sampleFormItem)=>sampleArrChange(sampleFormItem,i,'sample_form')"/></view>
+						<view class="flex flex1 flex-column">
+							<view>
+								<my-tab :List="productDetail.sample_form || []" :select="SampleArr[i].sample_form" @tabChange="(sampleFormItem)=>sampleArrChange(sampleFormItem,i,'sample_form')"/>
+							</view>
+						</view>
 					</view>
 					<view class="item">
 						<view class="label">4.样品性质：</view>
@@ -801,12 +805,16 @@
 	.row{
 		border:1px solid #ccc;
 		padding:4px 6px;
-		width: 60px;
+		width: 27%;
 		text-align: center;
 		margin-bottom: 4px;
 		font-size: 12px;
-		margin-right: 8px;
+		margin-right: 8rpx;
+		// width: 142rpx;
 	}
+	.wrap .row:nth-child(3n+3) {
+        margin-right: 0;
+    }
 	.select{
 		border:1px solid #0e67a9;
 		color:#0e67a9
@@ -818,10 +826,10 @@
 		padding:4px;
 		height: 60px;
 	}
-	.wrap::after{
-		content: '';
-        flex: auto; // 或者1
-	}
+	// .wrap::after{
+	// 	content: '';
+    //     flex: auto; // 或者1
+	// }
 	.delText{
 		font-size: 14px;
 		padding: 4px;

@@ -32,18 +32,21 @@
 	.row{
 		border:1px solid #ccc;
 		padding:4px 6px;
-		width: 60px;
+		width: 27%;
 		text-align: center;
 		margin-bottom: 4px;
 		font-size: 12px;
-		margin-right: 8px;
+		margin-right: 8rpx;
 	}
 	.select{
 		border:1px solid #0e67a9;
 		color:#0e67a9
 	}
-	.wrap::after{
-		content: '';
-        flex: auto; // 或者1
-	}
+	.wrap .row:nth-child(3n+3) {
+        margin-right: 0;
+    }
+	// .wrap::after{
+	// 	content: '';
+    //     flex: auto; // 或者1
+	// }
 </style>

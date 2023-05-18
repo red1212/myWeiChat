@@ -213,7 +213,7 @@ var _default = {
                 break;
               }
               _this.productDetail = res.data;
-              _this.handCollect(res.data.NumCollect);
+              _this.handCollect(res.data.Fav);
               _context.next = 14;
               break;
             case 13:
@@ -240,7 +240,7 @@ var _default = {
       }
     },
     handCollect: function handCollect(key) {
-      if (key != 0) {
+      if (key) {
         this.options[1].icon = 'heart-filled';
         this.options[1].color = '#d42f2f';
         this.options[1].text = '已收藏';

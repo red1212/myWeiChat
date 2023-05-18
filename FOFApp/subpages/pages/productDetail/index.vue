@@ -114,7 +114,7 @@
 				uni.hideLoading()
 				if(isSuccess(res.code)){
 					this.productDetail = res.data
-					this.handCollect(res.data.NumCollect)
+					this.handCollect(res.data.Fav)
 				}else{
 					return uni.$showMsg(res.message,1500) 
 				}
@@ -137,7 +137,7 @@
 	
 			},
 			handCollect(key){
-				if(key != 0){
+				if(key){
 					this.options[1].icon = 'heart-filled'
 					this.options[1].color = '#d42f2f'
 					this.options[1].text = '已收藏'

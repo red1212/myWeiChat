@@ -116,6 +116,13 @@
 					this.$refs.vertiyRef.$refs.popup.open()
 				}else{
 					//这里调用微信支付
+					console.log('-----微信支付------')
+					uni.login({
+					provider: 'weixin', //使用微信登录
+					success: function (loginRes) {
+						console.log(loginRes.authResult);
+					}
+					});
 				}
 				
 			},

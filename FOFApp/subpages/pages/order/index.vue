@@ -30,6 +30,9 @@
 						<view class="price">¥{{item.PayMoney || '---'}} <text class="discount">折扣优惠: ￥{{item.CouponFee}}</text></view>
 					</view>
 				</view>
+				<view class="row-1">
+					<text>下单时间：{{dayjs(item.CreatTime).format('YYYY-MM-DD HH:mm:ss')}}</text>
+				</view>
 				<view class="row-3">
 					<button type="primary" size="mini" class="btn btnprimary"
 						@click="clickResult(item,'open')">检测说明</button>
@@ -51,10 +54,12 @@
 </template>
 
 <script>
+	import dayjs from "dayjs"
 	import {isSuccess,isPayFn,orderStatus} from '../../../util/index.js'
 	export default {
 		data() {
 			return {
+				dayjs,
 				orderStatus,
 				isPayFn,
 				loading: false,

@@ -131,12 +131,23 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = _vm.List.length
+  var l0 = _vm.__map(_vm.List, function (item, i) {
+    var $orig = _vm.__get_orig(item)
+    var g0 = item.ProductInfo
+      ? _vm.dayjs(item.CreatTime).format("YYYY-MM-DD HH:mm:ss")
+      : null
+    return {
+      $orig: $orig,
+      g0: g0,
+    }
+  })
+  var g1 = _vm.List.length
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        g0: g0,
+        l0: l0,
+        g1: g1,
       },
     }
   )
@@ -184,12 +195,14 @@ var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 48));
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 49));
 var _index = __webpack_require__(/*! ../../../util/index.js */ 39);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
   data: function data() {
     return {
+      dayjs: _dayjs.default,
       orderStatus: _index.orderStatus,
       isPayFn: _index.isPayFn,
       loading: false,
