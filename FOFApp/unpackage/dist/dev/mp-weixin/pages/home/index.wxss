@@ -10,7 +10,14 @@ swiper.data-v-71e217db {
   z-index: 2;
   top: 80%;
   border-radius: 50%;
-  background: #3b9ee8;
+  background: #1d679e;
+  color: #fff;
+  font-size: 12px;
+  width: 40px;
+  height: 40px;
+  margin: 0px;
+  padding: 0px;
+  line-height: 40px;
 }
 .tuijian.data-v-71e217db {
   font-size: 14px;

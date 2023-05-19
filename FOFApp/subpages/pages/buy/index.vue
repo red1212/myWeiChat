@@ -184,7 +184,7 @@
 						EndTime:endTime
 					},
 					MailingAddress:this.productDetail.product.MailingAddress, 
-					TotalPrice:this.totalPrice,  //这里后期需要计算
+					TotalPrice:this.totalPrice == '--' ? 0 : this.totalPrice,  //这里后期需要计算
 					CouponID: this.CouponID, //优惠券id  如果没有优惠券传 0
 					
 				}

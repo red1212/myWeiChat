@@ -1,17 +1,23 @@
 <template>
 	<view class="my-wrap">
 		<view class="user-info">
-			<view class="logo-box">
-				<logo width="254" height="60" />
+			<view v-if="isLogin()" class="flex">
+				<view class="icon-box">
+					<view class="icon">
+						<logo width="254" height="60" />
+					</view>
+				</view>
+				<view>
+					<view class="phone">{{userinfo.Username}}</view>
+					<view class="phone">{{userinfo.Phone}}</view>
+				</view>
 			</view>
-			<view class="phone" v-if="isLogin()">{{userinfo.Username}}</view>
-			<view class="phone" v-else @click="toLogin">点击登录</view>
+			<button class="loginBtn" v-else @click="toLogin">登录/注册</button>
 		</view>
 		<view class="card">
 			<view v-for="(item,i) in infoList" :key="i" class="card-item" @click="goPage(item)">
 				<view class="left-item">
 					<uni-icons :type="item.icon" size="24" color="#999999" class="card-icon"></uni-icons>
-					<!-- 	<image :src="item.icon" class="card-icon"></image> -->
 					<button type="default" open-type="contact" class="card-name"
 						v-if="item.name === '联系客服'">{{item.name}}</button>
 					<view class="card-name" v-else>{{item.name}}</view>
@@ -19,10 +25,11 @@
 				<view class="right-item">
 					<uni-icons type="right" size="20" color="#999999"></uni-icons>
 				</view>
-
 			</view>
 		</view>
-
+		<view class="logo-box">
+			<logo width="254" height="60" />
+		</view>
 
 	</view>
 </template>
@@ -101,6 +108,11 @@
 				return uni.navigateTo({
 						url:item.url
 					})
+			},
+			onShow(){
+				if(!this.isLogin()){
+					this.infoList.pop()
+				}
 			}
 		}
 
@@ -108,10 +120,18 @@
 </script>
 
 <style lang="scss" scoped>
-	.my-wrap {
-		/* padding:20px 10px; */
+	.icon-box{
+		width: 42px;
+		height: 42px;
+		overflow: hidden;
+		border: 1px solid #ccc;
+		border-radius: 50%;
+		margin-right: 10px;
 	}
-
+	.icon{
+		margin-top:5px;
+		margin-left: 3px;
+	}
 	.user-info {
 		display: flex;
 		align-items: center;
@@ -120,11 +140,10 @@
 	}
 
 	.logo-box {
-		background-color: $uni-color-write;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-right: 10px;
+		margin:20px 0px;
 	}
 
 	.phone {
@@ -169,5 +188,10 @@
 
 	.left-item button::after {
 		border: none;
+	}
+	.loginBtn{
+		font-size: 14px;
+		color: $uni-color-write;
+		background-color: $uni-color-primary;
 	}
 </style>

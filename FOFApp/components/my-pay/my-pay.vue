@@ -117,10 +117,12 @@
 				}else{
 					//这里调用微信支付
 					console.log('-----微信支付------')
+					let _this = this
 					uni.login({
 					provider: 'weixin', //使用微信登录
 					success: function (loginRes) {
-						console.log(loginRes.authResult);
+						console.log(loginRes)
+						_this.weixinPay(loginRes.code)
 					}
 					});
 				}
@@ -132,6 +134,23 @@
 				this.timer && clearInterval(this.timer)
 				this.time = 60
 				this.sendCodeState= false
+			},
+			async weixinPay(code){
+				let {payType} = this
+				let param={
+					"payType": payType, //接口说明-枚举-支付类型
+					"orderNo": this.Orderno,
+					"code":  code //可选
+				}
+				const {data: res} = await uni.$http.post('user/pay', param);
+				// this.loading = false
+				if (isSuccess(res.code)) {
+					// uni.$showMsg(res.message, 1500)
+					// this.clickVertiy()
+					// this.$emit('comfirmPay')
+				} else {
+					return uni.$showMsg(res.message, 1500)
+				}
 			},
 			//确认支付
 			async comfirmPay() {

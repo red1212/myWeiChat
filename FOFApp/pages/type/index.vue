@@ -71,7 +71,7 @@
 		},
 		onReachBottom() {
 			let {page,size} = this.queryObj
-			if (size * page >= this.total) return uni.$showMsg('数据加载完毕！', 1000)
+			if (size * page >= this.total) return uni.$showMsg('到底了！', 1000)
 			if (this.loading) return
 			this.queryObj.page += 1
 			this.getList()

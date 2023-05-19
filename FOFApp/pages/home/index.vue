@@ -23,7 +23,7 @@
 			</navigator>
 		</view>
 		<button type="default" open-type="contact" class="contactUs">
-			<uni-icons type="headphones" size="20" color="#fff"></uni-icons>
+			客服
 		</button>
 		<!-- 弹窗 -->
 		<my-popup ref="parentRef"
@@ -97,7 +97,14 @@
 		z-index: 2;
 		top: 80%;
 		border-radius: 50%;
-		background: #3b9ee8;
+		background: #1d679e;
+		color: #fff;
+		font-size: 12px;
+		width: 40px;
+		height: 40px;
+		margin: 0px;
+		padding: 0px;
+		line-height: 40px;
 	}
 
 	.tuijian {

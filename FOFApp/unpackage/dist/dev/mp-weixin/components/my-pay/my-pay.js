@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/my-pay/my-pay"],{
 
 /***/ 232:
-/*!********************************************************************************!*\
-  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue ***!
-  \********************************************************************************/
+/*!************************************************************************************!*\
+  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -42,9 +42,9 @@ component.options.__file = "components/my-pay/my-pay.vue"
 /***/ }),
 
 /***/ 233:
-/*!***************************************************************************************************************************!*\
-  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=template&id=3cef5a64&scoped=true& ***!
-  \***************************************************************************************************************************/
+/*!*******************************************************************************************************************************!*\
+  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=template&id=3cef5a64&scoped=true& ***!
+  \*******************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64,9 +64,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 234:
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=template&id=3cef5a64&scoped=true& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=template&id=3cef5a64&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -83,10 +83,10 @@ try {
       return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 347))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 167))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 179))
     },
     myPopup: function () {
-      return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 175))
+      return __webpack_require__.e(/*! import() | components/my-popup/my-popup */ "components/my-popup/my-popup").then(__webpack_require__.bind(null, /*! @/components/my-popup/my-popup.vue */ 167))
     },
   }
 } catch (e) {
@@ -126,9 +126,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 235:
-/*!*********************************************************************************************************!*\
-  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -142,9 +142,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 236:
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -211,18 +211,18 @@ var _default = {
   computed: _objectSpread({}, (0, _vuex.mapState)('m_users', ['userinfo'])),
   methods: {
     sendCode: function sendCode() {
-      var _this = this;
+      var _this2 = this;
       this.timer && clearInterval(this.timer);
       this.sendCodeFn(this.userinfo.Phone, this.sendCodeType);
       this.sendCodeState = true;
       this.timer = setInterval(function () {
-        if (_this.time <= 0) {
-          clearInterval(_this.timer);
-          _this.time = 60;
-          _this.sendCodeState = !true;
+        if (_this2.time <= 0) {
+          clearInterval(_this2.timer);
+          _this2.time = 60;
+          _this2.sendCodeState = !true;
           return;
         }
-        _this.time = _this.time - 1;
+        _this2.time = _this2.time - 1;
       }, 1000);
     },
     close: function close() {
@@ -237,11 +237,13 @@ var _default = {
       } else {
         //这里调用微信支付
         console.log('-----微信支付------');
+        var _this = this;
         uni.login({
           provider: 'weixin',
           //使用微信登录
           success: function success(loginRes) {
-            console.log(loginRes.authResult);
+            console.log(loginRes);
+            _this.weixinPay(loginRes.code);
           }
         });
       }
@@ -253,54 +255,90 @@ var _default = {
       this.time = 60;
       this.sendCodeState = false;
     },
-    //确认支付
-    comfirmPay: function comfirmPay() {
-      var _this2 = this;
+    weixinPay: function weixinPay(code) {
+      var _this3 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var payType, code, param, _yield$uni$$http$post, res;
+        var payType, param, _yield$uni$$http$post, res;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!_this2.loading) {
-                  _context.next = 2;
-                  break;
-                }
-                return _context.abrupt("return");
-              case 2:
-                payType = _this2.payType, code = _this2.code;
+                payType = _this3.payType;
                 param = {
                   "payType": payType,
                   //接口说明-枚举-支付类型
-                  "orderNo": _this2.Orderno,
-                  "code": payType !== 'weixin' && code //可选
+                  "orderNo": _this3.Orderno,
+                  "code": code //可选
                 };
-
-                _this2.loading = true;
-                _context.next = 7;
+                _context.next = 4;
                 return uni.$http.post('user/pay', param);
-              case 7:
+              case 4:
                 _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
-                _this2.loading = false;
-                uni.hideLoading();
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 17;
+                  _context.next = 9;
                   break;
                 }
-                uni.$showMsg(res.message, 1500);
-                _this2.clickVertiy();
-                _this2.$emit('comfirmPay');
-                _context.next = 18;
+                _context.next = 10;
                 break;
-              case 17:
+              case 9:
                 return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 18:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
+      }))();
+    },
+    //确认支付
+    comfirmPay: function comfirmPay() {
+      var _this4 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var payType, code, param, _yield$uni$$http$post2, res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!_this4.loading) {
+                  _context2.next = 2;
+                  break;
+                }
+                return _context2.abrupt("return");
+              case 2:
+                payType = _this4.payType, code = _this4.code;
+                param = {
+                  "payType": payType,
+                  //接口说明-枚举-支付类型
+                  "orderNo": _this4.Orderno,
+                  "code": payType !== 'weixin' && code //可选
+                };
+
+                _this4.loading = true;
+                _context2.next = 7;
+                return uni.$http.post('user/pay', param);
+              case 7:
+                _yield$uni$$http$post2 = _context2.sent;
+                res = _yield$uni$$http$post2.data;
+                _this4.loading = false;
+                uni.hideLoading();
+                if (!(0, _index.isSuccess)(res.code)) {
+                  _context2.next = 17;
+                  break;
+                }
+                uni.$showMsg(res.message, 1500);
+                _this4.clickVertiy();
+                _this4.$emit('comfirmPay');
+                _context2.next = 18;
+                break;
+              case 17:
+                return _context2.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 18:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   }
@@ -311,9 +349,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 237:
-/*!******************************************************************************************************************************************!*\
-  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=style&index=0&id=3cef5a64&lang=scss&scoped=true& ***!
-  \******************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************!*\
+  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=style&index=0&id=3cef5a64&lang=scss&scoped=true& ***!
+  \**********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -327,9 +365,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 238:
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=style&index=0&id=3cef5a64&lang=scss&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/components/my-pay/my-pay.vue?vue&type=style&index=0&id=3cef5a64&lang=scss&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -1,8 +1,17 @@
 @charset "UTF-8";
 /* 水平间距 */
 /* 水平间距 */
-.my-wrap.data-v-4dcceeb0 {
-  /* padding:20px 10px; */
+.icon-box.data-v-4dcceeb0 {
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.icon.data-v-4dcceeb0 {
+  margin-top: 5px;
+  margin-left: 3px;
 }
 .user-info.data-v-4dcceeb0 {
   display: flex;
@@ -11,11 +20,10 @@
   padding: 30px 20px;
 }
 .logo-box.data-v-4dcceeb0 {
-  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
+  margin: 20px 0px;
 }
 .phone.data-v-4dcceeb0 {
   color: #333;
@@ -53,5 +61,10 @@
 }
 .left-item button.data-v-4dcceeb0::after {
   border: none;
+}
+.loginBtn.data-v-4dcceeb0 {
+  font-size: 14px;
+  color: #fff;
+  background-color: #0e67a9;
 }
 
