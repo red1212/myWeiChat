@@ -276,14 +276,25 @@ var _default = {
                 _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 9;
+                  _context.next = 10;
                   break;
                 }
-                _context.next = 10;
+                uni.requestPayment(_objectSpread(_objectSpread({}, res.data), {}, {
+                  success: function success(res) {
+                    console.log('success:' + JSON.stringify(res));
+                  },
+                  fail: function fail(err) {
+                    console.log('fail:' + JSON.stringify(err));
+                  }
+                }));
+                // uni.$showMsg(res.message, 1500)
+                // this.clickVertiy()
+                // this.$emit('comfirmPay')
+                _context.next = 11;
                 break;
-              case 9:
-                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
               case 10:
+                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 11:
               case "end":
                 return _context.stop();
             }

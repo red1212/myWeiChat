@@ -145,6 +145,15 @@
 				const {data: res} = await uni.$http.post('user/pay', param);
 				// this.loading = false
 				if (isSuccess(res.code)) {
+					uni.requestPayment({
+						...res.data,
+						success: function (res) {
+							console.log('success:' + JSON.stringify(res));
+						},
+						fail: function (err) {
+							console.log('fail:' + JSON.stringify(err));
+						}
+					});
 					// uni.$showMsg(res.message, 1500)
 					// this.clickVertiy()
 					// this.$emit('comfirmPay')
