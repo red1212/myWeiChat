@@ -95,4 +95,8 @@ swiper.data-v-71e217db {
   font-size: 14px;
   margin-bottom: 6px;
 }
+.state.data-v-71e217db {
+  font-size: 12px;
+  color: #888;
+}
 

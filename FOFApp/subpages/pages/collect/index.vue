@@ -12,7 +12,7 @@
 								<text class="name">{{item.Product.Name || '---'}}</text>
 								<view class="desc">{{item.desc}}</view>
 							</view>
-							<view class="price">¥ {{item.Product.Price || '---'}}</view>
+							<view class="price">¥ {{item.Product.Price || '---'}} <text style="padding-left: 2px;" class="state">起</text></view>
 						</view>
 					</view>
 				</uni-swipe-action-item>
@@ -149,5 +149,9 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+	}
+	.state {
+		font-size: 12px;
+		color: #888;
 	}
 </style>

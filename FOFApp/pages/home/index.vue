@@ -16,7 +16,7 @@
 				<view class="text-box">
 					<view class="price">
 						<view class="dolor">￥</view>
-						<view>{{item.Price}}</view>
+						<view>{{item.Price}} <text style="padding-left: 2px;" class="state">起</text></view>
 					</view>
 					<view class="name">{{item.Name}}</view>
 				</view>
@@ -191,5 +191,9 @@
 		font-weight: bold;
 		font-size: 14px;
 		margin-bottom: 6px;
+	}
+	.state {
+		font-size: 12px;
+		color: #888;
 	}
 </style>

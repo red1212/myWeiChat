@@ -34,7 +34,7 @@
 						</view>
 						<view class="right-item">
 							<view class="name">{{item.Name}}</view>
-							<view class="price">¥{{item.Price}}</view>
+							<view class="price">¥{{item.Price}} <text style="padding-left: 2px;" class="state">起</text></view>
 							<view class="state">服务次数：{{item.ServiceNum}}次</view>
 						</view>
 					</view>
