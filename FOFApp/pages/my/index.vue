@@ -80,10 +80,6 @@
 						name: '联系客服',
 						icon: 'headphones',
 					},
-					{
-						name: '退出登录',
-						icon: 'info',
-					}
 				]
 			}
 		},
@@ -112,6 +108,11 @@
 			onShow(){
 				if(!this.isLogin()){
 					this.infoList.pop()
+				}else{
+					this.infoList.push({
+						name: '退出登录',
+						icon: 'info',
+					})
 				}
 			}
 		}
