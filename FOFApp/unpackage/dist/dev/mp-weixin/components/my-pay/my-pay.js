@@ -242,7 +242,6 @@ var _default = {
           provider: 'weixin',
           //使用微信登录
           success: function success(loginRes) {
-            console.log(loginRes);
             _this.weixinPay(loginRes.code);
           }
         });
@@ -258,7 +257,7 @@ var _default = {
     weixinPay: function weixinPay(code) {
       var _this3 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var payType, param, _yield$uni$$http$post, res;
+        var payType, param, _yield$uni$$http$post, res, _payState;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -276,10 +275,15 @@ var _default = {
                 _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 10;
+                  _context.next = 11;
                   break;
                 }
-                (0, _user.weixinRequest)(res.data);
+                _payState = (0, _user.weixinRequest)(res.data);
+                if (_payState) {
+                  (0, _user.payState)(_this3.Orderno);
+                  _this3.clickVertiy();
+                  _this3.$emit('comfirmPay');
+                }
                 // uni.requestPayment({
                 // 	...res.data,
                 // 	success: function (res) {
@@ -292,11 +296,11 @@ var _default = {
                 // uni.$showMsg(res.message, 1500)
                 // this.clickVertiy()
                 // this.$emit('comfirmPay')
-                _context.next = 11;
+                _context.next = 12;
                 break;
-              case 10:
-                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
               case 11:
+                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 12:
               case "end":
                 return _context.stop();
             }

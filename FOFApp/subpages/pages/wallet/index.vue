@@ -60,7 +60,7 @@
 
 <script>
 	import {isSuccess} from '../../../util/index.js'
-	import {weixinRequest,weixinPay}  from '../../../util/user.js'
+	import {weixinPay}  from '../../../util/user.js'
 	export default {
 		data() {
 			return {
@@ -89,12 +89,12 @@
 				this.$refs.rechargeRef.$refs.popup.close();
 				this.money = ''
 			},
-			async confirm(){
-				if(this.loading) return
-				this.loading = true
+			confirm(){
 				this.recharge()
 			},
 			async recharge(){
+				if(this.loading) return
+				this.loading = true
 				let param = {
 					amount : Number(this.money),
 				}

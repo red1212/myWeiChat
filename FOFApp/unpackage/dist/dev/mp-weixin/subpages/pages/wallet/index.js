@@ -269,8 +269,12 @@ var _default = {
       this.money = '';
     },
     confirm: function confirm() {
+      this.recharge();
+    },
+    recharge: function recharge() {
       var _this = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var param, _yield$uni$$http$post, res;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -282,34 +286,17 @@ var _default = {
                 return _context.abrupt("return");
               case 2:
                 _this.loading = true;
-                _this.recharge();
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    recharge: function recharge() {
-      var _this2 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-        var param, _yield$uni$$http$post, res;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
                 param = {
-                  amount: Number(_this2.money)
+                  amount: Number(_this.money)
                 };
-                _context2.next = 3;
+                _context.next = 6;
                 return uni.$http.post('user/recharge', param);
-              case 3:
-                _yield$uni$$http$post = _context2.sent;
+              case 6:
+                _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
-                _this2.loading = false;
+                _this.loading = false;
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context2.next = 10;
+                  _context.next = 13;
                   break;
                 }
                 //这里对接微信支付
@@ -321,52 +308,52 @@ var _default = {
                     (0, _user.weixinPay)(loginRes.code, 'weixin', res.data.Orderno);
                   }
                 });
-                _context2.next = 11;
+                _context.next = 14;
                 break;
-              case 10:
+              case 13:
+                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    getAssets: function getAssets() {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var _yield$uni$$http$post2, res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                uni.showLoading({
+                  title: '数据加载中...'
+                });
+                _this2.loading = true;
+                _context2.next = 4;
+                return uni.$http.post('user/assets');
+              case 4:
+                _yield$uni$$http$post2 = _context2.sent;
+                res = _yield$uni$$http$post2.data;
+                _this2.loading = false;
+                uni.hideLoading();
+                if (!(0, _index.isSuccess)(res.code)) {
+                  _context2.next = 12;
+                  break;
+                }
+                _this2.assetInfo = (res === null || res === void 0 ? void 0 : res.data) || {};
+                _context2.next = 13;
+                break;
+              case 12:
                 return _context2.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 11:
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
-      }))();
-    },
-    getAssets: function getAssets() {
-      var _this3 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
-        var _yield$uni$$http$post2, res;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                uni.showLoading({
-                  title: '数据加载中...'
-                });
-                _this3.loading = true;
-                _context3.next = 4;
-                return uni.$http.post('user/assets');
-              case 4:
-                _yield$uni$$http$post2 = _context3.sent;
-                res = _yield$uni$$http$post2.data;
-                _this3.loading = false;
-                uni.hideLoading();
-                if (!(0, _index.isSuccess)(res.code)) {
-                  _context3.next = 12;
-                  break;
-                }
-                _this3.assetInfo = (res === null || res === void 0 ? void 0 : res.data) || {};
-                _context3.next = 13;
-                break;
-              case 12:
-                return _context3.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 13:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
       }))();
     }
   }

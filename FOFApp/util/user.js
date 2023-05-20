@@ -49,12 +49,17 @@ export async function payState(params){
 	
 }
 export async function weixinPay(code,payType,Orderno){
+	let loading = false
+	console.log(loading)
+	if(loading == true) return 
+	loading = true
 	let param={
 		"payType": payType, //接口说明-枚举-支付类型
 		"orderNo": Orderno,
 		"code":  code //可选
 	}
 	const {data: res} = await uni.$http.post('user/pay', param);
+	loading = false
 	if (isSuccess(res.code)) {
 		weixinRequest(res.data)
 	} else {

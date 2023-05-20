@@ -39,7 +39,7 @@
 
 <script>
 	import {isSuccess} from '../../util/index.js'
-	import {sendCodeFn,weixinRequest} from '../../util/user.js'
+	import {sendCodeFn,weixinRequest,payState} from '../../util/user.js'
 	import {mapState} from 'vuex'
 	export default {
 		name: "my-pay",
@@ -121,7 +121,6 @@
 					uni.login({
 					provider: 'weixin', //使用微信登录
 					success: function (loginRes) {
-						console.log(loginRes)
 						_this.weixinPay(loginRes.code)
 					}
 					});
@@ -145,7 +144,12 @@
 				const {data: res} = await uni.$http.post('user/pay', param);
 				// this.loading = false
 				if (isSuccess(res.code)) {
-					weixinRequest(res.data)
+					let _payState = weixinRequest(res.data)
+					if(_payState){
+						payState(this.Orderno)
+						this.clickVertiy()
+						this.$emit('comfirmPay')
+					}
 					// uni.requestPayment({
 					// 	...res.data,
 					// 	success: function (res) {

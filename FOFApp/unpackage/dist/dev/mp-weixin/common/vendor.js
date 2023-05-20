@@ -41398,32 +41398,42 @@ function weixinPay(_x5, _x6, _x7) {
 }
 function _weixinPay() {
   _weixinPay = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(code, payType, Orderno) {
-    var param, _yield$uni$$http$post4, res;
+    var loading, param, _yield$uni$$http$post4, res;
     return _regenerator.default.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
+            loading = false;
+            console.log(loading);
+            if (!(loading == true)) {
+              _context4.next = 4;
+              break;
+            }
+            return _context4.abrupt("return");
+          case 4:
+            loading = true;
             param = {
               "payType": payType,
               //接口说明-枚举-支付类型
               "orderNo": Orderno,
               "code": code //可选
             };
-            _context4.next = 3;
+            _context4.next = 8;
             return uni.$http.post('user/pay', param);
-          case 3:
+          case 8:
             _yield$uni$$http$post4 = _context4.sent;
             res = _yield$uni$$http$post4.data;
+            loading = false;
             if (!(0, _index.isSuccess)(res.code)) {
-              _context4.next = 9;
+              _context4.next = 15;
               break;
             }
             weixinRequest(res.data);
-            _context4.next = 10;
+            _context4.next = 16;
             break;
-          case 9:
+          case 15:
             return _context4.abrupt("return", uni.$showMsg(res.message, 1500));
-          case 10:
+          case 16:
           case "end":
             return _context4.stop();
         }

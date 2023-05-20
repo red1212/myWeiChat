@@ -526,7 +526,7 @@
 
 				let no_sample_sku = this.SampleArr.filter((item)=>item.sample_sku.length == 0)
 				if(!isEmpty(no_sample_sku)){
-					return uni.$showMsg(errTip['test_purpose'], 1500)
+					return uni.$showMsg(errTip['sample_sku'], 1500)
 				}
 				this.totalPrice  = await orderPrice(this.orderParam())
 
