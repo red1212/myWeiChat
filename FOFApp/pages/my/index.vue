@@ -26,6 +26,15 @@
 					<uni-icons type="right" size="20" color="#999999"></uni-icons>
 				</view>
 			</view>
+			<view v-if="isLogin()" class="card-item" @click="loginOut()">
+				<view class="left-item">
+					<uni-icons type="info" size="24" color="#999999" class="card-icon"></uni-icons>
+					<view class="card-name">退出登录</view>
+				</view>
+				<view class="right-item">
+					<uni-icons type="right" size="20" color="#999999"></uni-icons>
+				</view>
+			</view>
 		</view>
 		<view class="logo-box">
 			<logo width="254" height="60" />
@@ -89,13 +98,6 @@
 		methods:{
 			...mapMutations('m_users',['updateUserInfo','updateToken']),
 			goPage(item){
-				if(item.name === '退出登录'){
-					this.updateUserInfo({})
-					this.updateToken('')
-					return uni.navigateTo({
-						url:'/subpages/pages/login/index'
-					})
-				}
 				if(item.needLogin && !this.isLogin()){
 					return uni.navigateTo({
 						url:'/subpages/pages/login/index'
@@ -105,15 +107,12 @@
 						url:item.url
 					})
 			},
-			onShow(){
-				if(!this.isLogin()){
-					this.infoList.pop()
-				}else{
-					this.infoList.push({
-						name: '退出登录',
-						icon: 'info',
+			loginOut(){
+					this.updateUserInfo({})
+					this.updateToken('')
+					return uni.navigateTo({
+						url:'/subpages/pages/login/index'
 					})
-				}
 			}
 		}
 

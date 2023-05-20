@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["subpages/pages/order-in-line/index"],{
 
 /***/ 157:
-/*!*******************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/main.js?{"page":"subpages%2Fpages%2Forder-in-line%2Findex"} ***!
-  \*******************************************************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/main.js?{"page":"subpages%2Fpages%2Forder-in-line%2Findex"} ***!
+  \***************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,9 +22,9 @@ createPage(_index.default);
 /***/ }),
 
 /***/ 158:
-/*!**********************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue ***!
-  \**********************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63,9 +63,9 @@ component.options.__file = "subpages/pages/order-in-line/index.vue"
 /***/ }),
 
 /***/ 159:
-/*!*****************************************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=template&id=bbe49450&scoped=true& ***!
-  \*****************************************************************************************************************************************/
+/*!*************************************************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=template&id=bbe49450&scoped=true& ***!
+  \*************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85,9 +85,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 160:
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=template&id=bbe49450&scoped=true& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--17-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=template&id=bbe49450&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -362,9 +362,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 161:
-/*!***********************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************/
+/*!*******************************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -378,9 +378,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 162:
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--13-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -972,70 +972,110 @@ var _default = {
       this.$forceUpdate();
     },
     // 获取上传状态
-    select: function select(e) {
+    selectFile: function selectFile(e) {
+      var _this10 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4() {
-        var tempFilePaths, imgUrl, param;
+        var tempFilePaths, tempFiles, imgUrl;
         return _regenerator.default.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 console.log('选择文件：', e);
-                tempFilePaths = e.tempFilePaths; //获取图片临时路径
+                tempFilePaths = e.tempFilePaths;
+                tempFiles = e.tempFiles; //获取图片临时路径
                 imgUrl = tempFilePaths[0];
-                param = {
-                  key: imgUrl,
-                  uptype: '',
-                  safe: 0,
-                  name: 'imgUrl'
-                };
+                console.log(imgUrl);
+                console.log(tempFiles);
                 uni.request({
                   url: 'http://47.97.216.6/admin/api.upload/state.html',
                   //仅为示例，并非真实接口地址。
                   data: {
-                    key: imgUrl,
+                    key: tempFiles[0].name,
                     uptype: '',
                     safe: 0,
-                    name: 'imgUrl'
+                    name: tempFiles[0].name
                   },
                   header: {
                     "Content-Type": "multipart/form-data"
                   },
                   success: function success(res) {
-                    console.log(res);
-                    // this.text = 'request success';
+                    console.log(res.data, '------');
+                    var _res$data$data = res.data.data,
+                      key = _res$data$data.key,
+                      safe = _res$data$data.safe,
+                      uptype = _res$data$data.uptype;
+                    if (res.data.code == 404) {
+                      var param = {
+                        key: key,
+                        uptype: uptype,
+                        safe: safe,
+                        imgUrl: imgUrl,
+                        file: tempFiles[0].file
+                      };
+                      _this10.uploadFile(param);
+                    }
                   }
                 });
-
-                // let {data:res} = await uni.$http.post('admin/api.upload/state.html',param)
-                // console.log(res)
-                // uni.uploadFile({
-                // 	//图片上传地址
-                // 	url: 'http://47.97.216.6/admin/api.upload/state.html',  //'http://47.97.216.6/admin/api.upload/file.html',
-                // 	key: imgUrl,
-                // 	uptype:'',
-                // 	safe:0,
-                // 	name:'imgUrl',
-                // 	//上传名字，注意与后台接收的参数名一致
-                // 	//设置请求头
-                // 	header: {
-                // 		"Content-Type": "multipart/form-data"
-                // 	},
-                // 	//请求成功，后台返回自己服务器上的图片地址
-                // 	success: (uploadFileRes) => {
-                // 		console.log(uploadFileRes)
-                // 		// console.log('uploadFileRes',JSON.parse(uploadFileRes.data));   
-                // 		// //处理数据
-                // 		// const path=JSON.parse(uploadFileRes.data)
-                // 		// //赋值，前端渲染
-                // 		// this.baseFormData.photo=path.imgUrl
-                // 	}
-                // });
-              case 5:
+              case 7:
               case "end":
                 return _context4.stop();
             }
           }
         }, _callee4);
+      }))();
+    },
+    uploadFile: function uploadFile(param) {
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5() {
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                console.log(param);
+                uni.uploadFile({
+                  url: 'http://47.97.216.6/admin/api.upload/file.html',
+                  //仅为示例，非真实的接口地址
+                  filePath: param.imgUrl,
+                  name: 'file',
+                  formData: {
+                    file: param.file,
+                    key: param.imgUrl,
+                    uptype: param.uptype,
+                    safe: param.safe
+                  },
+                  header: {
+                    "Content-Type": "multipart/form-data"
+                  },
+                  success: function success(uploadFileRes) {
+                    console.log(uploadFileRes.data);
+                  }
+                });
+                // console.log(new Blob([JSON.stringify(param.file)]))
+                // 	uni.request({
+                // 	    url: 'http://47.97.216.6/admin/api.upload/file.html', //仅为示例，并非真实接口地址。
+                // 	    data: {
+                // 	       key: param.imgUrl,
+                // 	       uptype:param.uptype,
+                // 	       safe:param.safe,
+                // 	       file:param.file,
+                // 	    },
+                // 		method: 'POST',
+                // 	    header: {
+                // 	        "Content-Type": "multipart/form-data",
+                // 	    },
+                // 	    success: (res) => {
+                // 	        console.log(res,'------');
+                // 			if(res.code == 404){
+
+                // 			}
+                // 	        // this.text = 'request success';
+                // 	    }
+                // 	});
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
       }))();
     },
     // 上传成功
@@ -1054,9 +1094,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 165:
-/*!********************************************************************************************************************************************************!*\
-  !*** /Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=style&index=0&id=bbe49450&lang=scss&scoped=true& ***!
-  \********************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************!*\
+  !*** /Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=style&index=0&id=bbe49450&lang=scss&scoped=true& ***!
+  \****************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1070,9 +1110,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 166:
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/qinxiaoting/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=style&index=0&id=bbe49450&lang=scss&scoped=true& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!/Users/yingtao/Desktop/web/myWeiChat/FOFApp/subpages/pages/order-in-line/index.vue?vue&type=style&index=0&id=bbe49450&lang=scss&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

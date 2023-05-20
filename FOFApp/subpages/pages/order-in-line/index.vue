@@ -100,7 +100,7 @@
 			</view>
 
 			<view class="content">
-				<uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @select="select"
+				<uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @select="selectFile"
 					@success="success" @fail="fail" file-extname="png,jpg" :limit="1" :list-styles="listStyles">
 					<button class="submit">上传附件</button>
 				</uni-file-picker>
@@ -624,59 +624,82 @@
 				this.$forceUpdate()
 			},
 			// 获取上传状态
-			async select(e) {
+			async selectFile(e) {
 				console.log('选择文件：', e)
 				const tempFilePaths = e.tempFilePaths;
+				const tempFiles = e.tempFiles
 				//获取图片临时路径
 				const imgUrl = tempFilePaths[0]
-				let param={
-					key: imgUrl,
-					uptype:'',
-					safe:0,
-					name:'imgUrl',
-				}
-				
+					console.log(imgUrl)
+					console.log(tempFiles)
 				uni.request({
 				    url: 'http://47.97.216.6/admin/api.upload/state.html', //仅为示例，并非真实接口地址。
 				    data: {
-				       key: imgUrl,
+				       key: tempFiles[0].name,
 				       uptype:'',
 				       safe:0,
-				       name:'imgUrl',
+				       name:tempFiles[0].name,
 				    },
 				    header: {
 				        "Content-Type": "multipart/form-data",
 				    },
 				    success: (res) => {
-				        console.log(res);
-				        // this.text = 'request success';
+				        console.log(res.data,'------');
+						let {key,safe,uptype} = res.data.data
+						if(res.data.code == 404){
+							let param ={
+								key:key ,
+								uptype:uptype,
+								safe:safe,
+								imgUrl:imgUrl,
+								file:tempFiles[0].file
+							}
+							this.uploadFile(param)
+						}
 				    }
 				});
 
-				// let {data:res} = await uni.$http.post('admin/api.upload/state.html',param)
-				// console.log(res)
-				// uni.uploadFile({
-				// 	//图片上传地址
-				// 	url: 'http://47.97.216.6/admin/api.upload/state.html',  //'http://47.97.216.6/admin/api.upload/file.html',
-				// 	key: imgUrl,
-				// 	uptype:'',
-				// 	safe:0,
-				// 	name:'imgUrl',
-				// 	//上传名字，注意与后台接收的参数名一致
-				// 	//设置请求头
-				// 	header: {
-				// 		"Content-Type": "multipart/form-data"
-				// 	},
-				// 	//请求成功，后台返回自己服务器上的图片地址
-				// 	success: (uploadFileRes) => {
-				// 		console.log(uploadFileRes)
-				// 		// console.log('uploadFileRes',JSON.parse(uploadFileRes.data));   
-				// 		// //处理数据
-				// 		// const path=JSON.parse(uploadFileRes.data)
-				// 		// //赋值，前端渲染
-				// 		// this.baseFormData.photo=path.imgUrl
-				// 	}
-				// });
+			},
+			
+			 async uploadFile(param){
+			 	console.log(param)
+				uni.uploadFile({
+					url: 'http://47.97.216.6/admin/api.upload/file.html', //仅为示例，非真实的接口地址
+					filePath: param.imgUrl,
+					name: 'file',
+					formData: {
+						file:param.file,
+						key: param.imgUrl,
+						uptype:param.uptype,
+						safe:param.safe,
+					},
+					header:{ "Content-Type": "multipart/form-data",},
+					success: (uploadFileRes) => {
+						console.log(uploadFileRes.data);
+					}
+				});
+			// console.log(new Blob([JSON.stringify(param.file)]))
+			// 	uni.request({
+			// 	    url: 'http://47.97.216.6/admin/api.upload/file.html', //仅为示例，并非真实接口地址。
+			// 	    data: {
+			// 	       key: param.imgUrl,
+			// 	       uptype:param.uptype,
+			// 	       safe:param.safe,
+			// 	       file:param.file,
+			// 	    },
+			// 		method: 'POST',
+			// 	    header: {
+			// 	        "Content-Type": "multipart/form-data",
+			// 	    },
+			// 	    success: (res) => {
+			// 	        console.log(res,'------');
+			// 			if(res.code == 404){
+							
+			// 			}
+			// 	        // this.text = 'request success';
+			// 	    }
+			// 	});
+			
 			},
 			// 上传成功
 			success(e) {

@@ -1,7 +1,7 @@
 <template>
 	<view class="collect-wrap">
 		<uni-swipe-action class="collect">
-			<view v-for="(item,i) in collectList" :key="i" class="block">
+			<view v-for="(item,i) in collectList" :key="i" class="block" @click="goDetail(item)">
 				<uni-swipe-action-item :right-options="options" :left-options="options" @click="()=>onClick(item)">
 					<view class="collect-item">
 						<view class="left-item">
@@ -54,6 +54,12 @@
 				if (this.loading) return
 				this.paging.page += 1
 				this.getList()
+			},
+			goDetail(item){
+				console.log(item)
+				uni.navigateTo({
+					url: `/subpages/pages/productDetail/index?id=${item.Product.ID}`,
+				})
 			},
 			//上拉刷新
 			onPullDownRefresh() {
