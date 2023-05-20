@@ -17,7 +17,7 @@
 		<view class="my-order">
 			<view class="order-item" v-for="(item,i) in List" :key="i" v-if="item.ProductInfo">
 				<view class="row-1">
-					<text class="orderId">{{item.ProductInfo.Code || '---'}}</text>
+					<text class="orderId">{{item.Orderno || '---'}}</text>
 					<text class="payState">{{isPayFn[item.IsPay] || '---'}}</text>
 				</view>
 				<view class="row-2">

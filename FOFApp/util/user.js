@@ -34,11 +34,12 @@ export async function  orderPrice(params){
 }
 
 //支付状态查询
-export async function payState(params){
+export async function payState(params,cb){
 	const { data: res }= await uni.$http.post('user/order/pay/status', params);
 	if(!isSuccess(res.code)){
 		if(res.data){
 			uni.$showMsg('支付成功',1500) 
+			cb && cb()
 		}else{
 			uni.$showMsg('支付失败',1500) 
 		}
@@ -67,18 +68,15 @@ export async function weixinPay(code,payType,Orderno){
 	}
 }
 
-export function weixinRequest(param){
-	let res = false
+export function weixinRequest(param,cb){
 	uni.requestPayment({
 		...param,
 		success: function (res) {
 			console.log('success:' + JSON.stringify(res));
-			res = true
+			cb && cb()
 		},
 		fail: function (err) {
 			console.log('fail:' + JSON.stringify(err));
-			res = false
 		}
 	});
-	return res
 }

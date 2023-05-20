@@ -41360,11 +41360,11 @@ function _orderPrice() {
   }));
   return _orderPrice.apply(this, arguments);
 }
-function payState(_x4) {
+function payState(_x4, _x5) {
   return _payState.apply(this, arguments);
 }
 function _payState() {
-  _payState = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(params) {
+  _payState = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(params, cb) {
     var _yield$uni$$http$post3, res;
     return _regenerator.default.wrap(function _callee3$(_context3) {
       while (1) {
@@ -41378,6 +41378,7 @@ function _payState() {
             if (!(0, _index.isSuccess)(res.code)) {
               if (res.data) {
                 uni.$showMsg('支付成功', 1500);
+                cb && cb();
               } else {
                 uni.$showMsg('支付失败', 1500);
               }
@@ -41393,7 +41394,7 @@ function _payState() {
   }));
   return _payState.apply(this, arguments);
 }
-function weixinPay(_x5, _x6, _x7) {
+function weixinPay(_x6, _x7, _x8) {
   return _weixinPay.apply(this, arguments);
 }
 function _weixinPay() {
@@ -41442,19 +41443,16 @@ function _weixinPay() {
   }));
   return _weixinPay.apply(this, arguments);
 }
-function weixinRequest(param) {
-  var res = false;
+function weixinRequest(param, cb) {
   uni.requestPayment(_objectSpread(_objectSpread({}, param), {}, {
     success: function success(res) {
       console.log('success:' + JSON.stringify(res));
-      res = true;
+      cb && cb();
     },
     fail: function fail(err) {
       console.log('fail:' + JSON.stringify(err));
-      res = false;
     }
   }));
-  return res;
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 

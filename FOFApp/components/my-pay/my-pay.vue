@@ -144,12 +144,7 @@
 				const {data: res} = await uni.$http.post('user/pay', param);
 				// this.loading = false
 				if (isSuccess(res.code)) {
-					let _payState = weixinRequest(res.data)
-					if(_payState){
-						payState(this.Orderno)
-						this.clickVertiy()
-						this.$emit('comfirmPay')
-					}
+					weixinRequest(res.data,this.getPayState)
 					// uni.requestPayment({
 					// 	...res.data,
 					// 	success: function (res) {
@@ -165,6 +160,17 @@
 				} else {
 					return uni.$showMsg(res.message, 1500)
 				}
+			},
+			getPayState(){
+				payState(this.Orderno,this.goOrder())
+				this.clickVertiy()
+				this.$emit('comfirmPay')
+			},
+			goOrder(){
+				uni.navigateTo({
+					url:'/subpages/pages/order/index'
+				})
+				
 			},
 			//确认支付
 			async comfirmPay() {

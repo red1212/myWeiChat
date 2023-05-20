@@ -257,7 +257,7 @@ var _default = {
     weixinPay: function weixinPay(code) {
       var _this3 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var payType, param, _yield$uni$$http$post, res, _payState;
+        var payType, param, _yield$uni$$http$post, res;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -275,15 +275,10 @@ var _default = {
                 _yield$uni$$http$post = _context.sent;
                 res = _yield$uni$$http$post.data;
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 11;
+                  _context.next = 10;
                   break;
                 }
-                _payState = (0, _user.weixinRequest)(res.data);
-                if (_payState) {
-                  (0, _user.payState)(_this3.Orderno);
-                  _this3.clickVertiy();
-                  _this3.$emit('comfirmPay');
-                }
+                (0, _user.weixinRequest)(res.data, _this3.getPayState);
                 // uni.requestPayment({
                 // 	...res.data,
                 // 	success: function (res) {
@@ -296,17 +291,27 @@ var _default = {
                 // uni.$showMsg(res.message, 1500)
                 // this.clickVertiy()
                 // this.$emit('comfirmPay')
-                _context.next = 12;
+                _context.next = 11;
                 break;
-              case 11:
+              case 10:
                 return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    getPayState: function getPayState() {
+      (0, _user.payState)(this.Orderno, this.goOrder());
+      this.clickVertiy();
+      this.$emit('comfirmPay');
+    },
+    goOrder: function goOrder() {
+      uni.navigateTo({
+        url: '/subpages/pages/order/index'
+      });
     },
     //确认支付
     comfirmPay: function comfirmPay() {
