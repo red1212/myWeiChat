@@ -41273,6 +41273,7 @@ exports.orderPrice = orderPrice;
 exports.payState = payState;
 exports.sendCodeFn = sendCodeFn;
 exports.toLogin = toLogin;
+exports.weixinPay = weixinPay;
 exports.weixinRequest = weixinRequest;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 46));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
@@ -41391,6 +41392,45 @@ function _payState() {
     }, _callee3);
   }));
   return _payState.apply(this, arguments);
+}
+function weixinPay(_x5, _x6, _x7) {
+  return _weixinPay.apply(this, arguments);
+}
+function _weixinPay() {
+  _weixinPay = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(code, payType, Orderno) {
+    var param, _yield$uni$$http$post4, res;
+    return _regenerator.default.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            param = {
+              "payType": payType,
+              //接口说明-枚举-支付类型
+              "orderNo": Orderno,
+              "code": code //可选
+            };
+            _context4.next = 3;
+            return uni.$http.post('user/pay', param);
+          case 3:
+            _yield$uni$$http$post4 = _context4.sent;
+            res = _yield$uni$$http$post4.data;
+            if (!(0, _index.isSuccess)(res.code)) {
+              _context4.next = 9;
+              break;
+            }
+            weixinRequest(res.data);
+            _context4.next = 10;
+            break;
+          case 9:
+            return _context4.abrupt("return", uni.$showMsg(res.message, 1500));
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+  return _weixinPay.apply(this, arguments);
 }
 function weixinRequest(param) {
   var res = false;

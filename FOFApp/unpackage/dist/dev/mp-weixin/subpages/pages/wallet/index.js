@@ -269,30 +269,21 @@ var _default = {
       this.money = '';
     },
     confirm: function confirm() {
-      var _this2 = this;
+      var _this = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var _this;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!_this2.loading) {
+                if (!_this.loading) {
                   _context.next = 2;
                   break;
                 }
                 return _context.abrupt("return");
               case 2:
-                _this2.loading = true;
-                _this = _this2;
-                uni.login({
-                  provider: 'weixin',
-                  //使用微信登录
-                  success: function success(loginRes) {
-                    console.log(loginRes);
-                    _this.recharge(loginRes.code);
-                  }
-                });
-              case 5:
+                _this.loading = true;
+                _this.recharge();
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -300,8 +291,8 @@ var _default = {
         }, _callee);
       }))();
     },
-    recharge: function recharge(code) {
-      var _this3 = this;
+    recharge: function recharge() {
+      var _this2 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
         var param, _yield$uni$$http$post, res;
         return _regenerator.default.wrap(function _callee2$(_context2) {
@@ -309,21 +300,27 @@ var _default = {
             switch (_context2.prev = _context2.next) {
               case 0:
                 param = {
-                  amount: Number(_this3.money),
-                  "code": code //可选
+                  amount: Number(_this2.money)
                 };
                 _context2.next = 3;
                 return uni.$http.post('user/recharge', param);
               case 3:
                 _yield$uni$$http$post = _context2.sent;
                 res = _yield$uni$$http$post.data;
-                _this3.loading = false;
+                _this2.loading = false;
                 if (!(0, _index.isSuccess)(res.code)) {
                   _context2.next = 10;
                   break;
                 }
                 //这里对接微信支付
-                (0, _user.weixinRequest)(res.data);
+                uni.login({
+                  provider: 'weixin',
+                  //使用微信登录
+                  success: function success(loginRes) {
+                    console.log(loginRes);
+                    (0, _user.weixinPay)(loginRes.code, 'weixin', res.data.Orderno);
+                  }
+                });
                 _context2.next = 11;
                 break;
               case 10:
@@ -337,7 +334,7 @@ var _default = {
       }))();
     },
     getAssets: function getAssets() {
-      var _this4 = this;
+      var _this3 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
         var _yield$uni$$http$post2, res;
         return _regenerator.default.wrap(function _callee3$(_context3) {
@@ -347,19 +344,19 @@ var _default = {
                 uni.showLoading({
                   title: '数据加载中...'
                 });
-                _this4.loading = true;
+                _this3.loading = true;
                 _context3.next = 4;
                 return uni.$http.post('user/assets');
               case 4:
                 _yield$uni$$http$post2 = _context3.sent;
                 res = _yield$uni$$http$post2.data;
-                _this4.loading = false;
+                _this3.loading = false;
                 uni.hideLoading();
                 if (!(0, _index.isSuccess)(res.code)) {
                   _context3.next = 12;
                   break;
                 }
-                _this4.assetInfo = (res === null || res === void 0 ? void 0 : res.data) || {};
+                _this3.assetInfo = (res === null || res === void 0 ? void 0 : res.data) || {};
                 _context3.next = 13;
                 break;
               case 12:
