@@ -408,18 +408,6 @@ var _default = {
       NumberToFormat: _index.NumberToFormat,
       content: '',
       productDetail: {},
-      listStyles: {
-        // 是否显示边框
-        border: false,
-        // 是否显示分隔线
-        dividline: false,
-        // 线条样式
-        borderStyle: {
-          width: 0,
-          color: 'blue',
-          radius: 2
-        }
-      },
       disable: false,
       showConfirm: false,
       payState: false,
@@ -1025,6 +1013,7 @@ var _default = {
       }))();
     },
     uploadFile: function uploadFile(param) {
+      var _this11 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5() {
         return _regenerator.default.wrap(function _callee5$(_context5) {
           while (1) {
@@ -1046,30 +1035,15 @@ var _default = {
                     "Content-Type": "multipart/form-data"
                   },
                   success: function success(uploadFileRes) {
-                    console.log(uploadFileRes.data);
+                    var result = JSON.parse(uploadFileRes.data);
+                    if (result.code == 1) {
+                      _this11.File = result.data.url;
+                      console.log(_this11.File);
+                      return uni.$showMsg('文件上传成功', 1500);
+                    }
+                    return uni.$showMsg('文件上传失败', 1500);
                   }
                 });
-                // console.log(new Blob([JSON.stringify(param.file)]))
-                // 	uni.request({
-                // 	    url: 'http://47.97.216.6/admin/api.upload/file.html', //仅为示例，并非真实接口地址。
-                // 	    data: {
-                // 	       key: param.imgUrl,
-                // 	       uptype:param.uptype,
-                // 	       safe:param.safe,
-                // 	       file:param.file,
-                // 	    },
-                // 		method: 'POST',
-                // 	    header: {
-                // 	        "Content-Type": "multipart/form-data",
-                // 	    },
-                // 	    success: (res) => {
-                // 	        console.log(res,'------');
-                // 			if(res.code == 404){
-
-                // 			}
-                // 	        // this.text = 'request success';
-                // 	    }
-                // 	});
               case 2:
               case "end":
                 return _context5.stop();

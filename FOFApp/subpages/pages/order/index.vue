@@ -227,7 +227,6 @@
 			//支付
 			clickPay(item, type) {
 				this.Orderno = item.Orderno
-
 				if (type === 'open') {
 					this.$refs.payRef.$refs.popup.open()
 				} else {

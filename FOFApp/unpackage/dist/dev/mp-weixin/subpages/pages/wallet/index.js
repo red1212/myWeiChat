@@ -179,6 +179,7 @@ exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 46));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 48));
 var _index = __webpack_require__(/*! ../../../util/index.js */ 39);
+var _user = __webpack_require__(/*! ../../../util/user.js */ 66);
 //
 //
 //
@@ -268,38 +269,30 @@ var _default = {
       this.money = '';
     },
     confirm: function confirm() {
-      var _this = this;
+      var _this2 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var param, _yield$uni$$http$post, res;
+        var _this;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!_this.loading) {
+                if (!_this2.loading) {
                   _context.next = 2;
                   break;
                 }
                 return _context.abrupt("return");
               case 2:
-                _this.loading = true;
-                param = {
-                  amount: Number(_this.money)
-                };
-                _context.next = 6;
-                return uni.$http.post('user/recharge', param);
-              case 6:
-                _yield$uni$$http$post = _context.sent;
-                res = _yield$uni$$http$post.data;
-                _this.loading = false;
-                if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 12;
-                  break;
-                }
-                _context.next = 13;
-                break;
-              case 12:
-                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 13:
+                _this2.loading = true;
+                _this = _this2;
+                uni.login({
+                  provider: 'weixin',
+                  //使用微信登录
+                  success: function success(loginRes) {
+                    console.log(loginRes);
+                    _this.recharge(loginRes.code);
+                  }
+                });
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -307,40 +300,76 @@ var _default = {
         }, _callee);
       }))();
     },
-    getAssets: function getAssets() {
-      var _this2 = this;
+    recharge: function recharge(code) {
+      var _this3 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-        var _yield$uni$$http$post2, res;
+        var param, _yield$uni$$http$post, res;
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                uni.showLoading({
-                  title: '数据加载中...'
-                });
-                _this2.loading = true;
-                _context2.next = 4;
-                return uni.$http.post('user/assets');
-              case 4:
-                _yield$uni$$http$post2 = _context2.sent;
-                res = _yield$uni$$http$post2.data;
-                _this2.loading = false;
-                uni.hideLoading();
+                param = {
+                  amount: Number(_this3.money),
+                  "code": code //可选
+                };
+                _context2.next = 3;
+                return uni.$http.post('user/recharge', param);
+              case 3:
+                _yield$uni$$http$post = _context2.sent;
+                res = _yield$uni$$http$post.data;
+                _this3.loading = false;
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context2.next = 12;
+                  _context2.next = 10;
                   break;
                 }
-                _this2.assetInfo = (res === null || res === void 0 ? void 0 : res.data) || {};
-                _context2.next = 13;
+                //这里对接微信支付
+                (0, _user.weixinRequest)(res.data);
+                _context2.next = 11;
                 break;
-              case 12:
+              case 10:
                 return _context2.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 13:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }))();
+    },
+    getAssets: function getAssets() {
+      var _this4 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        var _yield$uni$$http$post2, res;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                uni.showLoading({
+                  title: '数据加载中...'
+                });
+                _this4.loading = true;
+                _context3.next = 4;
+                return uni.$http.post('user/assets');
+              case 4:
+                _yield$uni$$http$post2 = _context3.sent;
+                res = _yield$uni$$http$post2.data;
+                _this4.loading = false;
+                uni.hideLoading();
+                if (!(0, _index.isSuccess)(res.code)) {
+                  _context3.next = 12;
+                  break;
+                }
+                _this4.assetInfo = (res === null || res === void 0 ? void 0 : res.data) || {};
+                _context3.next = 13;
+                break;
+              case 12:
+                return _context3.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   }

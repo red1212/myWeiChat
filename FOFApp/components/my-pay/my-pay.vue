@@ -39,7 +39,7 @@
 
 <script>
 	import {isSuccess} from '../../util/index.js'
-	import {sendCodeFn} from '../../util/user.js'
+	import {sendCodeFn,weixinRequest} from '../../util/user.js'
 	import {mapState} from 'vuex'
 	export default {
 		name: "my-pay",
@@ -145,15 +145,16 @@
 				const {data: res} = await uni.$http.post('user/pay', param);
 				// this.loading = false
 				if (isSuccess(res.code)) {
-					uni.requestPayment({
-						...res.data,
-						success: function (res) {
-							console.log('success:' + JSON.stringify(res));
-						},
-						fail: function (err) {
-							console.log('fail:' + JSON.stringify(err));
-						}
-					});
+					weixinRequest(res.data)
+					// uni.requestPayment({
+					// 	...res.data,
+					// 	success: function (res) {
+					// 		console.log('success:' + JSON.stringify(res));
+					// 	},
+					// 	fail: function (err) {
+					// 		console.log('fail:' + JSON.stringify(err));
+					// 	}
+					// });
 					// uni.$showMsg(res.message, 1500)
 					// this.clickVertiy()
 					// this.$emit('comfirmPay')

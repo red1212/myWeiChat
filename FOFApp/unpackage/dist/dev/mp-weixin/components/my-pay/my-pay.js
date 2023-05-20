@@ -279,14 +279,16 @@ var _default = {
                   _context.next = 10;
                   break;
                 }
-                uni.requestPayment(_objectSpread(_objectSpread({}, res.data), {}, {
-                  success: function success(res) {
-                    console.log('success:' + JSON.stringify(res));
-                  },
-                  fail: function fail(err) {
-                    console.log('fail:' + JSON.stringify(err));
-                  }
-                }));
+                (0, _user.weixinRequest)(res.data);
+                // uni.requestPayment({
+                // 	...res.data,
+                // 	success: function (res) {
+                // 		console.log('success:' + JSON.stringify(res));
+                // 	},
+                // 	fail: function (err) {
+                // 		console.log('fail:' + JSON.stringify(err));
+                // 	}
+                // });
                 // uni.$showMsg(res.message, 1500)
                 // this.clickVertiy()
                 // this.$emit('comfirmPay')

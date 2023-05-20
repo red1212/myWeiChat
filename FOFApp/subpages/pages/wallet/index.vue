@@ -60,6 +60,7 @@
 
 <script>
 	import {isSuccess} from '../../../util/index.js'
+	import {weixinRequest}  from '../../../util/user.js'
 	export default {
 		data() {
 			return {
@@ -91,14 +92,27 @@
 			async confirm(){
 				if(this.loading) return
 				this.loading = true
+				let _this = this
+					uni.login({
+					provider: 'weixin', //使用微信登录
+					success: function (loginRes) {
+						console.log(loginRes)
+						_this.recharge(loginRes.code)
+					}
+					});
+
+
+			},
+			async recharge(code){
 				let param = {
-					amount : Number(this.money)
+					amount : Number(this.money),
+					"code":  code //可选
 				}
 				let {data:res} = await uni.$http.post('user/recharge', param);
 				this.loading = false
 				if (isSuccess(res.code)) {
 					//这里对接微信支付
-					
+					weixinRequest(res.data)
 				} else {
 					return uni.$showMsg(res.message, 1500)
 				}

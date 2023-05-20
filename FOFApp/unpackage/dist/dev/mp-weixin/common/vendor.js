@@ -41270,12 +41270,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isLogin = isLogin;
 exports.orderPrice = orderPrice;
+exports.payState = payState;
 exports.sendCodeFn = sendCodeFn;
 exports.toLogin = toLogin;
+exports.weixinRequest = weixinRequest;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 46));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 48));
 var _store = _interopRequireDefault(__webpack_require__(/*! ../store/store.js */ 33));
 var _index = __webpack_require__(/*! ./index.js */ 39);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 //是否登录
 function isLogin() {
   return _store.default.state.m_users.token ? true : false;
@@ -41324,7 +41329,7 @@ function _sendCodeFn() {
 }
 function orderPrice(_x3) {
   return _orderPrice.apply(this, arguments);
-}
+} //支付状态查询
 function _orderPrice() {
   _orderPrice = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(params) {
     var _yield$uni$$http$post2, res;
@@ -41353,6 +41358,53 @@ function _orderPrice() {
     }, _callee2);
   }));
   return _orderPrice.apply(this, arguments);
+}
+function payState(_x4) {
+  return _payState.apply(this, arguments);
+}
+function _payState() {
+  _payState = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(params) {
+    var _yield$uni$$http$post3, res;
+    return _regenerator.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
+            return uni.$http.post('user/order/pay/status', params);
+          case 2:
+            _yield$uni$$http$post3 = _context3.sent;
+            res = _yield$uni$$http$post3.data;
+            if (!(0, _index.isSuccess)(res.code)) {
+              if (res.data) {
+                uni.$showMsg('支付成功', 1500);
+              } else {
+                uni.$showMsg('支付失败', 1500);
+              }
+            } else {
+              uni.$showMsg(res.message, 1500);
+            }
+          case 5:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+  return _payState.apply(this, arguments);
+}
+function weixinRequest(param) {
+  var res = false;
+  uni.requestPayment(_objectSpread(_objectSpread({}, param), {}, {
+    success: function success(res) {
+      console.log('success:' + JSON.stringify(res));
+      res = true;
+    },
+    fail: function fail(err) {
+      console.log('fail:' + JSON.stringify(err));
+      res = false;
+    }
+  }));
+  return res;
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 

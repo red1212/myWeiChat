@@ -100,10 +100,10 @@
 			</view>
 
 			<view class="content">
-				<uni-file-picker v-model="imageValue" fileMediatype="image" mode="grid" @select="selectFile"
-					@success="success" @fail="fail" file-extname="png,jpg" :limit="1" :list-styles="listStyles">
-					<button class="submit">上传附件</button>
-				</uni-file-picker>
+				<uni-file-picker limit="1" file-mediatype="all" title="上传附件" @select="selectFile"
+					:value="imageValue"
+					@progress="progress" 
+					@success="success" @fail="fail"></uni-file-picker>
 				<view class="sample_nature_tip"><span style="color: red;">*</span>上传的文件格式只能是office不同版本文件和txt！建议附件大小不大于20M</view>
 			</view>
 
@@ -157,18 +157,6 @@
 				NumberToFormat,
 				content: '',
 				productDetail: {},
-				listStyles: {
-					// 是否显示边框
-					border: false,
-					// 是否显示分隔线
-					dividline: false,
-					// 线条样式
-					borderStyle: {
-						width: 0,
-						color: 'blue',
-						radius: 2
-					}
-				},
 				disable: false,
 				showConfirm: false,
 				payState: false,
@@ -675,31 +663,15 @@
 					},
 					header:{ "Content-Type": "multipart/form-data",},
 					success: (uploadFileRes) => {
-						console.log(uploadFileRes.data);
+						let result = JSON.parse(uploadFileRes.data)
+						if(result.code == 1){
+							this.File = result.data.url
+							console.log(this.File)
+							return uni.$showMsg('文件上传成功', 1500)
+						}
+						return uni.$showMsg('文件上传失败', 1500)
 					}
 				});
-			// console.log(new Blob([JSON.stringify(param.file)]))
-			// 	uni.request({
-			// 	    url: 'http://47.97.216.6/admin/api.upload/file.html', //仅为示例，并非真实接口地址。
-			// 	    data: {
-			// 	       key: param.imgUrl,
-			// 	       uptype:param.uptype,
-			// 	       safe:param.safe,
-			// 	       file:param.file,
-			// 	    },
-			// 		method: 'POST',
-			// 	    header: {
-			// 	        "Content-Type": "multipart/form-data",
-			// 	    },
-			// 	    success: (res) => {
-			// 	        console.log(res,'------');
-			// 			if(res.code == 404){
-							
-			// 			}
-			// 	        // this.text = 'request success';
-			// 	    }
-			// 	});
-			
 			},
 			// 上传成功
 			success(e) {
