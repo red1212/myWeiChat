@@ -73,7 +73,7 @@
 		font-size: 12px;
 		background-color: $uni-color-primary;
 		border-radius: 0px;
-		padding: 0px;
+		padding: 2px;
 		color: #fff;
 		min-width:70px;
 		border-radius: 6px;

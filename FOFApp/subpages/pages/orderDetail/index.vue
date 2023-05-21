@@ -42,9 +42,9 @@
 					<!-- 普通下单 -->
 					<text class="label" style="width: 105px;">数据下载链接：</text>
 					<view>链接:</view> 
-					<uni-link class="link" href="https://pan.baidu.com/s/1XtSRY7flYw8ZPo45YEoeXg?pwd=d44j" text="https://pan.baidu.com/s/1XtSRY7flYw8ZPo45YEoeXg?pwd=d44j"></uni-link>
+					<uni-link class="link" :href="orderInfo.Item.ResultFilePan" :text="orderInfo.Item.ResultFilePan"></uni-link>
 					<view>提取码:</view> 
-					<uni-link class="link" href="d44j" text="d44j"></uni-link>
+					<uni-link class="link" :href="orderInfo.Item.ResultFilePanCode" :text="orderInfo.Item.ResultFilePanCode"></uni-link>
 					
 				</view>
 		</uni-card>

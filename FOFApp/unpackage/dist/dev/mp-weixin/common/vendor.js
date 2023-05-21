@@ -40325,7 +40325,7 @@ function checkMap(map, mapText) {
   return res;
 }
 function isSuccess(code) {
-  return code === '200';
+  return code == '200';
 }
 
 //处理错误提示
@@ -41370,22 +41370,26 @@ function _payState() {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.next = 2;
+            console.log('----支付状态查询----');
+            _context3.next = 3;
             return uni.$http.post('user/order/pay/status', params);
-          case 2:
+          case 3:
             _yield$uni$$http$post3 = _context3.sent;
             res = _yield$uni$$http$post3.data;
+            console.log('----支付状态查询----', res);
             if (!(0, _index.isSuccess)(res.code)) {
-              if (res.data) {
+              cb && cb();
+              if (res.data == true) {
                 uni.$showMsg('支付成功', 1500);
-                cb && cb();
+                console.log('--走这里，支付成功--');
               } else {
                 uni.$showMsg('支付失败', 1500);
+                console.log('--走这里，支付失败--');
               }
             } else {
               uni.$showMsg(res.message, 1500);
             }
-          case 5:
+          case 7:
           case "end":
             return _context3.stop();
         }
@@ -41405,13 +41409,12 @@ function _weixinPay() {
         switch (_context4.prev = _context4.next) {
           case 0:
             loading = false;
-            console.log(loading);
             if (!(loading == true)) {
-              _context4.next = 4;
+              _context4.next = 3;
               break;
             }
             return _context4.abrupt("return");
-          case 4:
+          case 3:
             loading = true;
             param = {
               "payType": payType,
@@ -41419,22 +41422,14 @@ function _weixinPay() {
               "orderNo": Orderno,
               "code": code //可选
             };
-            _context4.next = 8;
+            _context4.next = 7;
             return uni.$http.post('user/pay', param);
-          case 8:
+          case 7:
             _yield$uni$$http$post4 = _context4.sent;
             res = _yield$uni$$http$post4.data;
             loading = false;
-            if (!(0, _index.isSuccess)(res.code)) {
-              _context4.next = 15;
-              break;
-            }
-            weixinRequest(res.data);
-            _context4.next = 16;
-            break;
-          case 15:
-            return _context4.abrupt("return", uni.$showMsg(res.message, 1500));
-          case 16:
+            return _context4.abrupt("return", res);
+          case 11:
           case "end":
             return _context4.stop();
         }
@@ -41443,11 +41438,13 @@ function _weixinPay() {
   }));
   return _weixinPay.apply(this, arguments);
 }
-function weixinRequest(param, cb) {
+function weixinRequest(param, Orderno) {
   uni.requestPayment(_objectSpread(_objectSpread({}, param), {}, {
     success: function success(res) {
       console.log('success:' + JSON.stringify(res));
-      cb && cb();
+      return payState({
+        extra: Orderno
+      });
     },
     fail: function fail(err) {
       console.log('fail:' + JSON.stringify(err));

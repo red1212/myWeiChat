@@ -35,15 +35,18 @@ export async function  orderPrice(params){
 
 //支付状态查询
 export async function payState(params,cb){
+	console.log('----支付状态查询----')
 	const { data: res }= await uni.$http.post('user/order/pay/status', params);
+	console.log('----支付状态查询----',res)
 	if(!isSuccess(res.code)){
-		if(res.data){
+		cb && cb()
+		if(res.data == true){
 			uni.$showMsg('支付成功',1500) 
-			cb && cb()
+			console.log('--走这里，支付成功--')
 		}else{
 			uni.$showMsg('支付失败',1500) 
+			console.log('--走这里，支付失败--')
 		}
-		
 	}else{
 		uni.$showMsg(res.message,1500) 
 	}
@@ -51,7 +54,6 @@ export async function payState(params,cb){
 }
 export async function weixinPay(code,payType,Orderno){
 	let loading = false
-	console.log(loading)
 	if(loading == true) return 
 	loading = true
 	let param={
@@ -61,19 +63,15 @@ export async function weixinPay(code,payType,Orderno){
 	}
 	const {data: res} = await uni.$http.post('user/pay', param);
 	loading = false
-	if (isSuccess(res.code)) {
-		weixinRequest(res.data)
-	} else {
-		return uni.$showMsg(res.message, 1500)
-	}
+	return res
 }
 
-export function weixinRequest(param,cb){
+export function weixinRequest(param,Orderno){
 	uni.requestPayment({
 		...param,
 		success: function (res) {
 			console.log('success:' + JSON.stringify(res));
-			cb && cb()
+			return payState({extra:Orderno})
 		},
 		fail: function (err) {
 			console.log('fail:' + JSON.stringify(err));

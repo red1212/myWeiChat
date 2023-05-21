@@ -30,7 +30,7 @@ export function checkMap(map,mapText,duration=1500){
 }
 
 export function isSuccess(code){
- return code === '200'
+ return code == '200'
 }
 
 //处理错误提示

@@ -798,7 +798,7 @@
 	}
 	.row{
 		border:1px solid #ccc;
-		padding:4px 6px;
+		padding:6px 6px;
 		width: 27%;
 		text-align: center;
 		margin-bottom: 4px;

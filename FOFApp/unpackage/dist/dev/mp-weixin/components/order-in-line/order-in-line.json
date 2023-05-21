@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "my-couponid": "/components/my-couponid/my-couponid",
-    "uni-file-picker": "/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker",
-    "my-pay": "/components/my-pay/my-pay"
-  },
-  "component": true
-}

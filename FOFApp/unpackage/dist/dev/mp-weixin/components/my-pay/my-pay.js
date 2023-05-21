@@ -242,10 +242,89 @@ var _default = {
           provider: 'weixin',
           //使用微信登录
           success: function success(loginRes) {
-            _this.weixinPay(loginRes.code);
+            _this.payFn(loginRes.code);
           }
         });
       }
+    },
+    payFn: function payFn(code) {
+      var _this3 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var payType, res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                payType = _this3.payType;
+                _context.next = 3;
+                return (0, _user.weixinPay)(code, payType, _this3.Orderno);
+              case 3:
+                res = _context.sent;
+                if (!(0, _index.isSuccess)(res.code)) {
+                  _context.next = 8;
+                  break;
+                }
+                _this3.weixinRequest(res.data, _this3.Orderno);
+                _context.next = 9;
+                break;
+              case 8:
+                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    weixinRequest: function weixinRequest(param, Orderno) {
+      var _this = this;
+      uni.requestPayment(_objectSpread(_objectSpread({}, param), {}, {
+        success: function async(res) {
+          console.log('success:' + JSON.stringify(res));
+          _this.getPayState(Orderno);
+        },
+        fail: function fail(err) {
+          console.log('fail:' + JSON.stringify(err));
+        }
+      }));
+    },
+    getPayState: function getPayState(Orderno) {
+      var _this4 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var _yield$uni$$http$post, res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return uni.$http.post('user/order/pay/status', {
+                  extra: Orderno
+                });
+              case 2:
+                _yield$uni$$http$post = _context2.sent;
+                res = _yield$uni$$http$post.data;
+                if ((0, _index.isSuccess)(res.code)) {
+                  _this4.clickVertiy();
+                  _this4.$emit('comfirmPay');
+                  uni.redirectTo({
+                    url: '/subpages/pages/order/index'
+                  });
+                  if (res.data == true) {
+                    uni.$showMsg('支付成功', 1500);
+                  } else {
+                    uni.$showMsg('支付失败', 1500);
+                  }
+                } else {
+                  uni.$showMsg(res.message, 1500);
+                }
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     clickVertiy: function clickVertiy(type) {
       this.$refs.vertiyRef.$refs.popup.close();
@@ -254,113 +333,54 @@ var _default = {
       this.time = 60;
       this.sendCodeState = false;
     },
-    weixinPay: function weixinPay(code) {
-      var _this3 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var payType, param, _yield$uni$$http$post, res;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                payType = _this3.payType;
-                param = {
-                  "payType": payType,
-                  //接口说明-枚举-支付类型
-                  "orderNo": _this3.Orderno,
-                  "code": code //可选
-                };
-                _context.next = 4;
-                return uni.$http.post('user/pay', param);
-              case 4:
-                _yield$uni$$http$post = _context.sent;
-                res = _yield$uni$$http$post.data;
-                if (!(0, _index.isSuccess)(res.code)) {
-                  _context.next = 10;
-                  break;
-                }
-                (0, _user.weixinRequest)(res.data, _this3.getPayState);
-                // uni.requestPayment({
-                // 	...res.data,
-                // 	success: function (res) {
-                // 		console.log('success:' + JSON.stringify(res));
-                // 	},
-                // 	fail: function (err) {
-                // 		console.log('fail:' + JSON.stringify(err));
-                // 	}
-                // });
-                // uni.$showMsg(res.message, 1500)
-                // this.clickVertiy()
-                // this.$emit('comfirmPay')
-                _context.next = 11;
-                break;
-              case 10:
-                return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-              case 11:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    getPayState: function getPayState() {
-      (0, _user.payState)(this.Orderno, this.goOrder());
-      this.clickVertiy();
-      this.$emit('comfirmPay');
-    },
-    goOrder: function goOrder() {
-      uni.navigateTo({
-        url: '/subpages/pages/order/index'
-      });
-    },
     //确认支付
     comfirmPay: function comfirmPay() {
-      var _this4 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+      var _this5 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
         var payType, code, param, _yield$uni$$http$post2, res;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                if (!_this4.loading) {
-                  _context2.next = 2;
+                if (!_this5.loading) {
+                  _context3.next = 2;
                   break;
                 }
-                return _context2.abrupt("return");
+                return _context3.abrupt("return");
               case 2:
-                payType = _this4.payType, code = _this4.code;
+                payType = _this5.payType, code = _this5.code;
                 param = {
                   "payType": payType,
                   //接口说明-枚举-支付类型
-                  "orderNo": _this4.Orderno,
+                  "orderNo": _this5.Orderno,
                   "code": payType !== 'weixin' && code //可选
                 };
 
-                _this4.loading = true;
-                _context2.next = 7;
+                _this5.loading = true;
+                _context3.next = 7;
                 return uni.$http.post('user/pay', param);
               case 7:
-                _yield$uni$$http$post2 = _context2.sent;
+                _yield$uni$$http$post2 = _context3.sent;
                 res = _yield$uni$$http$post2.data;
-                _this4.loading = false;
+                _this5.loading = false;
                 uni.hideLoading();
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context2.next = 17;
+                  _context3.next = 17;
                   break;
                 }
                 uni.$showMsg(res.message, 1500);
-                _this4.clickVertiy();
-                _this4.$emit('comfirmPay');
-                _context2.next = 18;
+                _this5.clickVertiy();
+                _this5.$emit('comfirmPay');
+                _context3.next = 18;
                 break;
               case 17:
-                return _context2.abrupt("return", uni.$showMsg(res.message, 1500));
+                return _context3.abrupt("return", uni.$showMsg(res.message, 1500));
               case 18:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     }
   }

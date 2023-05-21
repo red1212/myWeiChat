@@ -60,7 +60,7 @@
 
 <script>
 	import {isSuccess} from '../../../util/index.js'
-	import {weixinPay}  from '../../../util/user.js'
+	import {weixinPay,weixinRequest,payState}  from '../../../util/user.js'
 	export default {
 		data() {
 			return {
@@ -101,24 +101,66 @@
 				let {data:res} = await uni.$http.post('user/recharge', param);
 				this.loading = false
 				if (isSuccess(res.code)) {
+					let _this = this
 					//这里对接微信支付
 						uni.login({
 						provider: 'weixin', //使用微信登录
 						success: function (loginRes) {
-							console.log(loginRes)
-							weixinPay(loginRes.code,'weixin',res.data.Orderno)
+							_this.payFn(loginRes.code,'weixin',res.data.Orderno)
 						}
 						});
 				} else {
 					return uni.$showMsg(res.message, 1500)
 				}
 			},
+			//支付
+			async payFn(code,payType,Orderno){
+				let res = await weixinPay(code,payType,Orderno)
+					if (isSuccess(res.code)) {
+						this.weixinRequest(res.data,Orderno)
+					} else {
+						return uni.$showMsg(res.message, 1500)
+					}
+			},
+			weixinRequest(param,Orderno){
+				let _this = this
+				uni.requestPayment({
+					...param,
+					success: function async (res) {
+						console.log('success:' + JSON.stringify(res));
+						_this.getPayState(Orderno)
+					},
+					fail: function (err) {
+						console.log('fail:' + JSON.stringify(err));
+					}
+				});
+			},
+
+			async getPayState(Orderno){
+				const { data: res }= await uni.$http.post('user/order/pay/status', {extra:Orderno});
+					if(isSuccess(res.code)){
+						this.clearFn()
+						if(res.data == true){
+							uni.$showMsg('支付成功',1500) 
+						}else{
+							uni.$showMsg('支付失败',1500) 
+						}
+					}else{
+						uni.$showMsg(res.message,1500) 
+					}
+			},
+			clearFn(){
+				this.closePopUp()
+				this.getAssets()
+			},
 			async getAssets(){
 				uni.showLoading({
 					title: '数据加载中...',
 				})
 				this.loading = true
+				console.log('----ddd----')
 				const {data: res} = await uni.$http.post('user/assets');
+				console.log('----ddd----')
 				this.loading = false
 				uni.hideLoading()
 				if (isSuccess(res.code)) {

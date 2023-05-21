@@ -39,7 +39,7 @@
 
 <script>
 	import {isSuccess} from '../../util/index.js'
-	import {sendCodeFn,weixinRequest,payState} from '../../util/user.js'
+	import {sendCodeFn,payState,weixinPay} from '../../util/user.js'
 	import {mapState} from 'vuex'
 	export default {
 		name: "my-pay",
@@ -121,56 +121,58 @@
 					uni.login({
 					provider: 'weixin', //使用微信登录
 					success: function (loginRes) {
-						_this.weixinPay(loginRes.code)
+						_this.payFn(loginRes.code)
 					}
 					});
 				}
 				
 			},
+			async payFn(code){
+				let {payType} = this
+				let res = await weixinPay(code,payType,this.Orderno);
+				if (isSuccess(res.code)) {
+						this.weixinRequest(res.data,this.Orderno)
+					} else {
+						return uni.$showMsg(res.message, 1500)
+					}
+			},
+			weixinRequest(param,Orderno){
+				let _this = this
+				uni.requestPayment({
+					...param,
+					success: function async (res) {
+						console.log('success:' + JSON.stringify(res));
+						_this.getPayState(Orderno)
+					},
+					fail: function (err) {
+						console.log('fail:' + JSON.stringify(err));
+					}
+				});
+			},
+			async getPayState(Orderno){
+				const { data: res }= await uni.$http.post('user/order/pay/status', {extra:Orderno});
+					if(isSuccess(res.code)){
+						this.clickVertiy()
+						this.$emit('comfirmPay')
+						uni.redirectTo({
+							url:'/subpages/pages/order/index'
+						})
+						if(res.data == true){
+							uni.$showMsg('支付成功',1500) 
+						}else{
+							uni.$showMsg('支付失败',1500) 
+						}
+					}else{
+						uni.$showMsg(res.message,1500) 
+					}
+			},
+
 			clickVertiy(type) {
 				this.$refs.vertiyRef.$refs.popup.close()
 				this.code = ''
 				this.timer && clearInterval(this.timer)
 				this.time = 60
 				this.sendCodeState= false
-			},
-			async weixinPay(code){
-				let {payType} = this
-				let param={
-					"payType": payType, //接口说明-枚举-支付类型
-					"orderNo": this.Orderno,
-					"code":  code //可选
-				}
-				const {data: res} = await uni.$http.post('user/pay', param);
-				// this.loading = false
-				if (isSuccess(res.code)) {
-					weixinRequest(res.data,this.getPayState)
-					// uni.requestPayment({
-					// 	...res.data,
-					// 	success: function (res) {
-					// 		console.log('success:' + JSON.stringify(res));
-					// 	},
-					// 	fail: function (err) {
-					// 		console.log('fail:' + JSON.stringify(err));
-					// 	}
-					// });
-					// uni.$showMsg(res.message, 1500)
-					// this.clickVertiy()
-					// this.$emit('comfirmPay')
-				} else {
-					return uni.$showMsg(res.message, 1500)
-				}
-			},
-			getPayState(){
-				payState(this.Orderno,this.goOrder())
-				this.clickVertiy()
-				this.$emit('comfirmPay')
-			},
-			goOrder(){
-				uni.navigateTo({
-					url:'/subpages/pages/order/index'
-				})
-				
 			},
 			//确认支付
 			async comfirmPay() {
