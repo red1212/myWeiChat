@@ -83,6 +83,20 @@
 					"navigationBarTitleText": "下单"
 				}
 			
+			},
+			{
+				"path": "pages/userAgreement/index",
+				"style": {
+					"navigationBarTitleText": "用户协议"
+				}
+			
+			},
+			{
+				"path": "pages/privacyAgreement/index",
+				"style": {
+					"navigationBarTitleText": "隐私协议"
+				}
+			
 			}
 			
 		]

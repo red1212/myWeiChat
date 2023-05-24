@@ -44,7 +44,11 @@
 					已有帐号？请登录
 				</view>
 			</view>
-			<view class="logo-tip">登录即代表您已同意<text class="tip">《服务协议和隐私政策》</text></view>
+			<view class="logo-tip">
+				登录即代表您已同意
+				<text class="tip" @click="page1()">《用户协议》</text>
+				和<text class="tip" @click="page2()">《隐私协议》</text>
+			</view>
 		</view>
 	</view>
 </template>
@@ -93,6 +97,16 @@
 		},
 		methods: {
 			...mapMutations('m_users',['updateIsLogin','updateUserInfo','updateToken']),
+			page1(){
+				uni.navigateTo({
+					url:'/subpages/pages/userAgreement/index'
+				})
+			},
+			page2(){
+				uni.navigateTo({
+					url:'/subpages/pages/privacyAgreement/index'
+				})
+			},
 			goLogin(){
 				this.updateIsLogin(true)
 			},

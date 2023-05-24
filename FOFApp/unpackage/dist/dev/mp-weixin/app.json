@@ -19,7 +19,9 @@
         "pages/login/index",
         "pages/login/userAgree",
         "pages/team/index",
-        "pages/order-in-line/index"
+        "pages/order-in-line/index",
+        "pages/userAgreement/index",
+        "pages/privacyAgreement/index"
       ]
     }
   ],

@@ -10,7 +10,7 @@ uni.$http = $http
 
 
 // 请求根路径 
-$http.baseUrl = 'https://story.nabaiyu.com/apitest/api/'
+$http.baseUrl = 'https://foftest.com/api/'   //'https://story.nabaiyu.com/apitest/api/'
 
 
 //请求拦截器
@@ -41,7 +41,7 @@ $http.beforeRequest = function (options) {
  			icon: "none"
  		});
  		setTimeout(function() {
- 			uni.navigateTo({
+ 			uni.redirectTo({
  				url:'/subpages/pages/login/index'
  			});
  		}, 1000)

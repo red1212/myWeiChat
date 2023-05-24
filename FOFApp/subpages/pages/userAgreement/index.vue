@@ -1,0 +1,3 @@
+<template>
+    <web-view src="https://foftest.com/www/%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE.html"></web-view>
+</template>

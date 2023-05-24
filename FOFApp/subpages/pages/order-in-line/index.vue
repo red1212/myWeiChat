@@ -621,7 +621,7 @@
 					console.log(imgUrl)
 					console.log(tempFiles)
 				uni.request({
-				    url: 'http://47.97.216.6/admin/api.upload/state.html', //仅为示例，并非真实接口地址。
+				    url: 'http://www.foftest.com/admin/api.upload/state.html', //仅为示例，并非真实接口地址。
 				    data: {
 				       key: tempFiles[0].name,
 				       uptype:'',
@@ -652,7 +652,7 @@
 			 async uploadFile(param){
 			 	console.log(param)
 				uni.uploadFile({
-					url: 'http://47.97.216.6/admin/api.upload/file.html', //仅为示例，非真实的接口地址
+					url: 'http://www.foftest.com/admin/api.upload/file.html', //仅为示例，非真实的接口地址
 					filePath: param.imgUrl,
 					name: 'file',
 					formData: {
