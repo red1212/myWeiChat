@@ -169,7 +169,7 @@
 			async onClick(item) {
 				let {text} = item
 				if(text ==='首页'){
-					uni.switchTab({
+					return uni.switchTab({
 						url:"/pages/home/index"
 					})
 				}

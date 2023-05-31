@@ -278,54 +278,57 @@ var _default = {
             switch (_context2.prev = _context2.next) {
               case 0:
                 text = item.text;
-                if (text === '首页') {
-                  uni.switchTab({
-                    url: "/pages/home/index"
-                  });
+                if (!(text === '首页')) {
+                  _context2.next = 3;
+                  break;
                 }
+                return _context2.abrupt("return", uni.switchTab({
+                  url: "/pages/home/index"
+                }));
+              case 3:
                 if (!(text === '收藏')) {
-                  _context2.next = 15;
+                  _context2.next = 16;
                   break;
                 }
                 param = {
                   ProductId: parseInt(_this2.ID)
                 };
-                _context2.next = 6;
+                _context2.next = 7;
                 return uni.$http.post('user/mark/add', param);
-              case 6:
+              case 7:
                 _yield$uni$$http$post2 = _context2.sent;
                 res = _yield$uni$$http$post2.data;
                 if (!(0, _index.isSuccess)(res.code)) {
-                  _context2.next = 12;
+                  _context2.next = 13;
                   break;
                 }
                 _this2.handCollect(1);
-                _context2.next = 13;
+                _context2.next = 14;
                 break;
-              case 12:
-                return _context2.abrupt("return", uni.$showMsg(res.message, 1500));
               case 13:
-                _context2.next = 25;
+                return _context2.abrupt("return", uni.$showMsg(res.message, 1500));
+              case 14:
+                _context2.next = 26;
                 break;
-              case 15:
+              case 16:
                 _param = {
                   ProductId: parseInt(_this2.ID)
                 };
-                _context2.next = 18;
+                _context2.next = 19;
                 return uni.$http.post('user/mark/del', _param);
-              case 18:
+              case 19:
                 _yield$uni$$http$post3 = _context2.sent;
                 _res = _yield$uni$$http$post3.data;
                 if (!(0, _index.isSuccess)(_res.code)) {
-                  _context2.next = 24;
+                  _context2.next = 25;
                   break;
                 }
                 _this2.handCollect(0);
-                _context2.next = 25;
+                _context2.next = 26;
                 break;
-              case 24:
-                return _context2.abrupt("return", uni.$showMsg(_res.message, 1500));
               case 25:
+                return _context2.abrupt("return", uni.$showMsg(_res.message, 1500));
+              case 26:
               case "end":
                 return _context2.stop();
             }
