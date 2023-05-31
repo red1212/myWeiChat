@@ -19243,7 +19243,7 @@ function populateParameters(result) {
   // wx.getAccountInfoSync
 
   var parameters = {
-    appId: "__UNI__ABADB11",
+    appId: "__UNI__G2B11EDA",
     appName: "FOFApp",
     appVersion: "1.0.0",
     appVersionCode: "100",
@@ -19342,7 +19342,7 @@ var getAppBaseInfo = {
     var _hostName = getHostName(result);
     var hostLanguage = language.replace('_', '-');
     result = sortObject(Object.assign(result, {
-      appId: "__UNI__ABADB11",
+      appId: "__UNI__G2B11EDA",
       appName: "FOFApp",
       appVersion: "1.0.0",
       appVersionCode: "100",
@@ -37307,7 +37307,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  "appid": "__UNI__ABADB11"
+  "appid": "__UNI__G2B11EDA"
 };
 exports.default = _default;
 
@@ -40744,10 +40744,18 @@ exports.NumberToFormat = void 0;
 exports.checkMap = checkMap;
 exports.errorTip = errorTip;
 exports.formatPhone = formatPhone;
+exports.getCurrentPage = getCurrentPage;
 exports.isPayFn = void 0;
 exports.isSuccess = isSuccess;
 exports.orderStatus = void 0;
 exports.showMsg = showMsg;
+//获取当前路由信息
+function getCurrentPage() {
+  var pages = getCurrentPages();
+  //当前页面的路径信息
+  var currentRoute = pages[pages.length - 1];
+  return currentRoute;
+}
 function formatPhone(str) {
   if (!str) return '----';
   var str1 = str.slice(0, 3);

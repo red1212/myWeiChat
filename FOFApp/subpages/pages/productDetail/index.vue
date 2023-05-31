@@ -83,7 +83,7 @@
 </template>
 
 <script>
-	import {isSuccess} from '../../../util/index.js'
+	import {isSuccess,getCurrentPage} from '../../../util/index.js'
 	import {isLogin,toLogin} from '../../../util/user.js'
 	import {mapState,mapMutations} from 'vuex'
 	export default {
@@ -100,9 +100,14 @@
 					icon: 'heart',
 					text: '收藏',
 				}],
+				route:''
 			}
 		},
 		async onLoad(option){
+				let currentRoute =  getCurrentPage()
+				let {$page} = currentRoute
+				this.route = $page.fullPath ? $page.fullPath : '/pages/home/type'
+				console.log(this.route)
 				this.ID = option.id
 				uni.showLoading({
 				  title: '数据加载中...',
@@ -120,6 +125,21 @@
 				}
 				
 		},
+		//分享给好友
+		onShareAppMessage() {
+			return {
+				title: 'FOF实验室',
+				path: this.route
+			}
+		},
+		  //分享到朋友圈
+		onShareTimeline() {
+            return {
+               title: 'FOF实验室',
+               type: 0,
+			   path: this.route
+            }
+        },
 		methods: {
 			...mapMutations('m_purchase',['updateProductDetail']),
 			openBuy(){

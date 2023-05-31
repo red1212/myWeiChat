@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "no-data": "/components/no-data/no-data",
+    "my-popup": "/components/my-popup/my-popup",
+    "my-pay": "/components/my-pay/my-pay"
+  }
+}

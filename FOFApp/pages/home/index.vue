@@ -78,6 +78,21 @@
 				return uni.$showMsg(res.message,1500) 
 			}
 		},
+		//分享给好友
+		onShareAppMessage() {
+			return {
+				title: 'FOF实验室',
+				path: '/pages/home/index'
+			}
+		},
+		  //分享到朋友圈
+		onShareTimeline(res) {
+            return {
+               title: 'FOF实验室',
+               type: 0,
+			   path: '/pages/home/index',
+            }
+        },
 		methods:{
 			closePopUp() {
 				this.$refs.parentRef.$refs.popup.close()

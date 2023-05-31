@@ -184,17 +184,22 @@ var _default = {
       }, {
         icon: 'heart',
         text: '收藏'
-      }]
+      }],
+      route: ''
     };
   },
   onLoad: function onLoad(option) {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var param, _yield$uni$$http$post, res;
+      var currentRoute, $page, param, _yield$uni$$http$post, res;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              currentRoute = (0, _index.getCurrentPage)();
+              $page = currentRoute.$page;
+              _this.route = $page.fullPath ? $page.fullPath : '/pages/home/type';
+              console.log(_this.route);
               _this.ID = option.id;
               uni.showLoading({
                 title: '数据加载中...'
@@ -202,29 +207,44 @@ var _default = {
               param = {
                 ID: parseInt(_this.ID)
               };
-              _context.next = 5;
+              _context.next = 9;
               return uni.$http.post('product/detail', param);
-            case 5:
+            case 9:
               _yield$uni$$http$post = _context.sent;
               res = _yield$uni$$http$post.data;
               uni.hideLoading();
               if (!(0, _index.isSuccess)(res.code)) {
-                _context.next = 13;
+                _context.next = 17;
                 break;
               }
               _this.productDetail = res.data;
               _this.handCollect(res.data.Fav);
-              _context.next = 14;
+              _context.next = 18;
               break;
-            case 13:
+            case 17:
               return _context.abrupt("return", uni.$showMsg(res.message, 1500));
-            case 14:
+            case 18:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
     }))();
+  },
+  //分享给好友
+  onShareAppMessage: function onShareAppMessage() {
+    return {
+      title: 'FOF实验室',
+      path: this.route
+    };
+  },
+  //分享到朋友圈
+  onShareTimeline: function onShareTimeline() {
+    return {
+      title: 'FOF实验室',
+      type: 0,
+      path: this.route
+    };
   },
   methods: _objectSpread(_objectSpread({}, (0, _vuex.mapMutations)('m_purchase', ['updateProductDetail'])), {}, {
     openBuy: function openBuy() {

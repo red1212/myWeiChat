@@ -228,6 +228,21 @@ var _default = {
       }, _callee);
     }))();
   },
+  //分享给好友
+  onShareAppMessage: function onShareAppMessage() {
+    return {
+      title: 'FOF实验室',
+      path: '/pages/type/index'
+    };
+  },
+  //分享到朋友圈
+  onShareTimeline: function onShareTimeline(res) {
+    return {
+      title: 'FOF实验室',
+      type: 0,
+      path: '/pages/type/index'
+    };
+  },
   onReachBottom: function onReachBottom() {
     var _this$queryObj = this.queryObj,
       page = _this$queryObj.page,

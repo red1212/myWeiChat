@@ -69,6 +69,21 @@
 			await this.getcates()
 			this.getList()
 		},
+		//分享给好友
+		onShareAppMessage() {
+			return {
+				title: 'FOF实验室',
+				path: '/pages/type/index'
+			}
+		},
+		  //分享到朋友圈
+		onShareTimeline(res) {
+            return {
+               title: 'FOF实验室',
+               type: 0,
+			   path: '/pages/type/index'
+            }
+        },
 		onReachBottom() {
 			let {page,size} = this.queryObj
 			if (size * page >= this.total) return uni.$showMsg('到底了！', 1000)

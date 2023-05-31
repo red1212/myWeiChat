@@ -1,4 +1,11 @@
 
+//获取当前路由信息
+export function getCurrentPage(){
+	let pages = getCurrentPages()
+	//当前页面的路径信息
+	let currentRoute = pages[pages.length - 1]
+	return currentRoute
+}
 
 export function formatPhone(str){
 	if(!str) return '----'

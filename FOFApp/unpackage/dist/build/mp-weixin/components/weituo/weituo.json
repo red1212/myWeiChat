@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "my-radio": "/components/my-radio/my-radio",
+    "my-popup": "/components/my-popup/my-popup"
+  },
+  "component": true
+}
