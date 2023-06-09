@@ -2,6 +2,7 @@ import store from '../store/store.js'
 import {isSuccess} from './index.js'
 //是否登录
 export function isLogin() {
+	console.log(store.state.m_users.token,'---store.state.m_users.token--')
 	return store.state.m_users.token ? true : false
 }
 
