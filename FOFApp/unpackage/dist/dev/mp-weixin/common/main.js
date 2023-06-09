@@ -52,6 +52,8 @@ _requestMiniprogram.$http.afterRequest = function (response) {
       duration: 2000,
       icon: "none"
     });
+    uni.setStorageSync('userinfo', '{}');
+    uni.setStorageSync('token', '');
     setTimeout(function () {
       uni.redirectTo({
         url: '/subpages/pages/login/index'
