@@ -4,7 +4,7 @@
 			<view class="title">联系我们</view>
 			<view class="title-en">CONTACT US</view>
 			<view class="desc-box">
-				<view>如果您在网站使用或者检测咨询上有问题，可以随时与我们下面几位老师联系。</view>
+				<view>FOF实验室在全国构建多个实验室，秉承以“速度，精度，深度，渡科研之舟”的理念为客户提供一站式的解决方案。</view>
 				<view>工作时间：周一至周六 8:30--18:30</view>
 			</view>
 		</view>
@@ -24,8 +24,8 @@
 			<view class="server-phone">{{company['服务热线'] || ''}}</view>
 			<view class="address">地址：{{company['地址'] || '---'}}</view>
 			<view class="address">邮箱：{{company['邮箱'] || '---'}}</view>
-			<view class="address">财务咨询：{{company['财务咨询'] || '---'}}</view>
-			<view class="address">投诉电话：{{company['投诉电话'] || '---'}}</view>
+			<view class="address">服务咨询：{{company['服务咨询'] || '---'}}</view>
+			<view class="address">快速通道：{{company['快速通道'] || '---'}}</view>
 		</view>
 	</view>
 </template>
