@@ -15,11 +15,11 @@
 
 					<view class="desc-item">
 						<view class="label">检测能力：</view>
-						<view class="flex1">{{productDetail.Keywords}}</view>
+						<view class="flex1">{{productDetail.CetectionCapability}}</view>
 					</view>
 					<view class="desc-item">
 						<view class="label">检测周期：</view>
-						<view class="flex1">{{productDetail.CompletionCycle || '----'}}</view>
+						<view class="flex1">{{productDetail.DetectionCycle || '----'}}</view>
 					</view>
 					<view class="desc-item">
 						<view class="label">服务次数：</view>
